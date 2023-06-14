@@ -1,0 +1,168 @@
+Loops:
+
+    Write a program to print the numbers from 1 to 10 using a for loop.
+    Implement a program to calculate the factorial of a given number using a while loop.
+    Write a program to find the sum of all numbers from 1 to N using a for loop.
+    Implement a program to print the Fibonacci series up to a given number using a while loop.
+    Write a program to find the prime numbers between 1 and N using a for loop.
+    Implement a program to print the multiplication table of a given number using a nested loop.
+    Write a program to reverse a string using a while loop.
+    Implement a program to search for a specific element in an array using a for loop.
+
+    Write a program to calculate the sum of all the numbers between 1 and 100 using a for loop.
+    Write a program to find the factorial of a given number using a do-while loop.  
+    Write a program to check whether a given number is a prime number or not using a while loop.
+    Write a program to generate the first 10 terms of the Fibonacci series using a for loop.
+
+    Write a program to calculate the sum of all numbers from 1 to N, where N is taken as input from the user.
+    Write a program to print the multiplication table of a given number up to a certain limit.
+    Write a program to find the factorial of a given number using a loop.
+    Write a program to print the following pattern using nested loops:
+    *****
+    ****
+    ***
+    **
+    *
+    Write a program to generate the Fibonacci series up to a given number using a loop.
+    Write a program to find the sum of all even numbers between two given numbers using a loop.
+    Write a program to check whether a given number is prime or not using a loop.
+    Write a program to reverse a given number using a loop.
+    Write a program to print the following pattern using a loop:
+    1
+    22
+    333
+    4444
+    55555
+    Write a program to calculate the sum of digits of a given number using a loop.
+
+    Write a program to print the multiplication table of a given number.
+    Write a program to calculate the factorial of a given number using a loop.
+    Write a program to find the sum of all the even numbers between 1 and a given number.
+    Write a program to generate the Fibonacci series up to a given number using a loop.
+    Write a program to print the following pattern using nested loops:
+    *
+    **
+    ***
+    ****
+    *****
+
+    Write a program to find the factorial of a given number using a while loop.
+    Write a program to calculate the sum of all the odd numbers between two given numbers using a do-while loop.
+    Write a program to print the multiplication table of a given number using a for loop.
+    Write a program to generate the Fibonacci series up to a given number using a while loop.
+    Write a program to print the following pattern using a nested loop:
+    1
+    22
+    333
+    4444
+    55555
+
+---------------
+
+    Write a program to generate the first 100 prime numbers using a while loop.
+    Write a program to reverse the order of words in a given sentence using a for loop.
+    Write a program to calculate the sum of the series 1 + (1/2) + (1/3) + ... + (1/n) using a do-while loop.
+    Write a program to find the GCD (Greatest Common Divisor) of two numbers using the Euclidean algorithm in a while loop.
+    Write a program to determine the number of digits in a given integer without converting it to a string using a do-while loop.
+
+    Write a program to check if a given number is a palindrome using a loop.
+    Implement a program that prints the prime numbers within a given range using a loop.
+    Write a program to generate the first N terms of the Fibonacci series using a loop.
+    Implement a program to reverse the elements in an array without using additional storage.
+    Write a program to find the sum of all prime numbers between 1 and N using a loop.
+
+    ----------------
+    Find the sum of the series: 1/1! + 2/2! + 3/3! + ... + N/N!
+    Example: For N = 5, the sum would be 1/1! + 2/2! + 3/3! + 4/4! + 5/5! = 1 + 1 + 1 + 1 + 1 = 5
+
+    Print Pascal's triangle up to a given number of rows.
+    Example: For 5 rows, the triangle would be:
+
+    markdown
+
+        1
+        1 1
+      1 2 1
+      1 3 3 1
+    1 4 6 4 1
+
+    Find the Armstrong numbers between a given range.
+    Example: For the range 100 to 500, the Armstrong numbers are 153, 370, 371, 407.
+
+    Check whether a given number is a perfect number or not.
+    Example: For the number 6, it is a perfect number as its factors (excluding itself) sum up to 6 (1 + 2 + 3 = 6).
+
+    Print all the prime numbers between a given range.
+    Example: For the range 10 to 50, the prime numbers are 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47.
+
+    Print the reverse of a given sentence word by word using loops.
+    Example: For the input sentence "Hello World!", the output would be "!dlroW olleH".
+
+    Check whether a given string is a palindrome or not without using any string reversal function or data structure.
+    Example: For the string "racecar", it is a palindrome as it reads the same forwards and backwards.
+
+    Find the LCM (Least Common Multiple) of two numbers using loops.
+    Example: For the numbers 12 and 18, the LCM is 36.
+
+    Generate the first N terms of the Fibonacci series, where N is taken as input from the user, using an optimized approach.
+    Example: For N = 7, the Fibonacci series would be 0, 1, 1, 2, 3, 5, 8.
+
+    Find the sum of all the prime numbers up to a given limit using the Sieve of Eratosthenes algorithm.
+    Example: For the limit 30, the sum of the prime numbers is 129.
+
+    --------------
+
+    Implement a program that generates the prime factorization of a given number using trial division.
+    Write a program to calculate the sum of an infinite series using an iterative approach with a specified precision.
+    Implement a program to perform matrix multiplication of two square matrices using nested loops.
+    Write a program to find the longest increasing subsequence in a given array using dynamic programming.
+    Implement a program that simulates the Tower of Hanoi puzzle with a specified number of disks.
+
+    ----------
+    Generate all possible permutations of a given string using loops.
+Example: For the string "abc", the permutations would be "abc", "acb", "bac", "bca", "cab", "cba".
+
+Implement the Sieve of Eratosthenes algorithm to find all prime numbers up to a given limit.
+Example: For the limit 50, the prime numbers are 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47.
+
+Solve the Tower of Hanoi puzzle recursively using loops.
+Example: For 3 disks, the steps would be:
+
+css
+
+Move disk 1 from source A to destination C.
+Move disk 2 from source A to auxiliary B.
+Move disk 1 from destination C to auxiliary B.
+Move disk 3 from source A to destination C.
+Move disk 1 from auxiliary B to source A.
+Move disk 2 from auxiliary B to destination C.
+Move disk 1 from source A to destination C.
+
+Print all possible subsets of a given set using loops.
+Example: For the set {1, 2, 3}, the subsets would be {}, {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3}, {1, 2, 3}.
+
+Implement the bubble sort algorithm to sort an array of integers in ascending order.
+Example: For the array [5, 3, 8, 2, 1], the sorted array would be [1, 2, 3, 5, 8].
+
+Solve the N-Queens problem to place N queens on an NxN chessboard such that no two queens attack each other.
+Example: For N = 4, one of the solutions would be:
+
+css
+
+. Q . .
+. . . Q
+Q . . .
+. . Q .
+
+Implement the binary search algorithm to search for an element in a sorted array.
+Example: For the array [1, 3, 5, 7, 9] and the element 5, the index of the element would be 2.
+
+Generate the next permutation of a given set of numbers using loops.
+Example: For the set {1, 2, 3}, the next permutation after {1, 3, 2} would be {2, 1, 3}.
+
+Implement the merge sort algorithm to sort an array of integers in ascending order.
+Example: For the array [5, 3, 8, 2, 1], the sorted array would be [1, 2, 3, 5, 8].
+
+Solve the Sudoku puzzle using backtracking and loops.
+Example: For a given Sudoku puzzle, the program should find a valid solution.
+--------------------

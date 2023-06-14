@@ -1,0 +1,114 @@
+Conditional Statements:
+
+    Write a program to check if a given number is positive, negative, or zero.
+    Implement a program to find the roots of a quadratic equation.
+    Write a program to determine if a character is a vowel or consonant.
+    Implement a program that determines the grade of a student based on their score.
+    Write a program to check if a given string is a palindrome.
+    Implement a program to calculate the electricity bill based on the units consumed.
+    Write a program to find the largest among three numbers using conditional statements.
+    Implement a program that determines if a year is a leap year or not using conditional statements.
+
+    ---------
+        Leap Year: Write a program to determine whether a given year is a leap year or not.
+
+    Grade Calculation: Write a program that takes a student's score as input and calculates their grade based on the following criteria:
+        Score 90 or above: Grade A
+        Score 80-89: Grade B
+        Score 70-79: Grade C
+        Score 60-69: Grade D
+        Score below 60: Grade F
+
+    Number Comparison: Write a program that takes two numbers as input and compares them, printing whether the first number is greater than, less than, or equal to the second number.
+
+    Palindrome Check: Write a program to check if a given string is a palindrome (reads the same forwards and backwards).
+
+    Triangle Classification: Write a program that takes three sides of a triangle as input and classifies it as equilateral, isosceles, or scalene.
+
+    Even or Odd: Write a program that takes an integer as input and determines whether it is even or odd.
+
+    Positive, Negative, or Zero: Write a program that takes a number as input and determines whether it is positive, negative, or zero.
+
+    Vowel or Consonant: Write a program that takes a character as input and determines whether it is a vowel or consonant.
+
+    Calculator: Write a program that acts as a basic calculator, taking two numbers and an operator (+, -, *, /) as input and performing the corresponding operation.
+
+    Time Conversion: Write a program that takes a time in 24-hour format (e.g., 13:45) as input and converts it to a 12-hour format (e.g., 1:45 PM).
+    ----------------------------
+        Prime Number Check: Write a program that takes an integer as input and determines whether it is a prime number or not.
+
+    Quadratic Equation Solver: Write a program that takes coefficients a, b, and c as input and solves the quadratic equation ax^2 + bx + c = 0, providing the roots as output.
+
+    Number Guessing Game: Write a program that generates a random number between 1 and 100 and asks the user to guess the number. Provide feedback (higher, lower, or correct) based on the user's input until they guess correctly.
+
+    Fibonacci Sequence: Write a program that takes an integer as input and prints the Fibonacci sequence up to that number of terms.
+
+    Armstrong Number Check: Write a program that takes an integer as input and determines whether it is an Armstrong number or not. An Armstrong number is equal to the sum of its digits raised to the power of the number of digits.
+
+    String Reversal: Write a program that takes a string as input and reverses the string without using any built-in functions or libraries.
+
+    Palindrome Sentence Check: Write a program that takes a sentence as input and determines whether it is a palindrome, considering only alphanumeric characters and ignoring spaces and punctuation.
+
+    Number of Digits: Write a program that takes an integer as input and calculates the number of digits in that number.
+
+    Perfect Number Check: Write a program that takes an integer as input and determines whether it is a perfect number or not. A perfect number is equal to the sum of its proper divisors.
+
+    Roman Numeral Converter: Write a program that takes an integer between 1 and 3999 as input and converts it to Roman numerals.
+    --------------
+
+        Leap Year Check: Write a program that determines whether a given year is a leap year. A leap year is divisible by 4, but not divisible by 100 unless it is also divisible by 400.
+
+    Password Strength Checker: Write a program that checks the strength of a password based on certain criteria. For example, the password should have a minimum length, contain at least one uppercase letter, one lowercase letter, one digit, and one special character.
+
+    Triangle Validity Checker: Write a program that takes the lengths of three sides of a triangle as input and determines whether the triangle is valid. A triangle is valid if the sum of the lengths of any two sides is greater than the length of the third side.
+
+    Divisibility Checker: Write a program that checks whether a number is divisible by another number. For example, check if a number is divisible by 3, 5, and 7.
+
+    Membership Test: Write a program that checks whether a given element is present in a list. Use boolean logic to return True if the element is found and False otherwise.
+
+    Password Validation: Write a program that validates a user's password based on multiple conditions, such as length, complexity, and history (cannot reuse the same password).
+
+    Student Grade Classification: Write a program that takes a student's score as input and classifies it into different grade categories (e.g., A, B, C) based on specific grade boundaries.
+
+    Number Range Check: Write a program that checks whether a given number falls within a specified range. For example, check if a number is between 10 and 100.
+
+    File Access Control: Write a program that checks whether a user has the necessary permissions to access a file. Use boolean logic to determine if the user has read, write, or execute permissions.
+
+    Voting Eligibility Checker: Write a program that determines whether a person is eligible to vote based on their age and citizenship status. Use boolean logic to determine if the person meets the eligibility criteria.
+    ---------------------
+
+    Write a program to determine the largest among three numbers.
+    Write a program to check whether a given character is a vowel or a consonant.
+    Write a program to find the roots of a quadratic equation.
+    Write a program to determine the grade of a student based on their percentage.
+    Write a program to check whether a given year is a leap year or not.
+
+    Write a program to determine the largest among four numbers using nested if-else statements.
+    Write a program to check whether a given character is an uppercase letter, lowercase letter, digit, or special character.
+    Write a program to find the maximum among three numbers using the conditional operator.
+    Write a program to check whether a given string is a palindrome or not using if-else statements.
+    Write a program to check whether a given year is a leap year or not using a switch statement.
+
+    Write a program to find the maximum among three numbers using if-else-if statements.
+    Write a program to check whether a given string is a valid password or not. A valid password should contain at least 8 characters, including uppercase letters, lowercase letters, and numbers.
+    Write a program to calculate the grade of a student based on their marks using nested if statements.
+    Write a program to check whether a given character is a letter, digit, or special character using the ASCII values.
+    Write a program to determine the type of a triangle given the lengths of its three sides. The program should classify the triangle as equilateral, isosceles, or scalene.
+
+    Write a program to determine the roots of a quadratic equation, accounting for all possible cases (real, complex, and equal roots).
+    Write a program to check whether a given string is a valid email address or not. The program should validate the email address based on specific criteria (e.g., presence of '@' and '.', valid domain extension, etc.).
+    Write a program to calculate the factorial of a given number using recursion and validate the input to ensure it is a non-negative integer.
+    Write a program to determine the day of the week for a given date (considering leap years) using Zeller's congruence algorithm.
+    Write a program to determine the grade of a student based on their marks using the concept of nested ternary operators.
+
+    Implement a program to simulate a rock-paper-scissors game against the computer.
+    Write a program to find the roots of a quadratic equation and handle complex roots.
+    Implement a program that determines if a given year is a leap year using conditional statements and additional rules (e.g., divisible by 100 but not by 400).
+    Write a program to validate a password based on certain criteria (e.g., minimum length, presence of uppercase and lowercase letters, digits, and special characters).
+    Implement a program that calculates the average grade of a student and assigns a letter grade based on a grading scale.
+
+    Write a program that simulates a tic-tac-toe game with an AI opponent using an optimal strategy.
+    Implement a program that converts a given number into its corresponding Roman numeral representation.
+    Write a program to determine if a given year is a leap year using the correct rules from the Gregorian calendar.
+    Implement a program that generates a random password based on user-specified criteria (e.g., length, character types).
+    Write a program to solve a Sudoku puzzle using a backtracking algorithm.

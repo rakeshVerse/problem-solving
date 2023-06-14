@@ -1,0 +1,52 @@
+    Write a program to check whether a given number is even or odd.
+    Write a program to find the maximum of two numbers.
+    Write a program to check whether a given year is a leap year or not.
+    Write a program to calculate the factorial of a given number.
+    Write a program to print the Fibonacci series up to a given number.
+    Write a program to check whether a given string is a palindrome or not.
+    Write a program to find the sum of all the numbers divisible by 3 or 5 up to a given limit.
+    Write a program to find the largest and smallest elements in an array.
+    Write a program to reverse a given array.
+    Write a program to calculate the sum of the digits of a given number.
+
+    ----------------------
+    Reverse a String: Write a program that takes a string as input and reverses its characters. For example, inputting "hello" should output "olleh".
+
+    Factorial of a Number: Write a program that calculates the factorial of a given number. The factorial of a number is the product of all positive integers less than or equal to the number. For example, the factorial of 5 (5!) is 5 * 4 * 3 * 2 * 1 = 120.
+
+    Find the Longest Word: Write a program that finds the longest word in a given sentence. The program should output the longest word and its length. For example, given the sentence "The quick brown fox jumps over the lazy dog", the program should output "jumped" with a length of 6.
+
+    Fibonacci Sequence: Write a program that generates the Fibonacci sequence up to a given number of terms. The Fibonacci sequence starts with 0 and 1, and each subsequent term is the sum of the two previous terms. For example, if the number of terms is 7, the program should output: 0, 1, 1, 2, 3, 5, 8.
+
+    Prime Number Checker: Write a program that checks whether a given number is a prime number. A prime number is a number greater than 1 that is only divisible by 1 and itself.
+
+    Palindrome Check: Write a program that checks whether a given string is a palindrome. A palindrome is a word, phrase, number, or other sequence of characters that reads the same forward and backward.
+
+    Sum of Digits: Write a program that calculates the sum of the digits of a given number. For example, if the number is 123, the program should output 1 + 2 + 3 = 6.
+
+    Count Vowels: Write a program that counts the number of vowels in a given string. Consider both lowercase and uppercase vowels.
+
+    Perfect Number Check: Write a program that checks whether a given number is a perfect number. A perfect number is a positive integer that is equal to the sum of its proper divisors (excluding the number itself).
+
+    Armstrong Number Check: Write a program that checks whether a given number is an Armstrong number. An Armstrong number is a number that is equal to the sum of its own digits each raised to the power of the number of digits.
+
+    ----------------
+    FizzBuzz: Write a program that prints numbers from 1 to N, but for multiples of 3, print "Fizz" instead of the number, and for multiples of 5, print "Buzz". For numbers that are multiples of both 3 and 5, print "FizzBuzz".
+
+    Reverse a String: Write a program that takes a string as input and prints its reverse. For example, if the input is "hello", the output should be "olleh".
+
+    Check Palindrome: Write a program that checks whether a given string is a palindrome. A palindrome is a word, phrase, number, or other sequence of characters that reads the same forward and backward.
+
+    Find the Largest Number: Write a program that finds the largest number in an array of integers.
+
+    Fibonacci Sequence: Write a program that generates the Fibonacci sequence up to a given number of terms. The Fibonacci sequence starts with 0 and 1, and each subsequent term is the sum of the two previous terms.
+
+    Calculate Factorial: Write a program that calculates the factorial of a given number. The factorial of a number is the product of all positive integers less than or equal to the number.
+
+    Count Vowels: Write a program that counts the number of vowels in a given string. Consider both lowercase and uppercase vowels.
+
+    Check Prime Number: Write a program that checks whether a given number is a prime number. A prime number is a number greater than 1 that is only divisible by 1 and itself.
+
+    Compute the Sum of Digits: Write a program that calculates the sum of the digits of a given number. For example, if the number is 123, the program should output 1 + 2 + 3 = 6.
+
+    Sort an Array: Write a program that sorts an array of integers in ascending or descending order using a sorting algorithm such as bubble sort, selection sort, or insertion sort.

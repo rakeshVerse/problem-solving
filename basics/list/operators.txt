@@ -1,0 +1,56 @@
+Operators:
+
+    Write a program to calculate the area of a circle given its radius.
+    Implement a program to convert temperature from Celsius to Fahrenheit.
+    Write a program to check if a given number is even or odd.
+    Implement a calculator program that can perform basic arithmetic operations like addition, subtraction, multiplication, and division.
+    Write a program to find the largest among three numbers.
+    Implement a program to concatenate two strings.
+    Write a program to check if a given year is a leap year or not.
+    Implement a program to swap the values of two variables without using a temporary variable.
+
+    Write a program to calculate the area of a rectangle given its length and width.
+    Write a program to swap the values of two variables without using a third variable.
+    Write a program to convert temperature from Celsius to Fahrenheit.
+    Write a program to check whether a given number is a prime number or not.
+    Write a program to calculate the sum of the digits of a given number.
+
+    Write a program to calculate the area of a triangle given the lengths of its three sides.
+    Write a program to check whether a given number is positive, negative, or zero.
+    Write a program to convert a decimal number to binary.
+    Write a program to check whether a given year is a leap year or not using the ternary operator.
+    Write a program to calculate the sum of the digits of a given number using the modulus operator.
+
+    Write a program to calculate the compound interest given the principal amount, interest rate, and time period.
+    Write a program to check whether a given year is a leap year or not using the logical operators.
+    Write a program to calculate the sum of all even numbers between two given numbers using the modulo operator.
+    Write a program to convert a decimal number to hexadecimal.
+    Write a program to check whether a given number is a perfect square or not using the square root function.
+
+    Write a program to find the sum of the digits of a given number using bitwise operators.
+    Write a program to find the square root of a given number without using the sqrt function.
+    Write a program to check whether a given number is a power of 2 or not using bitwise operators.
+    Write a program to find the largest among three numbers without using the comparison operator.
+    Write a program to perform a bitwise swap of two numbers without using a temporary variable.
+
+    Write a program to calculate the factorial of a given number using recursion.
+    Implement a program to calculate the sum of digits in a given number.
+    Write a program to determine if a given number is a prime number.
+    Implement a program to calculate the power of a number using a recursive function.
+    Write a program to find the largest and smallest elements in an array.
+
+    Implement a program that performs basic arithmetic operations (+, -, *, /) on fractions.
+    Write a program to calculate the sum of all prime numbers below a given number using the Sieve of Eratosthenes algorithm.
+    Implement a program to convert a decimal number to a binary number without using the built-in functions.
+    Write a program to find the nth digit of the Fibonacci sequence using an efficient algorithm.
+    Implement a program to calculate the area of a polygon given its vertices using the Shoelace formula.
+
+   
+
+    
+
+
+
+
+    
+
