@@ -2,7 +2,12 @@
  * Write a program to calculate the sum of the digits of a given number.
  *
  * Solution: After dividing a number (e.g, 459) by 10, remainder gives the last digit(9) and
- * questiont gives the remaining number (45), repeate till
+ * questiont gives the remaining number (45)
+ *
+ * Step 1: Get the remainder of dividing number by 10
+ * 2: sum the remainder
+ * 3:Divide the number by 10
+ * 4: Repeat step 1-3 until number is less than 1
  */
 
 const calcDigitSum = (number) => {
