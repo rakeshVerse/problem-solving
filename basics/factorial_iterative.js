@@ -8,7 +8,6 @@ const factorial = (number) => {
   // loop through given number to 1
   for (let i = number; i > 1; i--) {
     fact *= i;
-    console.log(fact);
   }
 
   return fact;
