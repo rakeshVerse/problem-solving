@@ -9,7 +9,7 @@
   For 10^3 = 10 * 10 * 10 = 1000
   If power = 0 return 1
   Base case: If power = 1 return 10
-  Recursive case: 10 * calcPower(3)
+  Recursive case: 10 * calcPower(3 - 1)
 
   calcPower(3) calls calcPower(2)
   calcPower(2) calls calcPower(1)
