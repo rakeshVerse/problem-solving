@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Map</title>
+    <script>
+      const questions = new Map([
+        ['question', "What's the best programmig language in the world?"],
+        [1, 'Java'],
+        [2, 'C++'],
+        [3, 'JavaScript'],
+        ['correct', 3],
+        [true, 'Correct!!!'],
+        [false, 'Wrong! :('],
+      ]);
+
+      console.log(questions.get('question'));
+      console.log('Options:');
+      for (const [key, val] of questions) {
+        if (typeof key === 'number') console.log(`${key}: ${val}`);
+      }
+
+      const userAnswer = +prompt(questions.get('question'));
+      console.log(questions.get(userAnswer === questions.get('correct')));
+    </script>
+  </head>
+  <body></body>
+</html>
