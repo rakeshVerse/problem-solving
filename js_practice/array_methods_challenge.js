@@ -37,3 +37,12 @@ const checkDogs = function (dogsJulia, dogsKate) {
 
 checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
+
+const text = [2, 3, 4, 5];
+const abs = text;
+
+console.log(abs);
+console.log(abs.slice(3));
+// abs.slice(3);
+console.log(abs);
+console.log(text);
