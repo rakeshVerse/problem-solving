@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Diagonal</title>
+    <title>Two bars</title>
     <script>
       /**
        * Print two bar lines: | |
@@ -12,11 +12,11 @@
       const matrix = 8;
 
       for (let row = 1; row <= matrix; row++) {
-        for (let col = 1; col <= matrix; col++) {
-          col === 1 || col === 8
+        for (let col = 1; col <= matrix; col++)
+          col === 1 || col === matrix
             ? document.write('*')
-            : document.write('&nbsp;');
-        }
+            : document.write('&nbsp;&nbsp;');
+
         document.write('<br>');
       }
     </script>

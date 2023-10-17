@@ -3,30 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Diagonal</title>
+    <title>Half A</title>
     <script>
-      /**
-       * Print two bar lines: |-|
-       */
-
       const matrix = 8;
 
       for (let row = 1; row <= matrix; row++) {
         for (let col = 1; col <= matrix; col++) {
-          // if...else
-          // if (row === 1) {
-          //   document.write(' * ');
-          // } else {
-          //   if (col === 1 || col === 8) document.write('*');
-          //   else document.write('&nbsp;&nbsp;&nbsp;');
-          // }
-
-          // nested ternary
-          row === 1
-            ? document.write(' * ')
-            : col === 1 || col === 8
-            ? document.write('*')
-            : document.write('&nbsp;&nbsp;&nbsp;');
+          if (row === 1 || col === 1 || col === matrix) document.write('* ');
+          else document.write('&nbsp;&nbsp;&nbsp;');
         }
         document.write('<br>');
       }

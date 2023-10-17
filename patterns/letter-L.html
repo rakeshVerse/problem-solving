@@ -7,12 +7,12 @@
   </head>
   <body>
     <script>
-      const matrix = 8;
+      const matrix = 10;
 
       for (let i = 1; i <= matrix; i++) {
         for (let j = 1; j <= matrix; j++) {
-          if (j == 1) document.write('*<br>');
-          if (i == 8) document.write(' * ');
+          if (j == 1 && i != matrix) document.write('*<br>');
+          if (i == matrix) document.write(' * ');
         }
       }
     </script>
