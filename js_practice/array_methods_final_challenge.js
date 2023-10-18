@@ -73,8 +73,8 @@ console.log(dogs.some(checkOKFood));
 const dogsOKFood = dogs.filter(checkOKFood);
 console.log(dogsOKFood);
 
-// 8. Create a shallow copy of the dogs array and sort it by recommended food portion in an ascending order (keep in mind that the portions are inside the array's objects)
+// 8. Create a shallow copy of the dogs array and sort it by recommended food portion in an descending order (keep in mind that the portions are inside the array's objects)
 const dogsSortedByReccomFood = [...dogs].sort(
-  (dogA, dogB) => dogA.recommendedFood - dogB.recommendedFood
+  (dogA, dogB) => dogB.recommendedFood - dogA.recommendedFood
 );
 console.log(dogsSortedByReccomFood);
