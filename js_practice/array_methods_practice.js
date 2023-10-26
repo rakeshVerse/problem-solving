@@ -100,6 +100,24 @@ const { dep, withd } = accounts
   );
 console.log(dep, withd);
 
+// reduce() only
+const { deposit, withdrawl } = accounts.reduce(
+  (sum, acc) => {
+    const { depCnt, withCnt } = acc.movements.reduce(
+      (accSum, amt) => {
+        accSum[amt > 0 ? 'depCnt' : 'withCnt'] += amt;
+        return accSum;
+      },
+      { depCnt: 0, withCnt: 0 }
+    );
+    sum.deposit += depCnt;
+    sum.withdrawl += withCnt;
+    return sum;
+  },
+  { deposit: 0, withdrawl: 0 }
+);
+console.log(deposit, withdrawl);
+
 // IV. Create a function to convert any string to a title case e.g. 'this is a nice title' -> 'This Is a Nice Title'
 const createTitleCase = title => {
   const exceptions = ['a', 'an', 'and', 'the', 'but', 'or', 'on', 'in', 'with'];
