@@ -27,11 +27,11 @@ class CarCl {
   }
 }
 
-const audi = new CarCl('Audi', 120);
-audi.accelerate();
-audi.brake();
+const audi = new CarCl('Audi', 120); // -> Audi going at 120 km/h
+audi.accelerate(); // -> Audi going at 130 km/h
+audi.brake(); // -> Audi going at 125 km/h
 
-console.log(CarCl.prototype);
+console.log(CarCl.prototype); // -> {constructor: ƒ, accelerate: ƒ, brake: ƒ}
 console.log(`---------------------`);
 
 class EVCl extends CarCl {
@@ -65,16 +65,16 @@ class EVCl extends CarCl {
   }
 }
 
-console.log(EVCl.prototype);
-console.log(EVCl.prototype.__proto__);
+console.log(EVCl.prototype); // -> CarCl {constructor: ƒ, chargeBattery: ƒ, accelerate: ƒ}
+console.log(EVCl.prototype.__proto__); // -> {constructor: ƒ, accelerate: ƒ, brake: ƒ}
 
 console.log(`---------------------`);
 
-const rivian = new EVCl('Rivian', 120, 23);
-rivian.accelerate();
-rivian.brake();
+const rivian = new EVCl('Rivian', 120, 23); // -> Rivian going at 120 km/h Rivian going at 120 km/h, with a charge of 23%
+rivian.accelerate(); // -> Rivian going at 140 km/h, with a charge of 22%
+rivian.brake(); // -> Rivian going at 135 km/h
 rivian.chargeBattery(90);
-rivian.accelerate();
+rivian.accelerate(); // -> Rivian going at 155 km/h, with a charge of 89%
 
 console.log(`---------------------`);
 
@@ -83,6 +83,14 @@ const tesla = new EVCl('Tesla', 100, 50)
   .brake()
   .chargeBattery(80)
   .accelerate();
-console.log(tesla);
-console.log(tesla.__proto__);
-console.log(tesla.__proto__.__proto__);
+/** -> 
+Tesla going at 100 km/h
+Tesla going at 100 km/h, with a charge of 50%
+Tesla going at 120 km/h, with a charge of 49%
+Tesla going at 115 km/h
+Tesla going at 135 km/h, with a charge of 79%
+*/
+
+console.log(tesla); // -> EVCl {#charge: 79, make: 'Tesla', speed: 135}
+console.log(tesla.__proto__); // -> CarCl {constructor: ƒ, chargeBattery: ƒ, accelerate: ƒ}
+console.log(tesla.__proto__.__proto__); // -> {constructor: ƒ, accelerate: ƒ, brake: ƒ}
