@@ -85,9 +85,7 @@ const whereAmI = function (lat, lng) {
           `${res[0].name.common} doesn't share borders with any country.`
         );
       return getAPIJson(
-        `https://restcountries.com/v3.1/alpha?codes=${res[0].borders.join(
-          ','
-        )}`,
+        `https://restcountries.com/v3.1/alpha?codes=${borders.join(',')}`,
         `Server responded with failure!`
       );
     })
