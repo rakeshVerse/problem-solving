@@ -8,6 +8,7 @@ body {
   color: rgb(67, 60, 60);
 
   border-top: 9px solid rgb(50, 156, 114);
+  position: relative;
 }
 
 .row {
@@ -34,6 +35,19 @@ h2 {
   font-size: 35px;
   color: rgb(50, 156, 114);
   margin-bottom: 25px;
+  position: relative;
+}
+
+h2::after {
+  content: 'TOP';
+  font-size: 20px;
+  position: absolute;
+  top: -10px;
+  right: -30px;
+  background-color: orangered;
+  color: #fff;
+  display: block;
+  padding: 5px 10px;
 }
 
 h3 {
@@ -129,4 +143,19 @@ footer {
   text-align: center;
   padding: 20px 0;
   background-color: rgba(235, 241, 241, 0.998);
+}
+
+.scroll-top {
+  position: fixed;
+  bottom: 60px;
+  right: 100px;
+
+  font-size: 34px;
+  font-weight: bold;
+  border-radius: 50%;
+  background-color: red;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  color: #fff;
 }
