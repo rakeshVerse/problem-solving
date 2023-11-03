@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex</title>
+    <style>
+      .container {
+        height: 200px;
+        margin: 80px;
+        background-color: bisque;
+
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+        align-items: center;
+
+        /* Change direction; Stack items vertically */
+        /* flex-direction: column; */
+      }
+
+      .child {
+        flex-basis: 80px;
+      }
+
+      .child:nth-child(odd) {
+        background-color: orangered;
+        color: aliceblue;
+        align-self: flex-start;
+      }
+
+      .child:nth-child(even) {
+        background-color: yellowgreen;
+      }
+
+      .child:nth-child(4) {
+        align-self: stretch;
+      }
+
+      /* Expand item */
+      .child:nth-child(6) {
+        flex-grow: 1;
+      }
+
+      .child:nth-child(8) {
+        /* put item at last */
+        /* order: 1; */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="child">You</div>
+      <div class="child">are</div>
+      <div class="child">the</div>
+      <div class="child">best</div>
+      <div class="child">project</div>
+      <div class="child">you've</div>
+      <div class="child">ever</div>
+      <div class="child">worked</div>
+      <div class="child">on</div>
+    </div>
+  </body>
+</html>

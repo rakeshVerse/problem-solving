@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid</title>
+    <style>
+      .container {
+        font-size: 20px;
+        margin: 80px;
+        height: 500px;
+
+        display: grid;
+        gap: 10px;
+      }
+
+      .child:nth-child(odd) {
+        background-color: rgb(0, 229, 255);
+      }
+
+      .child:nth-child(even) {
+        background-color: rgb(255, 234, 0);
+      }
+
+      /* Apply this rules after 500px (Create layout for devices above 500px)*/
+      @media (min-width: 500px) {
+        .container {
+          grid-template-columns: repeat(4, 1fr);
+        }
+
+        .grid-col-span-2 {
+          grid-column: span 2;
+        }
+
+        .child:nth-child(5) {
+          background-color: red;
+          grid-column: 4;
+          grid-row: 1 / span 2;
+        }
+
+        .child:last-child {
+          grid-column: 1/-1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <article class="child grid-col-span-2">Believe</article>
+      <article class="child">in</article>
+      <article class="child">Yourself</article>
+      <article class="child grid-col-span-2">And</article>
+      <article class="child">You</article>
+      <article class="child grid-col-span-2">are</article>
+      <article class="child grid-col-span-2">Halfway</article>
+      <article class="child">There</article>
+    </div>
+  </body>
+</html>
