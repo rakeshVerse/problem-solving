@@ -1,0 +1,132 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  color: rgb(67, 60, 60);
+
+  border-top: 9px solid rgb(50, 156, 114);
+}
+
+.row {
+  width: 800px;
+  margin: 0 auto;
+}
+
+.post-img {
+  width: 100%;
+}
+
+h1 {
+  font-size: 25px;
+  text-transform: uppercase;
+  color: rgb(50, 156, 114);
+  margin-bottom: 10px;
+}
+
+h1::first-letter {
+  font-size: 40px;
+}
+
+h2 {
+  font-size: 35px;
+  color: rgb(50, 156, 114);
+  margin-bottom: 25px;
+}
+
+h3 {
+  font-size: 25px;
+  color: rgb(50, 156, 114);
+  margin-bottom: 20px;
+  margin-top: 40px;
+}
+
+h4 {
+  font-size: 20px;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+a:link {
+  color: rgb(50, 156, 114);
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(232, 140, 107);
+  text-decoration: dotted;
+  font-weight: bold;
+}
+ul,
+ol {
+  padding-left: 25px;
+  margin-bottom: 15px;
+}
+
+li {
+  /* list-style: none; */
+  font-size: 15px;
+}
+
+.main-header {
+  background-color: rgba(235, 241, 241, 0.998);
+  padding: 40px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+nav > ul > li {
+  display: inline-block;
+  padding-right: 20px;
+}
+
+nav > ul > li:last-child {
+  padding-right: 0;
+}
+.author {
+  font-size: 14px;
+}
+
+.row header {
+  margin-bottom: 30px;
+}
+
+article {
+  margin-bottom: 50px;
+}
+
+aside {
+  border-top: 5px solid rgb(50, 156, 114);
+  border-bottom: 5px solid rgb(50, 156, 114);
+  background-color: rgba(235, 241, 241, 0.998);
+  padding: 30px 0;
+  margin-bottom: 40px;
+  width: 500px;
+}
+
+aside h4 {
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+aside ul {
+  padding-left: 40px;
+}
+
+aside ul > li {
+  list-style: none;
+}
+
+footer {
+  text-align: center;
+  padding: 20px 0;
+  background-color: rgba(235, 241, 241, 0.998);
+}
