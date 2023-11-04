@@ -185,9 +185,14 @@ footer {
   gap: 75px;
 }
 
-aside {
-  flex: 0 0 300px;
-  height: fit-content;
+/* article */
+.flex-container > *:nth-child(1) {
+  flex: 1;
+}
+
+/* aside */
+.flex-container > *:nth-child(2) {
+  align-self: flex-start;
 }
 
 .related-list {
