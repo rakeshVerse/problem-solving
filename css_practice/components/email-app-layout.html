@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Email App Layout</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: sans-serif;
+      }
+
+      .container {
+        display: grid;
+        grid-template-columns: 80px 400px 1fr 300px;
+        grid-template-rows: auto 1fr;
+        height: 100vh;
+      }
+
+      .nav,
+      .header,
+      .list,
+      .view,
+      .info {
+        padding-top: 32px;
+      }
+
+      /* navigation */
+      .nav {
+        background-color: rgb(41, 43, 40);
+        color: #fff;
+        grid-row: span 2;
+        text-align: center;
+        font-size: 24px;
+      }
+
+      /* header */
+      .header {
+        background-color: rgb(106, 227, 14);
+        grid-column: span 3;
+        padding-left: 40px;
+        padding-right: 40px;
+        padding-bottom: 32px;
+      }
+
+      .header > *:last-child {
+        float: right;
+      }
+
+      .btn {
+        font-size: 18px;
+        text-transform: uppercase;
+        font-family: sans-serif;
+        border: none;
+        padding: 6px 16px;
+        color: #fff;
+        font-weight: bold;
+      }
+
+      .green {
+        background-color: #65c918;
+      }
+
+      .red {
+        background-color: #df1818;
+      }
+
+      /* email list */
+      .list {
+        background-color: aliceblue;
+        padding-left: 36px;
+        padding-right: 36px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        overflow: scroll;
+      }
+
+      .email-list {
+        text-align: center;
+        background-color: #e3ecf4c7;
+        font-size: 24px;
+        font-weight: 500;
+        padding: 24px 0;
+      }
+
+      /* info */
+
+      .info,
+      .view {
+        font-size: 30px;
+        text-align: center;
+      }
+
+      .info {
+        background-color: aliceblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="nav">Nav</div>
+      <div class="header">
+        <button class="btn green">New</button>
+        <button class="btn green">Reply</button>
+        <button class="btn green">Forward</button>
+        <button class="btn green">Mark unread</button>
+        <button class="btn red">Trash</button>
+      </div>
+      <div class="list">
+        <div class="email-list">Email 1</div>
+        <div class="email-list">Email 2</div>
+        <div class="email-list">Email 3</div>
+        <div class="email-list">Email 4</div>
+        <div class="email-list">Email 5</div>
+        <div class="email-list">Email 6</div>
+        <div class="email-list">Email 7</div>
+        <div class="email-list">Email 8</div>
+        <div class="email-list">Email 9</div>
+        <div class="email-list">Email 10</div>
+      </div>
+      <div class="view">Email view</div>
+      <div class="info">Additional info</div>
+    </div>
+  </body>
+</html>
