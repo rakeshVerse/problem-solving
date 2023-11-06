@@ -18,14 +18,181 @@
       .accordion {
         width: 800px;
         margin: 100px auto;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .faq {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 24px;
+
+        align-items: center;
+        justify-items: center;
+      }
+
+      .faq {
+        box-shadow: 0px 3px 18px rgba(132, 128, 128, 0.15);
+        padding: 16px 24px;
+      }
+
+      .num {
+        font-size: 30px;
+        color: #c4c7ca;
+      }
+
+      .que {
+        font-size: 30px;
+        justify-self: start;
+        color: #495057;
+      }
+
+      .arrow {
+        font-size: 30px;
+        color: #099268;
+      }
+
+      .hidden-box {
+        display: none;
+        grid-column: 2;
+        line-height: 1.7;
+        letter-spacing: 1.1px;
+        font-size: 16px;
+      }
+
+      .hidden-box ul {
+        margin-top: 24px;
+        color: #989a9c;
+      }
+
+      .open {
+        border-top: 4px solid #099268;
+        align-items: start;
+      }
+
+      .open .hidden-box {
+        display: block;
+      }
+
+      .open .num,
+      .open .que {
+        color: #099268;
       }
     </style>
   </head>
   <body>
+    <!-- 
+      SPACING SYSTEM (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+
+FONT SIZE SYSTEM (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+COLOR SYSTEM
+MAIN COLOR: #087f5b
+MAIN COLOR TINT: #099268
+GREY COLOR: #343a40
+GREY COLOR TINT: #495057
+     -->
     <div class="accordion">
-      <div class="faq"></div>
-      <div class="faq"></div>
-      <div class="faq"></div>
+      <div class="faq">
+        <p class="num">01</p>
+        <p class="que">Where are these chairs assembled?</p>
+        <p class="arrow">&DownArrow;</p>
+        <div class="hidden-box">
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius,
+            doloribus laudantium ipsam maiores ab consectetur cumque perferendis
+            voluptatibus ipsa repellendus, sunt distinctio eaque, minus placeat
+            amet et nulla dicta similique aliquid aut reprehenderit in!
+          </p>
+          <ul>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+            <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</li>
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
+              saepe reprehenderit at praesentium culpa, ullam dolor doloremque
+              minima vero recusandae?
+            </li>
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Temporibus, iste.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="faq">
+        <p class="num">02</p>
+        <p class="que">How long do I have to return my chair?</p>
+        <p class="arrow">&DownArrow;</p>
+        <div class="hidden-box">
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius,
+            doloribus laudantium ipsam maiores ab consectetur cumque perferendis
+            voluptatibus ipsa repellendus, sunt distinctio eaque, minus placeat
+            amet et nulla dicta similique aliquid aut reprehenderit in!
+          </p>
+          <ul>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+            <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</li>
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
+              saepe reprehenderit at praesentium culpa, ullam dolor doloremque
+              minima vero recusandae?
+            </li>
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Temporibus, iste.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="faq">
+        <p class="num">03</p>
+        <p class="que">Do you ship to countries outside the EU?</p>
+        <p class="arrow">&DownArrow;</p>
+        <div class="hidden-box">
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius,
+            doloribus laudantium ipsam maiores ab consectetur cumque perferendis
+            voluptatibus ipsa repellendus, sunt distinctio eaque, minus placeat
+            amet et nulla dicta similique aliquid aut reprehenderit in!
+          </p>
+          <ul>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+            <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</li>
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
+              saepe reprehenderit at praesentium culpa, ullam dolor doloremque
+              minima vero recusandae?
+            </li>
+            <li>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Temporibus, iste.
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
+
+    <script>
+      // Using Loop
+      // const faqContainer = document.querySelectorAll('.faq');
+
+      // faqContainer.forEach(faq =>
+      //   faq.addEventListener('click', function () {
+      //     faq.classList.toggle('open');
+      //   })
+      // );
+
+      // Using event delegation
+      const accordion = document.querySelector('.accordion');
+
+      accordion.addEventListener('click', function (e) {
+        e.target != accordion &&
+          e.target.closest('.faq').classList.toggle('open');
+      });
+    </script>
   </body>
 </html>
