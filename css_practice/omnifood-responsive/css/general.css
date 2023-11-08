@@ -1,0 +1,124 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: Rubik, sans-serif;
+  font-weight: 400;
+  line-height: 1;
+  color: #555;
+}
+
+.container {
+  width: 120rem;
+  margin: 0 auto;
+  padding: 0 3.2rem;
+}
+
+.grid {
+  display: grid;
+  gap: 8rem;
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+main,
+section {
+  margin-bottom: 12.8rem;
+}
+
+.btn {
+  border-radius: 0.9rem;
+  padding: 1.2rem 2.4rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.btn-bg {
+  border-radius: 0.9rem;
+  padding: 1.4rem 2.6rem;
+  font-size: 2rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.btn-orange {
+  background-color: #e67e22;
+  color: #fff;
+}
+
+.btn-orange:hover {
+  background-color: #cf711f;
+}
+
+.btn-white {
+  background-color: #fff;
+  border: 3px solid #fff;
+  color: #555;
+}
+
+.btn-white:hover {
+  background-color: #fdf2e9;
+}
+
+.sub-heading {
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #e67e22;
+  margin-bottom: 3.2rem;
+}
+
+.heading-primary {
+  font-size: 5.2rem;
+  margin-bottom: 3.2rem;
+
+  color: #333;
+}
+
+.heading-secondary {
+  font-size: 4.4rem;
+  color: #333;
+}
+
+.centered-txt {
+  text-align: center;
+}
+
+li {
+  list-style: none;
+}
+
+.meal-icon,
+.list-icon {
+  color: #e67e22;
+  font-size: 3rem;
+}
+
+.quality-list > *,
+.diet-list > *,
+.price-list > * {
+  font-size: 1.8rem;
+  padding-bottom: 1.6rem;
+
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
