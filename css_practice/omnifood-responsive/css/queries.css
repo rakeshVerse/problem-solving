@@ -1,0 +1,44 @@
+/* ================================ */
+/* Smaller desktop: < 1344px/84em */
+/* ================================= */
+@media (max-width: 84em) {
+  .heading-primary {
+    font-size: 4.4rem;
+  }
+
+  .hero {
+    max-width: 120rem;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ================================ */
+/* Tablet (Landscape): < 1200px/75em */
+/* ================================= */
+@media (max-width: 75em) {
+  /* Set 1rem to 9px = 9/16 = 56.25% */
+  html {
+    font-size: 56.25%;
+  }
+}
+
+/* ================================ */
+/* Tablet (Portrait): < 944px/59em */
+/* ================================= */
+@media (max-width: 59em) {
+}
+
+/* ================================ */
+/* Tablet (Portrait small): < 704px/44em */
+/* ================================= */
+@media (max-width: 44em) {
+}
+
+/* ================================ */
+/* Phones: < 544px/34em */
+/* ================================= */
+@media (max-width: 34em) {
+}
