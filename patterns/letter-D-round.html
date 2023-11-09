@@ -10,14 +10,25 @@
       const rows = 7;
       const cols = 5;
 
+      // for (let row = 1; row <= rows; row++) {
+      //   for (let col = 1; col <= cols; col++)
+      //     (row == 1 && col != cols) ||
+      //     (row == rows && col != cols) ||
+      //     col == 2 ||
+      //     (col == cols && row != 1 && row != rows)
+      //       ? document.write('* ')
+      //       : document.write('&nbsp;&nbsp;&nbsp;');
+      //   document.write('<br>');
+      // }
+
+      // More readable
       for (let row = 1; row <= rows; row++) {
-        for (let col = 1; col <= cols; col++)
-          (row == 1 && col != cols) ||
-          (row == rows && col != cols) ||
-          col == 2 ||
-          (col == cols && row != 1 && row != rows)
-            ? document.write('* ')
-            : document.write('&nbsp;&nbsp;&nbsp;');
+        for (let col = 1; col <= cols; col++) {
+          const rowPrint = (row == 1 || row == rows) && col != cols; // Skip col 5 for 1st and last row
+          const colPrint = (col == 2 || col == cols) && row > 1 && row < rows; // Print 2nd and last col where, row is between 1-last row exclusively
+
+          document.write(rowPrint || colPrint ? '* ' : '&nbsp;&nbsp;&nbsp;');
+        }
         document.write('<br>');
       }
     </script>
