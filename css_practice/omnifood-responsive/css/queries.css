@@ -23,6 +23,21 @@
   html {
     font-size: 56.25%;
   }
+
+  /* Reduce gap */
+  .grid {
+    gap: 4.8rem;
+  }
+
+  .hero {
+    margin: 0 auto;
+    gap: 3.2rem;
+    padding: auto 4.8rem;
+  }
+
+  .heading-secondary {
+    font-size: 3.2rem;
+  }
 }
 
 /* ================================ */
