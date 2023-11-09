@@ -4,15 +4,152 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Guess My Number</title>
-    <style></style>
+    <style>
+      @font-face {
+        font-family: arcadeClassic;
+        src: url(ARCADECLASSIC.TTF);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 62.5%;
+      }
+
+      body {
+        font-family: arcadeClassic, sans-serif;
+        color: #fff;
+        background-color: rgb(62, 52, 52);
+      }
+
+      main {
+        width: 70rem;
+        margin: 5rem auto;
+      }
+
+      h1,
+      .head,
+      .guess,
+      .msg {
+        margin-bottom: 5rem;
+      }
+
+      .head {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 6.4rem;
+      }
+
+      /* .guess-container {
+      } */
+
+      .guess {
+        background-color: red;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+      }
+
+      .guess p {
+        font-size: 8rem;
+        text-align: center;
+        width: 11rem;
+        color: #444;
+        background-color: rgb(83, 205, 148);
+        font-weight: 700;
+      }
+
+      hr {
+        border: 4px solid rgb(255, 255, 255);
+        border-radius: 5px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 70rem;
+        z-index: -1;
+      }
+
+      .action-score {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 5rem;
+      }
+
+      .action-container {
+        justify-self: end;
+        text-align: center;
+      }
+
+      button {
+        font-family: arcadeClassic;
+        font-size: 3.4rem;
+        padding: 1rem 3rem;
+        background-color: beige;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: rgb(62, 52, 52);
+        color: #fff;
+      }
+
+      p {
+        font-size: 2.4rem;
+      }
+
+      input {
+        font-family: arcadeClassic;
+        font-size: 6.4rem;
+        display: block;
+        width: 19rem;
+        outline: none;
+        border: none;
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      input:focus {
+        outline: 7px solid rgb(209, 200, 200);
+      }
+    </style>
   </head>
   <body>
-    <p class="msg"></p>
-    <p class="score">Score: <span></span></p>
-    <p class="high-score">Highscore: <span></span></p>
-    <input type="number" />
-    <button class="btn-check">Check</button>
-    <button class="btn-play">Play Again</button>
+    <main>
+      <div class="head">
+        <button class="btn-play">Again!</button>
+        <p>&LeftAngleBracket; Between 1 and 20 &RightAngleBracket;</p>
+      </div>
+
+      <h1>Guess My Number!</h1>
+      <div class="guess">
+        <p>?</p>
+
+        <hr />
+      </div>
+
+      <div class="action-score">
+        <div class="action-container">
+          <input type="number" placeholder="?" />
+          <button class="btn-check">Check!</button>
+        </div>
+        <div class="score-container">
+          <p class="msg">Start guessing...</p>
+          <p class="score">Score: <span></span></p>
+          <p class="high-score">Highscore: <span></span></p>
+        </div>
+      </div>
+    </main>
+
     <script src="script.js"></script>
   </body>
 </html>

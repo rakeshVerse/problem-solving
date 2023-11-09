@@ -6,12 +6,13 @@ const msgEl = document.querySelector('.msg');
 const scoreEl = document.querySelector('.score span');
 const highscoreEl = document.querySelector('.high-score span');
 const bodyEl = document.querySelector('body');
+const wonEl = document.querySelector('.guess p');
 
 let myNum, score;
 const init = () => {
   myNum = Math.trunc(Math.random() * 20 + 1); // My number
   console.log(myNum);
-  score = 5; // Number of attempts
+  score = 20; // Number of attempts
   scoreEl.textContent = score; // show initial score
   highscoreEl.textContent = localStorage.getItem('highscore') || 0;
 };
@@ -29,7 +30,7 @@ const displayMsg = type => {
       msg = `${type.toUpperCase()}!!!`;
       break;
     case 'over':
-      msg = 'GAME OVER! What a looser ;)';
+      msg = 'GAME OVER! What A looser ;)';
       break;
     case 'wrong':
       msg = 'Wrong Input! Number must be between 1-20.';
@@ -53,6 +54,9 @@ const wrongGuessHandler = type => {
     // Display message
     displayMsg('over');
 
+    // Display number
+    wonEl.textContent = myNum;
+
     // Disable check button
     btnCheck.disabled = true;
   }
@@ -61,6 +65,9 @@ const wrongGuessHandler = type => {
 const rightGuessHandler = () => {
   // Display message
   displayMsg('correct');
+
+  // Display number
+  wonEl.textContent = myNum;
 
   // Disable check button
   btnCheck.disabled = true;
