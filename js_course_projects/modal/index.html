@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modal</title>
+    <style>
+      html {
+        font-size: 62.5%;
+      }
+
+      body {
+        font-family: sans-serif;
+      }
+
+      .btn-box {
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-evenly;
+      }
+
+      /* modal */
+
+      .backdrop {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.589);
+        top: 0%;
+        left: 0%;
+        right: 0%;
+        height: 100vh;
+      }
+
+      .modal {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 2rem 4rem;
+        width: 50rem;
+        transition: all 1s ease-in-out;
+      }
+
+      .modal header {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .modal h1 {
+        font-size: 3rem;
+      }
+
+      .close {
+        font-size: 1.8rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .modal main {
+        font-size: 1.6rem;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="btn-box">
+      <button class="show-modal">Show Modal</button>
+      <button class="show-modal">Show Modal</button>
+      <button class="show-modal">Show Modal</button>
+    </div>
+    <div class="backdrop hidden"></div>
+    <div class="modal hidden">
+      <header>
+        <h1>This is modal heading</h1>
+        <p class="close">X</p>
+      </header>
+      <main>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
+          dolore maxime dolorem ut necessitatibus excepturi incidunt inventore
+          sint labore porro, provident veniam eum consequatur quos eos impedit
+          nesciunt perspiciatis aut recusandae? Quos accusantium nostrum placeat
+          quasi fugit nisi perspiciatis neque repellendus repellat, ratione
+          dolorum cumque quisquam iusto. Maxime illo possimus eaque odio porro,
+          in labore doloremque perspiciatis sed itaque accusantium!
+        </p>
+      </main>
+    </div>
+
+    <script>
+      const showModalBtnBox = document.querySelector('.btn-box');
+      const backdrop = document.querySelector('.backdrop');
+      const modal = document.querySelector('.modal');
+
+      const openCloseModal = () => {
+        modal.classList.toggle('hidden');
+        backdrop.classList.toggle('hidden');
+      };
+
+      // SHOW
+      showModalBtnBox.addEventListener('click', function (e) {
+        if (e.target.classList.contains('show-modal')) openCloseModal();
+      });
+
+      // HIDE
+
+      // Click
+      document.addEventListener('click', function (e) {
+        if (
+          e.target.classList.contains('close') ||
+          e.target.classList.contains('backdrop')
+        )
+          openCloseModal();
+      });
+
+      // Keypress: ESC
+      document.addEventListener('keydown', function (e) {
+        if ((e.key = 'Escape') && !modal.classList.contains('hidden'))
+          openCloseModal();
+      });
+    </script>
+  </body>
+</html>
