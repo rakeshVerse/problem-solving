@@ -17,8 +17,8 @@
             row == 1 ||
             row == rows ||
             col == 1 ||
-            (row >= 4 && col == cols) ||
-            (row == 4 && (col == 3 || col == 4))
+            (row > 4 && col == cols) ||
+            (row == 4 && col >= 3)
               ? '* '
               : '&nbsp;&nbsp;&nbsp;';
         }
