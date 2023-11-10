@@ -9,6 +9,9 @@
     <script>
       const rows = 7;
       const cols = 5;
+      // calculate midline instead of hardcoding so that code works of any matrix
+      const rowMid = Math.ceil(rows / 2);
+      const colMid = Math.ceil(cols / 2);
       let op = '';
 
       for (let row = 1; row <= rows; row++) {
@@ -17,8 +20,8 @@
             row == 1 ||
             row == rows ||
             col == 1 ||
-            (row > 4 && col == cols) ||
-            (row == 4 && col >= 3)
+            (row > rowMid && col == cols) ||
+            (row == rowMid && col >= colMid)
               ? '* '
               : '&nbsp;&nbsp;&nbsp;';
         }
