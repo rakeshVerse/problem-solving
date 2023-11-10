@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Letter G</title>
+  </head>
+  <body>
+    <script>
+      const rows = 7;
+      const cols = 5;
+      const rowMid = Math.ceil(rows / 2);
+      const colMid = Math.ceil(cols / 2);
+      let op = '';
+
+      for (let row = 1; row <= rows; row++) {
+        for (let col = 1; col <= cols; col++) {
+          op +=
+            row == 1 ||
+            col == colMid ||
+            (row == rows && col < colMid) ||
+            (row >= rowMid && col == 1)
+              ? '* '
+              : '&nbsp;&nbsp;&nbsp;';
+        }
+        op += '<br>';
+      }
+
+      document.write(op);
+    </script>
+  </body>
+</html>
