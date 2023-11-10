@@ -13,18 +13,23 @@
 
       for (let row = 1; row <= rows; row++) {
         for (let col = 1; col <= cols; col++) {
-          row == 1 ||
-          row == rows ||
-          col == 1 ||
-          (row >= 4 && col == cols) ||
-          (row == 4 && (col == 3 || col == 4))
-            ? (op += '* ')
-            : (op += '&nbsp;&nbsp;&nbsp;');
+          op +=
+            row == 1 ||
+            row == rows ||
+            col == 1 ||
+            (row >= 4 && col == cols) ||
+            (row == 4 && (col == 3 || col == 4))
+              ? '* '
+              : '&nbsp;&nbsp;&nbsp;';
         }
         op += '<br>';
       }
 
       document.write(op);
+
+      // ----------------------------------------------
+
+      // More readable
     </script>
   </body>
 </html>
