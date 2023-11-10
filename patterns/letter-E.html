@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Letter E</title>
+  </head>
+  <body>
+    <script>
+      const rows = 7;
+      const cols = 5;
+
+      for (let row = 1; row <= rows; row++) {
+        for (let col = 1; col <= cols; col++) {
+          row == 1 || row == rows || col == 2 || (row == 4 && col > 2)
+            ? document.write('* ')
+            : document.write('&nbsp;&nbsp;&nbsp;');
+        }
+        document.write('<br>');
+      }
+    </script>
+  </body>
+</html>
