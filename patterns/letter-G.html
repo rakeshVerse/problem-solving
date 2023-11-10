@@ -9,6 +9,7 @@
     <script>
       const rows = 7;
       const cols = 5;
+      let op = '';
 
       for (let row = 1; row <= rows; row++) {
         for (let col = 1; col <= cols; col++) {
@@ -17,11 +18,13 @@
           col == 1 ||
           (row >= 4 && col == cols) ||
           (row == 4 && (col == 3 || col == 4))
-            ? document.write('* ')
-            : document.write('&nbsp;&nbsp;&nbsp;');
+            ? (op += '* ')
+            : (op += '&nbsp;&nbsp;&nbsp;');
         }
-        document.write('<br>');
+        op += '<br>';
       }
+
+      document.write(op);
     </script>
   </body>
 </html>
