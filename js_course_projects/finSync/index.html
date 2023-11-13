@@ -13,6 +13,112 @@
     />
   </head>
   <body>
+    <header>
+      <p class="logo">finSync</p>
+      <p class="greeting">Welcome, Rakesh!</p>
+      <div class="login-box">
+        <form action="" class="login-frm">
+          <input type="text" placeholder="User" />
+          <input type="password" name="pin" id="" placeholder="PIN" />
+          <span class="login-btn">&RightArrow;</span>
+        </form>
+      </div>
+    </header>
+    <main class="container">
+      <section class="section-balance">
+        <p class="curr-balance">
+          Current Balance <br />
+          <span>As of 14/3/3</span>
+        </p>
+        <p class="balance">$ 234234</p>
+      </section>
+
+      <section class="section-banking">
+        <div class="transac">
+          <ul>
+            <li>
+              <p class="transac-type transac-type-green">8 deposit</p>
+              <p class="transac-date">12/12/12</p>
+              <p class="transac-amt">$ 234234</p>
+            </li>
+            <li>sdf</li>
+            <li>sdf</li>
+            <li>sdf</li>
+            <li>sdf</li>
+            <li>sdf</li>
+            <li>sdf</li>
+            <li>sdf</li>
+            <li>sdf</li>
+            <li>sdf</li>
+          </ul>
+        </div>
+
+        <div class="operations">
+          <figure class="loan">
+            <h3>Request Loan</h3>
+            <div class="form-flex">
+              <div>
+                <input type="number" name="loan-amt" />
+                <br />
+                <label for="loan-amt">Amount</label>
+              </div>
+              <button>&RightArrow;</button>
+            </div>
+          </figure>
+
+          <figure class="transfer">
+            <h3>Transfer Money</h3>
+            <div class="form-flex">
+              <div>
+                <input type="text" name="transfer-to" />
+                <br />
+                <label for="transfer-to">Transfer to</label>
+              </div>
+              <div>
+                <input type="number" name="transfer-amt" />
+                <br />
+                <label for="transfer-amt">Amount</label>
+              </div>
+              <button>&RightArrow;</button>
+            </div>
+          </figure>
+
+          <figure class="close">
+            <h3>Close account</h3>
+            <div class="form-flex">
+              <div>
+                <input type="text" name="confirm-usr" />
+                <br />
+                <label for="confirm-usr">Transfer to</label>
+              </div>
+              <div>
+                <input type="number" name="confirm-pin" />
+                <br />
+                <label for="confirm-pin">Amount</label>
+              </div>
+              <button>&RightArrow;</button>
+            </div>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section-status">
+        <p class="in">
+          <span class="status-head">IN</span>
+          <span class="status-amt">$234234</span>
+        </p>
+        <p class="out">
+          <span class="status-head">OUT</span>
+          <span class="status-amt">$234234</span>
+        </p>
+        <p class="interest">
+          <span class="status-head">INTEREST</span>
+          <span class="status-amt">$234234</span>
+        </p>
+        <p class="sort">&downarrow; SORT</p>
+        <p class="log-out-timer">You will be logged out in <span>0:00</span></p>
+      </section>
+    </main>
     <script src="script.js"></script>
   </body>
 </html>
