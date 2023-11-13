@@ -15,16 +15,27 @@
   <body>
     <header>
       <p class="logo">finSync</p>
-      <p class="greeting">Welcome, Rakesh!</p>
+      <p class="greeting">Log-in to get started</p>
       <div class="login-box">
         <form action="" class="login-frm">
-          <input type="text" placeholder="User" />
-          <input type="password" name="pin" id="" placeholder="PIN" />
+          <input
+            type="text"
+            placeholder="USER"
+            name="user-name"
+            class="user-name"
+          />
+          <input
+            type="password"
+            name="pin"
+            id=""
+            placeholder="PIN"
+            class="pin"
+          />
           <span class="login-btn">&RightArrow;</span>
         </form>
       </div>
     </header>
-    <main class="container">
+    <main class="container hidden">
       <section class="section-balance">
         <p class="curr-balance">
           Current Balance <br />
