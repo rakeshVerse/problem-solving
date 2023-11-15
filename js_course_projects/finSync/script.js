@@ -49,6 +49,13 @@ const config = {
   firstLogin: true,
 };
 
+// Init
+const init = () => {
+  elements.userNameEl.focus();
+};
+
+init();
+
 // FUNCTIONS
 
 // Get initials of given string
@@ -71,6 +78,9 @@ const findAcc = userName =>
 // Validate user input for falsy values ('', 0)
 const validateInput = inputs =>
   inputs.every(input => input !== '' && input !== 0);
+
+// Clear input fields
+const clearInputs = inputs => inputs.forEach(input => (input.value = ''));
 
 // Calculate current balance
 const calcCurrentBalance = account =>
@@ -116,9 +126,10 @@ const logOut = () => {
 
 // Update UI after successful login
 const updateUIForLogin = account => {
-  let timer = config.firstLogin ? 0 : 1;
-
   logOut();
+
+  let timer = config.firstLogin ? 0 : 1; // if not first login, wait for 1s to log-in to get the fade-out-fade-in effect
+  config.firstLogin = false;
 
   setTimeout(() => {
     elements.mainContainerEl.classList.remove('hidden'); // display main section
@@ -131,8 +142,6 @@ const updateUIForLogin = account => {
     elements.totDepositEl.textContent = deposit;
     elements.totWithdrawlEl.textContent = Math.abs(withdrawl);
   }, timer * 1000);
-
-  config.firstLogin = false;
 };
 
 const loginCB = () => {
@@ -148,6 +157,8 @@ const loginCB = () => {
 
   // if PIN matches, log-in
   if (currentAcc.pin === pin) {
+    clearInputs([elements.userNameEl, elements.pinEl]);
+    document.activeElement.blur(); // remove focus from active element (in this case, pin input field)
     updateUIForLogin(currentAcc);
   }
 };
