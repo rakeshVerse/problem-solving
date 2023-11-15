@@ -77,12 +77,21 @@ const validateInput = inputs =>
 // Clear input fields
 const clearInputs = inputs => inputs.forEach(input => (input.value = ''));
 
+// Show/Hide main section
+const showHideMain = () => elements.mainContainerEl.classList.toggle('hidden');
+
+const greet = account =>
+  (elements.greetEl.textContent = `Welcome, ${account.owner.split(' ')[0]}!`);
+
 // Calculate current balance
-const calcCurrentBalance = account =>
-  account.movements.reduce((bal, amt) => amt + bal, 0);
+const showCurrBalance = account =>
+  (elements.currBalanceEl.textContent = `$${account.movements.reduce(
+    (bal, amt) => amt + bal,
+    0
+  )}`);
 
 // Calculate total deposit and withdrawl
-const calcSummary = account => {
+const showSummary = account => {
   // Calculate and display total deposits and withdrawls
   const { deposit, withdrawl } = account.movements.reduce(
     (bal, amt) => {
@@ -149,15 +158,16 @@ const clear = () => {
 const updateUIForLogin = account => {
   clear(); // clear previous account
 
-  let timer = config.firstLogin ? 0 : 1; // if not first login, wait for 1s to log-in to get the fade-out-fade-in effect
+  // If not first login, wait for 1s before log-in to get the fade-out fade-in effect
+  let timer = config.firstLogin ? 0 : 1;
   config.firstLogin = false;
 
   setTimeout(() => {
-    elements.mainContainerEl.classList.remove('hidden'); // display main section
-    elements.greetEl.textContent = `Welcome, ${account.owner.split(' ')[0]}!`; // greet
-    elements.currBalanceEl.textContent = `$${calcCurrentBalance(account)}`; // current balance
-    transactionsListUI(account); // display transaction list
-    calcSummary(account); // display account summary
+    showHideMain();
+    greet(account);
+    showCurrBalance(account);
+    transactionsListUI(account);
+    showSummary(account);
   }, timer * 1000);
 };
 
