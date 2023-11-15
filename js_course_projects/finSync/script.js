@@ -31,8 +31,6 @@ const account4 = {
 
 const accounts = [account1, account2, account3, account4];
 
-console.log(accounts);
-
 // DOM Elements
 const elements = {
   mainContainerEl: document.querySelector('main'),
@@ -40,6 +38,10 @@ const elements = {
   userNameEl: document.querySelector('.user-name'),
   pinEl: document.querySelector('.pin'),
   loginBtn: document.querySelector('.login-btn'),
+  transacListEl: document.querySelector('.transac ul'),
+  currBalanceEl: document.querySelector('.balance'),
+  totDepositEl: document.querySelector('.in .status-amt'),
+  totWithdrawlEl: document.querySelector('.out .status-amt'),
 };
 
 // FUNCTIONS
@@ -61,15 +63,53 @@ const getInitials = str => {
 const findAcc = userName =>
   accounts.filter(acc => userName === getInitials(acc.owner))[0];
 
-// Update UI after successful login
-const updateUIForLogin = owner => {
-  elements.mainContainerEl.style.opacity = 1;
-  elements.greetEl.textContent = `Welcome, ${owner.split(' ')[0]}!`;
-};
-
 // Validate user input for falsy values ('', 0)
 const validateInput = inputs =>
   inputs.every(input => input !== '' && input !== 0);
+
+// Calculate current balance
+const calcCurrentBalance = account =>
+  account.movements.reduce((bal, amt) => amt + bal, 0);
+
+// Calculate total deposit and withdrawl
+const calcDepositAndWithdrawl = account => {
+  return account.movements.reduce(
+    (bal, amt) => {
+      amt > 0 ? (bal.deposit += amt) : (bal.withdrawl += amt);
+      return bal;
+    },
+    { deposit: 0, withdrawl: 0 }
+  );
+};
+
+// Build transactions list
+const transactionsListUI = account => {
+  let html = '';
+  account.movements.forEach((amt, i) => {
+    html = `
+    <li>
+      <p class="transac-type transac-type-${amt > 0 ? `green` : `red`}">${
+      i + 1
+    } ${amt > 0 ? `deposit` : `withdrawl`}</p>
+      <p class="transac-date">12/12/12</p>
+      <p class="transac-amt">${amt} $</p>
+    </li>`;
+    elements.transacListEl.insertAdjacentHTML('afterbegin', html);
+  });
+};
+
+// Update UI after successful login
+const updateUIForLogin = account => {
+  elements.mainContainerEl.style.opacity = 1; // display main section
+  elements.greetEl.textContent = `Welcome, ${account.owner.split(' ')[0]}!`; // greet
+  elements.currBalanceEl.textContent = `${calcCurrentBalance(account)} $`; // current balance
+  transactionsListUI(account); // display transaction list
+
+  // display total deposit and withdrawl
+  const { deposit, withdrawl } = calcDepositAndWithdrawl(account);
+  elements.totDepositEl.textContent = deposit;
+  elements.totWithdrawlEl.textContent = Math.abs(withdrawl);
+};
 
 ////////////////////////// LOG IN /////////////////////////////
 
@@ -86,6 +126,30 @@ elements.loginBtn.addEventListener('click', function () {
 
   // if PIN matches, log-in
   if (currentAcc.pin === pin) {
-    updateUIForLogin(currentAcc.owner);
+    updateUIForLogin(currentAcc);
   }
 });
+
+/////////////////////////////////////////////////////////////////
+
+////////////////////////// LOG IN /////////////////////////////
+
+/////////////////////////////////////////////////////////////////
+////////////////////////// LOG IN /////////////////////////////
+
+/////////////////////////////////////////////////////////////////
+////////////////////////// LOG IN /////////////////////////////
+
+/////////////////////////////////////////////////////////////////
+////////////////////////// LOG IN /////////////////////////////
+
+/////////////////////////////////////////////////////////////////
+////////////////////////// LOG IN /////////////////////////////
+
+/////////////////////////////////////////////////////////////////
+////////////////////////// LOG IN /////////////////////////////
+
+/////////////////////////////////////////////////////////////////
+////////////////////////// LOG IN /////////////////////////////
+
+/////////////////////////////////////////////////////////////////

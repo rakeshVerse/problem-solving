@@ -11,7 +11,7 @@ html {
 body {
   font-family: 'PT Sans Caption', sans-serif;
   color: #333;
-  background-color: #e9f2fa;
+  background-color: #e9f2fa; /* e5e1ff */
 }
 
 .container {
@@ -58,7 +58,7 @@ header > *:nth-child(2) {
 }
 
 .greeting {
-  font-size: 3.6rem;
+  font-size: 3rem;
 }
 
 .login-box {
