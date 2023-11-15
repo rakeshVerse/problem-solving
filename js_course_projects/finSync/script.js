@@ -44,6 +44,11 @@ const elements = {
   totWithdrawlEl: document.querySelector('.out .status-amt'),
 };
 
+// Config
+const config = {
+  firstLogin: true,
+};
+
 // FUNCTIONS
 
 // Get initials of given string
@@ -98,17 +103,36 @@ const transactionsListUI = account => {
   });
 };
 
+const logOut = () => {
+  // Hide main
+  elements.mainContainerEl.classList.add('hidden');
+
+  // Clear transaction list
+  elements.transacListEl.textContent = '';
+
+  // Clear greeting
+  elements.greetEl.textContent = 'Log-in to get started';
+};
+
 // Update UI after successful login
 const updateUIForLogin = account => {
-  elements.mainContainerEl.style.opacity = 1; // display main section
-  elements.greetEl.textContent = `Welcome, ${account.owner.split(' ')[0]}!`; // greet
-  elements.currBalanceEl.textContent = `${calcCurrentBalance(account)} $`; // current balance
-  transactionsListUI(account); // display transaction list
+  let timer = config.firstLogin ? 0 : 1;
 
-  // display total deposit and withdrawl
-  const { deposit, withdrawl } = calcDepositAndWithdrawl(account);
-  elements.totDepositEl.textContent = deposit;
-  elements.totWithdrawlEl.textContent = Math.abs(withdrawl);
+  logOut();
+
+  setTimeout(() => {
+    elements.mainContainerEl.classList.remove('hidden'); // display main section
+    elements.greetEl.textContent = `Welcome, ${account.owner.split(' ')[0]}!`; // greet
+    elements.currBalanceEl.textContent = `${calcCurrentBalance(account)} $`; // current balance
+    transactionsListUI(account); // display transaction list
+
+    // display total deposit and withdrawl
+    const { deposit, withdrawl } = calcDepositAndWithdrawl(account);
+    elements.totDepositEl.textContent = deposit;
+    elements.totWithdrawlEl.textContent = Math.abs(withdrawl);
+  }, timer * 1000);
+
+  config.firstLogin = false;
 };
 
 const loginCB = () => {
