@@ -111,10 +111,8 @@ const updateUIForLogin = account => {
   elements.totWithdrawlEl.textContent = Math.abs(withdrawl);
 };
 
-////////////////////////// LOG IN /////////////////////////////
-
-elements.loginBtn.addEventListener('click', function () {
-  const userName = elements.userNameEl.value;
+const loginCB = () => {
+  const userName = elements.userNameEl.value.trim();
   const pin = +elements.pinEl.value;
 
   // validate input
@@ -128,6 +126,16 @@ elements.loginBtn.addEventListener('click', function () {
   if (currentAcc.pin === pin) {
     updateUIForLogin(currentAcc);
   }
+};
+
+////////////////////////// LOG IN /////////////////////////////
+
+// On-click
+elements.loginBtn.addEventListener('click', loginCB);
+
+// On-enter
+elements.pinEl.addEventListener('keyup', function (e) {
+  if (e.keyCode === 13) loginCB();
 });
 
 /////////////////////////////////////////////////////////////////
@@ -151,5 +159,3 @@ elements.loginBtn.addEventListener('click', function () {
 
 /////////////////////////////////////////////////////////////////
 ////////////////////////// LOG IN /////////////////////////////
-
-/////////////////////////////////////////////////////////////////
