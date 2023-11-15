@@ -43,19 +43,13 @@ const elements = {
   totDepositEl: document.querySelector('.in .status-amt'),
   totWithdrawlEl: document.querySelector('.out .status-amt'),
   interestEl: document.querySelector('.interest .status-amt'),
+  allInputEl: document.querySelectorAll('input'),
 };
 
 // Config
 const config = {
   firstLogin: true,
 };
-
-// Init
-const init = () => {
-  elements.userNameEl.focus();
-};
-
-init();
 
 // FUNCTIONS
 
@@ -134,7 +128,7 @@ const transactionsListUI = account => {
   });
 };
 
-const logOut = () => {
+const clear = () => {
   // Hide main
   elements.mainContainerEl.classList.add('hidden');
 
@@ -143,11 +137,17 @@ const logOut = () => {
 
   // Clear greeting
   elements.greetEl.textContent = 'Log-in to get started';
+
+  // Clear all input fields
+  clearInputs(elements.allInputEl);
+
+  // Remove focus from active element (in this case, pin input field)
+  document.activeElement.blur();
 };
 
 // Update UI after successful login
 const updateUIForLogin = account => {
-  logOut();
+  clear(); // clear previous account
 
   let timer = config.firstLogin ? 0 : 1; // if not first login, wait for 1s to log-in to get the fade-out-fade-in effect
   config.firstLogin = false;
@@ -174,11 +174,15 @@ const loginCB = () => {
 
   // if PIN matches, log-in
   if (currentAcc.pin === pin) {
-    clearInputs([elements.userNameEl, elements.pinEl]);
-    document.activeElement.blur(); // remove focus from active element (in this case, pin input field)
     updateUIForLogin(currentAcc);
   }
 };
+
+// Init
+const init = () => {
+  elements.userNameEl.focus(); // set focus on username input
+};
+init();
 
 ////////////////////////// LOG IN /////////////////////////////
 
