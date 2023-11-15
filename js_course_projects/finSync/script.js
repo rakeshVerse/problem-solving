@@ -107,7 +107,7 @@ const transactionsListUI = account => {
       i + 1
     } ${amt > 0 ? `deposit` : `withdrawl`}</p>
       <p class="transac-date">12/12/12</p>
-      <p class="transac-amt">${amt} $</p>
+      <p class="transac-amt">$${Math.abs(amt)}</p>
     </li>`;
     elements.transacListEl.insertAdjacentHTML('afterbegin', html);
   });
@@ -134,7 +134,7 @@ const updateUIForLogin = account => {
   setTimeout(() => {
     elements.mainContainerEl.classList.remove('hidden'); // display main section
     elements.greetEl.textContent = `Welcome, ${account.owner.split(' ')[0]}!`; // greet
-    elements.currBalanceEl.textContent = `${calcCurrentBalance(account)} $`; // current balance
+    elements.currBalanceEl.textContent = `$${calcCurrentBalance(account)}`; // current balance
     transactionsListUI(account); // display transaction list
 
     // display total deposit and withdrawl
