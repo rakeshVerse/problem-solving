@@ -40,6 +40,7 @@ const elements = {
   loginBtn: document.querySelector('.login-btn'),
   transacListEl: document.querySelector('.transac ul'),
   currBalanceEl: document.querySelector('.balance'),
+  currDateEl: document.querySelector('.curr-date'),
   totDepositEl: document.querySelector('.in .status-amt'),
   totWithdrawlEl: document.querySelector('.out .status-amt'),
   interestEl: document.querySelector('.interest .status-amt'),
@@ -80,15 +81,22 @@ const clearInputs = inputs => inputs.forEach(input => (input.value = ''));
 // Show/Hide main section
 const showHideMain = () => elements.mainContainerEl.classList.toggle('hidden');
 
-const greet = account =>
-  (elements.greetEl.textContent = `Welcome, ${account.owner.split(' ')[0]}!`);
+const showBalanceAndDate = account => {
+  // Show date
+  const today = new Date();
+  elements.currDateEl.textContent = `${today.getFullYear()}/${
+    today.getMonth() + 1
+  }/${today.getDate()}, ${today.getHours()}:${today.getMinutes()}`;
 
-// Calculate current balance
-const showCurrBalance = account =>
-  (elements.currBalanceEl.textContent = `$${account.movements.reduce(
+  // Show balance
+  elements.currBalanceEl.textContent = `$${account.movements.reduce(
     (bal, amt) => amt + bal,
     0
-  )}`);
+  )}`;
+};
+
+const greet = account =>
+  (elements.greetEl.textContent = `Welcome, ${account.owner.split(' ')[0]}!`);
 
 // Calculate total deposit and withdrawl
 const showSummary = account => {
@@ -122,7 +130,7 @@ const showSummary = account => {
 };
 
 // Build transactions list
-const transactionsListUI = account => {
+const showTransactions = account => {
   let html = '';
   account.movements.forEach((amt, i) => {
     html = `
@@ -165,8 +173,8 @@ const updateUIForLogin = account => {
   setTimeout(() => {
     showHideMain();
     greet(account);
-    showCurrBalance(account);
-    transactionsListUI(account);
+    showBalanceAndDate(account);
+    showTransactions(account);
     showSummary(account);
   }, timer * 1000);
 };
