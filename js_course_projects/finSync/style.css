@@ -38,6 +38,7 @@ header {
   display: flex;
   align-items: center;
   margin-bottom: 4rem;
+  background: linear-gradient(to right, #86ece2, #7e70e0);
 }
 
 header > *:nth-child(odd) {
@@ -51,7 +52,8 @@ header > *:nth-child(2) {
 
 .logo {
   font-family: 'Alumni Sans Pinstripe', sans-serif;
-  color: #4848e0;
+  /* color: #4848e0; */
+  color: #fff;
   font-size: 6.4rem;
   font-weight: bold;
   letter-spacing: 1px;
@@ -82,6 +84,7 @@ header > *:nth-child(2) {
 .login-btn {
   font-size: 2rem;
   cursor: pointer;
+  color: #fff;
 }
 
 /* ------------------- */
@@ -212,7 +215,8 @@ figure h3 {
   font-size: 1.8rem;
   padding: 0.2rem 0.8rem;
   border-radius: 4px;
-  background-color: #ffffff5c;
+  /* background-color: #ffffff5c; */
+  background-color: #ffffff7d;
   color: #333;
   margin-bottom: 0.6rem;
   /* outline: none; */
@@ -220,7 +224,6 @@ figure h3 {
 
 .form-flex label {
   font-size: 1.4rem;
-  padding-top: 4rem;
 }
 
 .form-flex button {
