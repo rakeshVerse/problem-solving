@@ -139,8 +139,8 @@ const updateUIForLogin = account => {
 
     // display total deposit and withdrawl
     const { deposit, withdrawl } = calcDepositAndWithdrawl(account);
-    elements.totDepositEl.textContent = deposit;
-    elements.totWithdrawlEl.textContent = Math.abs(withdrawl);
+    elements.totDepositEl.textContent = `$${deposit}`;
+    elements.totWithdrawlEl.textContent = `$${Math.abs(withdrawl)}`;
   }, timer * 1000);
 };
 
