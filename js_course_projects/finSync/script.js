@@ -42,6 +42,7 @@ const elements = {
   currBalanceEl: document.querySelector('.balance'),
   totDepositEl: document.querySelector('.in .status-amt'),
   totWithdrawlEl: document.querySelector('.out .status-amt'),
+  interestEl: document.querySelector('.interest .status-amt'),
 };
 
 // Config
@@ -87,14 +88,34 @@ const calcCurrentBalance = account =>
   account.movements.reduce((bal, amt) => amt + bal, 0);
 
 // Calculate total deposit and withdrawl
-const calcDepositAndWithdrawl = account => {
-  return account.movements.reduce(
+const calcSummary = account => {
+  // Calculate and display total deposits and withdrawls
+  const { deposit, withdrawl } = account.movements.reduce(
     (bal, amt) => {
       amt > 0 ? (bal.deposit += amt) : (bal.withdrawl += amt);
       return bal;
     },
     { deposit: 0, withdrawl: 0 }
   );
+
+  elements.totDepositEl.textContent = `$${deposit}`;
+  elements.totWithdrawlEl.textContent = `$${Math.abs(withdrawl)}`;
+
+  /**
+   * Calculate interest:
+   * - interest for each deposit (deposit * interestRate/100)
+   * - if interest is atleast one add interest
+   */
+  elements.interestEl.textContent = `$${account.movements.reduce(
+    (totInterest, amt) => {
+      // Calculate interest for each deposit
+      const interest = amt > 0 && (amt * account.interestRate) / 100;
+
+      // Calculate interest sum
+      return interest >= 1 ? totInterest + interest : totInterest;
+    },
+    0
+  )}`;
 };
 
 // Build transactions list
@@ -136,11 +157,7 @@ const updateUIForLogin = account => {
     elements.greetEl.textContent = `Welcome, ${account.owner.split(' ')[0]}!`; // greet
     elements.currBalanceEl.textContent = `$${calcCurrentBalance(account)}`; // current balance
     transactionsListUI(account); // display transaction list
-
-    // display total deposit and withdrawl
-    const { deposit, withdrawl } = calcDepositAndWithdrawl(account);
-    elements.totDepositEl.textContent = `$${deposit}`;
-    elements.totWithdrawlEl.textContent = `$${Math.abs(withdrawl)}`;
+    calcSummary(account); // display account summary
   }, timer * 1000);
 };
 
