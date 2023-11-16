@@ -48,6 +48,8 @@ const elements = {
   transferTo: document.querySelector('.transfer-to'),
   transferAmount: document.querySelector('.transfer-amt'),
   transferBtn: document.querySelector('.transfer-btn'),
+  loanAmount: document.querySelector('.loan-amt'),
+  loanBtn: document.querySelector('.loan-btn'),
 };
 
 // Config
@@ -224,7 +226,6 @@ const loginCB = () => {
 };
 
 elements.loginBtn.addEventListener('click', loginCB);
-/////////////////////////////////////////////////////////////////
 
 ////////////////////////// TRANSFER /////////////////////////////
 const transferCB = () => {
@@ -257,10 +258,29 @@ const transferCB = () => {
 };
 
 elements.transferBtn.addEventListener('click', transferCB);
-/////////////////////////////////////////////////////////////////
 
-////////////////////////// LOG IN /////////////////////////////
+////////////////////////// REQUEST LOAN ////////////////////////////
+const requestLoanCB = () => {
+  const loanAmount = +elements.loanAmount.value;
+  if (!validateInput([loanAmount])) return;
 
+  // At least one deposite with at least 10% of the Loan amount
+  // i.e. if Loan amount is 100 then at least one deposit shoud be 10 or greater
+  if (
+    config.currentAccount.movements
+      .filter(amt => amt > 0)
+      .some(deposit => deposit >= loanAmount * 0.1)
+  ) {
+    // Add loan amount to movements
+    config.currentAccount.movements.push(loanAmount);
+    // Update UI
+    clearData();
+    updateData();
+  }
+};
+
+elements.loanBtn.addEventListener('click', requestLoanCB);
+////////////////////////////// KEY PRESS EVENTS //////////////////////
 // On-enter
 document.addEventListener('keyup', function (e) {
   if (e.key === 'Enter') {
@@ -269,5 +289,8 @@ document.addEventListener('keyup', function (e) {
 
     // Transfer
     e.target.classList.contains('transfer-amt') && transferCB();
+
+    // loan
+    e.target.classList.contains('loan-amt') && requestLoanCB();
   }
 });
