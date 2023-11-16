@@ -83,7 +83,7 @@ const clearInputs = inputs => inputs.forEach(input => (input.value = ''));
 // Show/Hide main section
 const showHideMain = () => elements.mainContainerEl.classList.toggle('hidden');
 
-const showBalanceAndDate = account => {
+const showBalanceAndDate = () => {
   // Show date
   const today = new Date();
   elements.currDateEl.textContent = `${today.getFullYear()}/${
@@ -91,18 +91,23 @@ const showBalanceAndDate = account => {
   }/${today.getDate()}, ${today.getHours()}:${today.getMinutes()}`;
 
   // Show balance
-  const balance = account.movements.reduce((bal, amt) => amt + bal, 0);
+  const balance = config.currentAccount.movements.reduce(
+    (bal, amt) => amt + bal,
+    0
+  );
   config.currentAccount.currBalance = balance;
   elements.currBalanceEl.textContent = `$${balance}`;
-  console.log(accounts);
 };
-const greet = account =>
-  (elements.greetEl.textContent = `Welcome, ${account.owner.split(' ')[0]}!`);
+
+const greet = () =>
+  (elements.greetEl.textContent = `Welcome, ${
+    config.currentAccount.owner.split(' ')[0]
+  }!`);
 
 // Calculate total deposit and withdrawl
-const showSummary = account => {
+const showSummary = () => {
   // Calculate and display total deposits and withdrawls
-  const { deposit, withdrawl } = account.movements.reduce(
+  const { deposit, withdrawl } = config.currentAccount.movements.reduce(
     (bal, amt) => {
       amt > 0 ? (bal.deposit += amt) : (bal.withdrawl += amt);
       return bal;
@@ -118,10 +123,11 @@ const showSummary = account => {
    * - interest for each deposit (deposit * interestRate/100)
    * - if interest is atleast one add interest
    */
-  elements.interestEl.textContent = `$${account.movements.reduce(
+  elements.interestEl.textContent = `$${config.currentAccount.movements.reduce(
     (totInterest, amt) => {
       // Calculate interest for each deposit
-      const interest = amt > 0 && (amt * account.interestRate) / 100;
+      const interest =
+        amt > 0 && (amt * config.currentAccount.interestRate) / 100;
 
       // Calculate interest sum
       return interest >= 1 ? totInterest + interest : totInterest;
@@ -131,9 +137,9 @@ const showSummary = account => {
 };
 
 // Build transactions list
-const showTransactions = account => {
+const showTransactions = () => {
   let html = '';
-  account.movements.forEach((amt, i) => {
+  config.currentAccount.movements.forEach((amt, i) => {
     html = `
     <li>
       <p class="transac-type transac-type-${amt > 0 ? `green` : `red`}">${
@@ -164,7 +170,7 @@ const clear = () => {
 };
 
 // Update UI after successful login
-const updateUIForLogin = account => {
+const updateUIForLogin = () => {
   clear(); // clear previous account
 
   // If not first login, wait for 1s before log-in to get the fade-out fade-in effect
@@ -173,10 +179,10 @@ const updateUIForLogin = account => {
 
   setTimeout(() => {
     showHideMain();
-    greet(account);
-    showBalanceAndDate(account);
-    showTransactions(account);
-    showSummary(account);
+    greet();
+    showBalanceAndDate();
+    showTransactions();
+    showSummary();
   }, timer * 1000);
 };
 
@@ -201,7 +207,7 @@ const loginCB = () => {
 
   // if PIN matches, log-in
   if (config.currentAccount.pin === pin) {
-    updateUIForLogin(config.currentAccount);
+    updateUIForLogin();
   }
 };
 
