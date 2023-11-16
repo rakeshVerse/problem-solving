@@ -45,31 +45,33 @@ const elements = {
   totWithdrawlEl: document.querySelector('.out .status-amt'),
   interestEl: document.querySelector('.interest .status-amt'),
   allInputEl: document.querySelectorAll('input'),
+  transferTo: document.querySelector('.transfer-to'),
+  transferAmount: document.querySelector('.transfer-amt'),
+  transferBtn: document.querySelector('.transfer-btn'),
 };
 
 // Config
 const config = {
   firstLogin: true,
+  currentAccount: {},
 };
 
 // FUNCTIONS
 
 // Get initials of given string
-const getInitials = str => {
-  let initials = '';
-  str
-    .toLowerCase()
-    .split(' ')
-    .forEach(word => {
-      initials += word.at(0);
-    });
-
-  return initials;
-};
+const createUsername = () =>
+  accounts.forEach(
+    acc =>
+      (acc.username = acc.owner
+        .toLowerCase()
+        .split(' ')
+        .map(word => word.at(0))
+        .join(''))
+  );
 
 // Get account by given userName
 const findAcc = userName =>
-  accounts.filter(acc => userName === getInitials(acc.owner))[0];
+  accounts.filter(acc => userName === acc.username)[0];
 
 // Validate user input for falsy values ('', 0)
 const validateInput = inputs =>
@@ -179,6 +181,14 @@ const updateUIForLogin = account => {
   }, timer * 1000);
 };
 
+// Init
+const init = () => {
+  elements.userNameEl.focus(); // set focus on username input
+  createUsername();
+};
+init();
+
+////////////////////////// LOG IN /////////////////////////////
 const loginCB = () => {
   const userName = elements.userNameEl.value.trim();
   const pin = +elements.pinEl.value;
@@ -187,49 +197,54 @@ const loginCB = () => {
   if (!validateInput([userName, pin])) return;
 
   // find user account using userName
-  const currentAcc = findAcc(userName);
-  if (!currentAcc) return;
+  config.currentAccount = findAcc(userName);
+  if (!config.currentAccount) return;
 
   // if PIN matches, log-in
-  if (currentAcc.pin === pin) {
-    updateUIForLogin(currentAcc);
+  if (config.currentAccount.pin === pin) {
+    updateUIForLogin(config.currentAccount);
   }
 };
 
-// Init
-const init = () => {
-  elements.userNameEl.focus(); // set focus on username input
+elements.loginBtn.addEventListener('click', loginCB);
+/////////////////////////////////////////////////////////////////
+
+////////////////////////// TRANSFER /////////////////////////////
+const transferCB = () => {
+  const transferTo = elements.transferTo.value.trim();
+  const transferAmt = +elements.transferAmount.value;
+
+  if (!validateInput([transferTo, transferAmt])) return;
+
+  // transferAmt should be less than current Balanace
+  // and current acc !== transfer acc
+  if (
+    transferAmt > 0 &&
+    transferAmt < config.currentAccount.currBalance &&
+    transferTo !== config.currentAccount.username
+  ) {
+    // Find account using transferTo
+  }
+
+  // Find transferTo account
+
+  // Make entries on both (current & transerTo) accounts movements
+
+  // Update UI
 };
-init();
+
+elements.transferBtn.addEventListener('click', transferCB);
+/////////////////////////////////////////////////////////////////
 
 ////////////////////////// LOG IN /////////////////////////////
-
-// On-click
-elements.loginBtn.addEventListener('click', loginCB);
 
 // On-enter
-elements.pinEl.addEventListener('keyup', function (e) {
-  if (e.keyCode === 13) loginCB();
+document.addEventListener('keyup', function (e) {
+  if (e.key === 'Enter') {
+    // Login
+    e.target.classList.contains('pin') && loginCB();
+
+    // Transfer
+    e.target.classList.contains('transfer-amt') && transferCB();
+  }
 });
-
-/////////////////////////////////////////////////////////////////
-
-////////////////////////// LOG IN /////////////////////////////
-
-/////////////////////////////////////////////////////////////////
-////////////////////////// LOG IN /////////////////////////////
-
-/////////////////////////////////////////////////////////////////
-////////////////////////// LOG IN /////////////////////////////
-
-/////////////////////////////////////////////////////////////////
-////////////////////////// LOG IN /////////////////////////////
-
-/////////////////////////////////////////////////////////////////
-////////////////////////// LOG IN /////////////////////////////
-
-/////////////////////////////////////////////////////////////////
-////////////////////////// LOG IN /////////////////////////////
-
-/////////////////////////////////////////////////////////////////
-////////////////////////// LOG IN /////////////////////////////
