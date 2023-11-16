@@ -152,15 +152,9 @@ const showTransactions = () => {
   });
 };
 
-const clear = () => {
-  // Hide main
-  elements.mainContainerEl.classList.add('hidden');
-
+const clearData = () => {
   // Clear transaction list
   elements.transacListEl.textContent = '';
-
-  // Clear greeting
-  elements.greetEl.textContent = 'Log-in to get started';
 
   // Clear all input fields
   clearInputs(elements.allInputEl);
@@ -169,9 +163,25 @@ const clear = () => {
   document.activeElement.blur();
 };
 
+const logOut = () => {
+  // Hide main
+  elements.mainContainerEl.classList.add('hidden');
+
+  // Clear greeting
+  elements.greetEl.textContent = 'Log-in to get started';
+
+  clearData();
+};
+
+const updateData = () => {
+  showBalanceAndDate();
+  showTransactions();
+  showSummary();
+};
+
 // Update UI after successful login
 const updateUIForLogin = () => {
-  clear(); // clear previous account
+  logOut(); // clear previous account
 
   // If not first login, wait for 1s before log-in to get the fade-out fade-in effect
   let timer = config.firstLogin ? 0 : 1;
@@ -180,9 +190,7 @@ const updateUIForLogin = () => {
   setTimeout(() => {
     showHideMain();
     greet();
-    showBalanceAndDate();
-    showTransactions();
-    showSummary();
+    updateData();
   }, timer * 1000);
 };
 
@@ -190,6 +198,10 @@ const updateUIForLogin = () => {
 const init = () => {
   elements.userNameEl.focus(); // set focus on username input
   createUsername();
+
+  // temp
+  config.currentAccount = account1;
+  updateUIForLogin();
 };
 init();
 
@@ -221,21 +233,27 @@ const transferCB = () => {
 
   if (!validateInput([transferTo, transferAmt])) return;
 
+  // Find transferTo account
+  const transferAccount = findAcc(transferTo);
+
+  // Validation
+  // there should be an account for given username
   // transferAmt should be less than current Balanace
   // and current acc !== transfer acc
   if (
     transferAmt > 0 &&
     transferAmt < config.currentAccount.currBalance &&
-    transferTo !== config.currentAccount.username
+    transferTo !== config.currentAccount.username &&
+    transferAccount
   ) {
-    // Find account using transferTo
+    // Make entries on both (current & transerTo) accounts movements
+    config.currentAccount.movements.push(-transferAmt);
+    transferAccount.movements.push(transferAmt);
+
+    // Update UI
+    clearData();
+    updateData();
   }
-
-  // Find transferTo account
-
-  // Make entries on both (current & transerTo) accounts movements
-
-  // Update UI
 };
 
 elements.transferBtn.addEventListener('click', transferCB);
