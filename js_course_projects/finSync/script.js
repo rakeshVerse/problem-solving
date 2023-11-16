@@ -91,12 +91,11 @@ const showBalanceAndDate = account => {
   }/${today.getDate()}, ${today.getHours()}:${today.getMinutes()}`;
 
   // Show balance
-  elements.currBalanceEl.textContent = `$${account.movements.reduce(
-    (bal, amt) => amt + bal,
-    0
-  )}`;
+  const balance = account.movements.reduce((bal, amt) => amt + bal, 0);
+  config.currentAccount.currBalance = balance;
+  elements.currBalanceEl.textContent = `$${balance}`;
+  console.log(accounts);
 };
-
 const greet = account =>
   (elements.greetEl.textContent = `Welcome, ${account.owner.split(' ')[0]}!`);
 
