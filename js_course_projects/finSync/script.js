@@ -50,6 +50,9 @@ const elements = {
   transferBtn: document.querySelector('.transfer-btn'),
   loanAmount: document.querySelector('.loan-amt'),
   loanBtn: document.querySelector('.loan-btn'),
+  confirmUsrEl: document.querySelector('.confirm-usr'),
+  confirmPinEl: document.querySelector('.confirm-pin'),
+  closeAccBtn: document.querySelector('.close-acc-btn'),
 };
 
 // Config
@@ -202,8 +205,8 @@ const init = () => {
   createUsername();
 
   // temp
-  config.currentAccount = account1;
-  updateUIForLogin();
+  // config.currentAccount = account1;
+  // updateUIForLogin();
 };
 init();
 
@@ -280,6 +283,35 @@ const requestLoanCB = () => {
 };
 
 elements.loanBtn.addEventListener('click', requestLoanCB);
+
+////////////////////////// CLOSE ACCOUNT ////////////////////////////
+const closeAccCB = () => {
+  const username = elements.confirmUsrEl.value.trim();
+  const pin = +elements.confirmPinEl.value;
+
+  if (!validateInput([username, pin])) return;
+
+  // Find account
+  // provided username and pin should match with an account
+  // and that account must be the current logged in account user
+  const closeAccount = accounts.filter(
+    acc =>
+      acc.username === username &&
+      acc.pin === pin &&
+      acc.username === config.currentAccount.username
+  )[0];
+
+  if (!closeAccount) return;
+
+  // Remove current account object from accounts array
+  const index = accounts.indexOf(closeAccount);
+  accounts.splice(index, 1);
+
+  // Logout
+  logOut();
+};
+
+elements.closeAccBtn.addEventListener('click', closeAccCB);
 ////////////////////////////// KEY PRESS EVENTS //////////////////////
 // On-enter
 document.addEventListener('keyup', function (e) {
@@ -290,7 +322,10 @@ document.addEventListener('keyup', function (e) {
     // Transfer
     e.target.classList.contains('transfer-amt') && transferCB();
 
-    // loan
+    // Loan
     e.target.classList.contains('loan-amt') && requestLoanCB();
+
+    // close account
+    e.target.classList.contains('confirm-pin') && closeAccCB();
   }
 });
