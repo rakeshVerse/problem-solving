@@ -137,17 +137,16 @@ const showSummary = () => {
    * - interest for each deposit (deposit * interestRate/100)
    * - if interest is atleast one add interest
    */
-  elements.interestEl.textContent = `$${config.currentAccount.movements.reduce(
-    (totInterest, amt) => {
+  elements.interestEl.textContent = `$${config.currentAccount.movements
+    .reduce((totInterest, amt) => {
       // Calculate interest for each deposit
       const interest =
         amt > 0 && (amt * config.currentAccount.interestRate) / 100;
 
       // Calculate interest sum
       return interest >= 1 ? totInterest + interest : totInterest;
-    },
-    0
-  )}`;
+    }, 0)
+    .toFixed(2)}`;
 };
 
 // Sort movements and store it in config
