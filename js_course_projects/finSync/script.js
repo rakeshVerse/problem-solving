@@ -53,12 +53,14 @@ const elements = {
   confirmUsrEl: document.querySelector('.confirm-usr'),
   confirmPinEl: document.querySelector('.confirm-pin'),
   closeAccBtn: document.querySelector('.close-acc-btn'),
+  sortBtn: document.querySelector('.sort'),
 };
 
 // Config
 const config = {
   firstLogin: true,
   currentAccount: {},
+  isSorted: false,
 };
 
 // FUNCTIONS
@@ -141,10 +143,21 @@ const showSummary = () => {
   )}`;
 };
 
+// Sort movements and store it in config
+const sortMovements = () =>
+  (config.sortedMovements = [...config.currentAccount.movements].sort(
+    (a, b) => a - b
+  ));
+
 // Build transactions list
 const showTransactions = () => {
+  const movements = config.isSorted
+    ? config.sortedMovements
+    : config.currentAccount.movements;
+
   let html = '';
-  config.currentAccount.movements.forEach((amt, i) => {
+  elements.transacListEl.textContent = '';
+  movements.forEach((amt, i) => {
     html = `
     <li>
       <p class="transac-type transac-type-${amt > 0 ? `green` : `red`}">${
@@ -175,11 +188,15 @@ const logOut = () => {
   // Clear greeting
   elements.greetEl.textContent = 'Log-in to get started';
 
+  // Reset isSorted to false
+  config.isSorted = false;
+
   clearData();
 };
 
 const updateData = () => {
   showBalanceAndDate();
+  config.isSorted && sortMovements(); // sort movements before displaying transactions
   showTransactions();
   showSummary();
 };
@@ -204,7 +221,7 @@ const init = () => {
   elements.userNameEl.focus(); // set focus on username input
   createUsername();
 
-  // temp
+  // temp login
   // config.currentAccount = account1;
   // updateUIForLogin();
 };
@@ -328,4 +345,16 @@ document.addEventListener('keyup', function (e) {
     // close account
     e.target.classList.contains('confirm-pin') && closeAccCB();
   }
+});
+
+////////////////////////// SORT ////////////////////////////
+
+elements.sortBtn.addEventListener('click', () => {
+  config.isSorted = !config.isSorted;
+
+  // Sort movements
+  config.isSorted && sortMovements();
+
+  // UpdateUI
+  showTransactions();
 });
