@@ -275,6 +275,10 @@ figure h3 {
   font-size: 1.6rem;
 }
 
+.sort {
+  cursor: pointer;
+}
+
 .log-out-timer span {
   font-weight: bold;
 }
