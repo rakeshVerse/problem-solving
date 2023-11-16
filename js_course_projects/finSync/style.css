@@ -219,7 +219,11 @@ figure h3 {
   background-color: #ffffff7d;
   color: #333;
   margin-bottom: 0.6rem;
-  /* outline: none; */
+  outline: none;
+}
+
+.form-flex input:focus {
+  background-color: #ffffffc4;
 }
 
 .form-flex label {
