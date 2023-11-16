@@ -33,25 +33,32 @@ const accounts = [account1, account2, account3, account4];
 
 // DOM Elements
 const elements = {
+  // main
   mainContainerEl: document.querySelector('main'),
-  greetEl: document.querySelector('.greeting'),
-  userNameEl: document.querySelector('.user-name'),
-  pinEl: document.querySelector('.pin'),
-  loginBtn: document.querySelector('.login-btn'),
   transacListEl: document.querySelector('.transac ul'),
+
+  // lables
+  greetEl: document.querySelector('.greeting'),
   currBalanceEl: document.querySelector('.balance'),
   currDateEl: document.querySelector('.curr-date'),
   totDepositEl: document.querySelector('.in .status-amt'),
   totWithdrawlEl: document.querySelector('.out .status-amt'),
   interestEl: document.querySelector('.interest .status-amt'),
-  allInputEl: document.querySelectorAll('input'),
+
+  // inputs
+  userNameEl: document.querySelector('.user-name'),
+  pinEl: document.querySelector('.pin'),
   transferTo: document.querySelector('.transfer-to'),
   transferAmount: document.querySelector('.transfer-amt'),
-  transferBtn: document.querySelector('.transfer-btn'),
   loanAmount: document.querySelector('.loan-amt'),
-  loanBtn: document.querySelector('.loan-btn'),
   confirmUsrEl: document.querySelector('.confirm-usr'),
   confirmPinEl: document.querySelector('.confirm-pin'),
+  allInputEl: document.querySelectorAll('input'),
+
+  // buttons
+  loginBtn: document.querySelector('.login-btn'),
+  transferBtn: document.querySelector('.transfer-btn'),
+  loanBtn: document.querySelector('.loan-btn'),
   closeAccBtn: document.querySelector('.close-acc-btn'),
   sortBtn: document.querySelector('.sort'),
 };
