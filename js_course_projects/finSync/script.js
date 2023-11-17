@@ -44,6 +44,7 @@ const elements = {
   totDepositEl: document.querySelector('.in .status-amt'),
   totWithdrawlEl: document.querySelector('.out .status-amt'),
   interestEl: document.querySelector('.interest .status-amt'),
+  logOutTimerEl: document.querySelector('.log-out-timer span'),
 
   // inputs
   userNameEl: document.querySelector('.user-name'),
@@ -69,6 +70,8 @@ const config = {
   firstLogin: true,
   currentAccount: {},
   isSorted: false,
+  logOutTimer: 300, // in seconds
+  logOutInterval: '',
 };
 
 // FUNCTIONS
@@ -188,39 +191,11 @@ const clearData = () => {
   document.activeElement.blur();
 };
 
-const logOut = () => {
-  // Hide main
-  elements.mainContainerEl.classList.add('hidden');
-
-  // Clear greeting
-  elements.greetEl.textContent = 'Log-in to get started';
-
-  // Reset isSorted to false
-  config.isSorted = false;
-
-  clearData();
-};
-
 const updateData = () => {
   showBalanceAndDate();
   config.isSorted && sortMovements(); // sort movements before displaying transactions
   showTransactions();
   showSummary();
-};
-
-// Update UI after successful login
-const updateUIForLogin = () => {
-  logOut(); // clear previous account
-
-  // If not first login, wait for 1s before log-in to get the fade-out fade-in effect
-  let timer = config.firstLogin ? 0 : 1;
-  config.firstLogin = false;
-
-  setTimeout(() => {
-    showHideMain();
-    greet();
-    updateData();
-  }, timer * 1000);
 };
 
 // Init
@@ -234,7 +209,62 @@ const init = () => {
 };
 init();
 
+//////////////////////////// LOGOUT ///////////////////////////////////
+const logOut = () => {
+  // Hide main
+  elements.mainContainerEl.classList.add('hidden');
+
+  // Clear greeting
+  elements.greetEl.textContent = 'Log-in to get started';
+
+  // Reset isSorted to false
+  config.isSorted = false;
+
+  // Clear timer
+  clearInterval(config.logOutInterval);
+
+  clearData();
+};
+
+//////////////////////////// TIMER ///////////////////////////////////
+const startLogOutTimer = () => {
+  const tick = () => {
+    // clac mins and secs
+    const minutes = String(Math.trunc(timer / 60)).padStart(2, 0);
+    const seconds = String(Math.trunc(timer % 60)).padStart(2, 0);
+
+    // display mins and secs
+    elements.logOutTimerEl.textContent = `${minutes}: ${seconds}`;
+
+    // if timer 0, logout
+    timer === 0 && logOut();
+
+    // decrement timer by 1
+    timer--;
+  };
+
+  let timer = config.logOutTimer;
+  tick();
+  config.logOutInterval = setInterval(tick, 1000);
+};
+
 ////////////////////////// LOG IN /////////////////////////////
+// Update UI after successful login
+const updateUIForLogin = () => {
+  logOut(); // clear previous account
+
+  // If not first login, wait for 1s before log-in to get the fade-out fade-in effect
+  let timer = config.firstLogin ? 0 : 1;
+  config.firstLogin = false;
+
+  setTimeout(() => {
+    showHideMain();
+    greet();
+    updateData();
+    startLogOutTimer();
+  }, timer * 1000);
+};
+
 const loginCB = () => {
   const userName = elements.userNameEl.value.trim();
   const pin = +elements.pinEl.value;
