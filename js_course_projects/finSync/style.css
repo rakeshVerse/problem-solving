@@ -221,6 +221,8 @@ figure h3 {
   color: #333;
   margin-bottom: 0.6rem;
   outline: none;
+  transition: all 0.5s ease;
+  text-align: center;
 }
 
 .form-flex input:focus {
@@ -277,11 +279,13 @@ figure h3 {
 }
 
 .sort,
-.log-out-timer {
+.log-out-timer,
+.log-out-now {
   font-size: 1.6rem;
 }
 
-.sort {
+.sort,
+.log-out-now {
   cursor: pointer;
 }
 

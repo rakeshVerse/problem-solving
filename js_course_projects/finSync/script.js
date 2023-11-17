@@ -61,6 +61,7 @@ const elements = {
   loanBtn: document.querySelector('.loan-btn'),
   closeAccBtn: document.querySelector('.close-acc-btn'),
   sortBtn: document.querySelector('.sort'),
+  logOutBtn: document.querySelector('.log-out-now'),
 };
 
 // Config
@@ -364,3 +365,6 @@ elements.sortBtn.addEventListener('click', () => {
   // UpdateUI
   showTransactions();
 });
+
+//////////////////////// LOG OUT //////////////////////////////
+elements.logOutBtn.addEventListener('click', logOut);
