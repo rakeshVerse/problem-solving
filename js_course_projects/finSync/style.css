@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  font-family: 'PT Sans Caption', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   color: #333;
   background-color: #e9f2fa; /* e5e1ff */
 }
@@ -120,7 +120,7 @@ main {
 
 .section-banking {
   display: flex;
-  gap: 1.6rem;
+  gap: 2rem;
 
   height: 49rem;
 }
@@ -188,9 +188,9 @@ main {
 }
 
 figure h3 {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: normal;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.6rem;
 }
 
 .loan {
@@ -263,6 +263,7 @@ figure h3 {
 
 .status-head {
   font-size: 1.2rem;
+  font-weight: 500;
 }
 
 .status-amt {
