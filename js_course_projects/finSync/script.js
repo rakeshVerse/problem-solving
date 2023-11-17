@@ -8,6 +8,16 @@ const account1 = {
   pin: 1111,
   locale: 'hi',
   currency: 'INR',
+  movementsDates: [
+    '2023-11-18T21:31:17.178Z',
+    '2023-12-23T07:42:02.383Z',
+    '2023-01-28T09:15:04.904Z',
+    '2023-04-01T10:17:24.185Z',
+    '2023-07-15T10:51:36.790Z',
+    '2023-07-20T23:36:17.929Z',
+    '2023-07-25T17:01:17.194Z',
+    '2023-07-26T14:11:59.604Z',
+  ],
 };
 
 const account2 = {
@@ -17,6 +27,16 @@ const account2 = {
   pin: 2222,
   locale: 'en-US',
   currency: 'USD',
+  movementsDates: [
+    '2023-11-17T11:18:01.178Z',
+    '2023-08-15T10:51:36.790Z',
+    '2023-08-23T07:42:02.383Z',
+    '2023-07-20T23:36:17.929Z',
+    '2023-06-25T17:01:17.194Z',
+    '2023-06-26T14:11:59.604Z',
+    '2023-04-01T10:17:24.185Z',
+    '2023-01-28T09:15:04.904Z',
+  ],
 };
 
 const account3 = {
@@ -26,6 +46,16 @@ const account3 = {
   pin: 3333,
   locale: 'ja-JP',
   currency: 'JPY',
+  movementsDates: [
+    '2023-11-18T21:31:17.178Z',
+    '2023-12-23T07:42:02.383Z',
+    '2023-01-28T09:15:04.904Z',
+    '2023-04-01T10:17:24.185Z',
+    '2023-07-15T10:51:36.790Z',
+    '2023-07-20T23:36:17.929Z',
+    '2023-07-25T17:01:17.194Z',
+    '2023-07-26T14:11:59.604Z',
+  ],
 };
 
 const account4 = {
@@ -35,6 +65,13 @@ const account4 = {
   pin: 4444,
   locale: 'de-DE',
   currency: 'EUR',
+  movementsDates: [
+    '2023-11-18T21:31:17.178Z',
+    '2023-12-23T07:42:02.383Z',
+    '2023-01-28T09:15:04.904Z',
+    '2023-04-01T10:17:24.185Z',
+    '2023-07-15T10:51:36.790Z',
+  ],
 };
 
 const accounts = [account1, account2, account3, account4];
@@ -78,6 +115,8 @@ const config = {
   firstLogin: true,
   currentAccount: {},
   isSorted: false,
+  sortedMovements: [],
+  sortedDates: [],
   logOutTimer: 300, // in seconds
   logOutInterval: '',
 };
@@ -125,6 +164,13 @@ const formatDateTime = () =>
     dateStyle: 'short',
     timeStyle: 'short',
   }).format(new Date());
+
+const formatDate = date => {
+  return new Intl.DateTimeFormat(config.currentAccount.locale, {
+    dateStyle: 'short',
+    timeStyle: 'short',
+  }).format(date);
+};
 
 const showBalanceAndDate = () => {
   // Show date
@@ -174,16 +220,30 @@ const showSummary = () => {
 };
 
 // Sort movements and store it in config
-const sortMovements = () =>
-  (config.sortedMovements = [...config.currentAccount.movements].sort(
-    (a, b) => a - b
-  ));
+const sortMovements = () => {
+  // Combine movements and dates into an array of objects [{mov, date}, {mov, date},]
+  const combineMovements = config.currentAccount.movements.map((amt, i) => ({
+    amt,
+    date: config.currentAccount.movementsDates[i],
+  }));
 
-// Build transactions list
+  // Sort combined array on movements, this will give an array of sorted objects based on movements
+  combineMovements.sort((a, b) => a.amt - b.amt);
+
+  // Store sorted movements and dates in seperate arrays
+  config.sortedMovements = combineMovements.map(mov => mov.amt);
+  config.sortedDates = combineMovements.map(mov => mov.date);
+};
+
+// Show transactions list
 const showTransactions = () => {
   const movements = config.isSorted
     ? config.sortedMovements
     : config.currentAccount.movements;
+
+  const dates = config.isSorted
+    ? config.sortedDates
+    : config.currentAccount.movementsDates;
 
   let html = '';
   elements.transacListEl.textContent = '';
@@ -193,7 +253,7 @@ const showTransactions = () => {
       <p class="transac-type transac-type-${amt > 0 ? `green` : `red`}">${
       i + 1
     } ${amt > 0 ? `deposit` : `withdrawl`}</p>
-      <p class="transac-date">12/12/12</p>
+      <p class="transac-date">${formatDate(new Date(dates[i]))}</p>
       <p class="transac-amt">${formatCurrency(amt)}</p>
     </li>`;
     elements.transacListEl.insertAdjacentHTML('afterbegin', html);
