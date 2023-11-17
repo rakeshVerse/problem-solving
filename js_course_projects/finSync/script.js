@@ -385,7 +385,9 @@ const transferCB = () => {
   ) {
     // Make entries on both (current & transerTo) accounts movements
     config.currentAccount.movements.push(-transferAmt);
+    config.currentAccount.movementsDates.push(new Date().toISOString());
     transferAccount.movements.push(transferAmt);
+    transferAccount.movementsDates.push(new Date().toISOString());
 
     // Update UI
     clearData();
@@ -409,6 +411,8 @@ const requestLoanCB = () => {
   ) {
     // Add loan amount to movements
     config.currentAccount.movements.push(loanAmount);
+    config.currentAccount.movementsDates.push(new Date().toISOString());
+
     // Update UI
     clearData();
     updateData();
