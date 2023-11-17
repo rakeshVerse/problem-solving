@@ -9,14 +9,14 @@ const account1 = {
   locale: 'hi',
   currency: 'INR',
   movementsDates: [
-    '2023-11-18T21:31:17.178Z',
-    '2023-12-23T07:42:02.383Z',
-    '2023-01-28T09:15:04.904Z',
-    '2023-04-01T10:17:24.185Z',
     '2023-07-15T10:51:36.790Z',
     '2023-07-20T23:36:17.929Z',
     '2023-07-25T17:01:17.194Z',
     '2023-07-26T14:11:59.604Z',
+    '2023-08-01T10:17:24.185Z',
+    '2023-09-28T09:15:04.904Z',
+    '2023-11-12T07:42:02.383Z',
+    '2023-11-17T12:56:49.486Z',
   ],
 };
 
@@ -28,14 +28,14 @@ const account2 = {
   locale: 'en-US',
   currency: 'USD',
   movementsDates: [
-    '2023-11-17T11:18:01.178Z',
-    '2023-08-15T10:51:36.790Z',
-    '2023-08-23T07:42:02.383Z',
+    '2023-07-15T10:51:36.790Z',
     '2023-07-20T23:36:17.929Z',
-    '2023-06-25T17:01:17.194Z',
-    '2023-06-26T14:11:59.604Z',
-    '2023-04-01T10:17:24.185Z',
-    '2023-01-28T09:15:04.904Z',
+    '2023-07-25T17:01:17.194Z',
+    '2023-07-26T14:11:59.604Z',
+    '2023-08-01T10:17:24.185Z',
+    '2023-09-28T09:15:04.904Z',
+    '2023-11-12T07:42:02.383Z',
+    '2023-11-17T12:56:49.486Z',
   ],
 };
 
@@ -47,14 +47,14 @@ const account3 = {
   locale: 'ja-JP',
   currency: 'JPY',
   movementsDates: [
-    '2023-11-18T21:31:17.178Z',
-    '2023-12-23T07:42:02.383Z',
-    '2023-01-28T09:15:04.904Z',
-    '2023-04-01T10:17:24.185Z',
     '2023-07-15T10:51:36.790Z',
     '2023-07-20T23:36:17.929Z',
     '2023-07-25T17:01:17.194Z',
     '2023-07-26T14:11:59.604Z',
+    '2023-08-01T10:17:24.185Z',
+    '2023-09-28T09:15:04.904Z',
+    '2023-11-12T07:42:02.383Z',
+    '2023-11-17T12:56:49.486Z',
   ],
 };
 
@@ -66,13 +66,17 @@ const account4 = {
   locale: 'de-DE',
   currency: 'EUR',
   movementsDates: [
-    '2023-11-18T21:31:17.178Z',
-    '2023-12-23T07:42:02.383Z',
-    '2023-01-28T09:15:04.904Z',
-    '2023-04-01T10:17:24.185Z',
     '2023-07-15T10:51:36.790Z',
+    '2023-07-20T23:36:17.929Z',
+    '2023-07-25T17:01:17.194Z',
+    '2023-07-26T14:11:59.604Z',
+    '2023-11-14T10:17:24.185Z',
   ],
 };
+
+console.log(
+  `Use this for login\n acc1 {js, 1111}\n acc2 {jj, 2222}\n acc3 {tk, 3333}\n acc4 {pb, 4444}`
+);
 
 const accounts = [account1, account2, account3, account4];
 
@@ -159,23 +163,29 @@ const formatCurrency = number =>
     currency: config.currentAccount.currency,
   }).format(number);
 
-const formatDateTime = () =>
+const formatCurrDateTime = () =>
   new Intl.DateTimeFormat(config.currentAccount.locale, {
     dateStyle: 'short',
     timeStyle: 'short',
   }).format(new Date());
 
 const formatDate = date => {
-  return new Intl.DateTimeFormat(config.currentAccount.locale, {
-    dateStyle: 'short',
-    timeStyle: 'short',
-  }).format(date);
+  // Calculate date diff
+  const calcDaysPassed = (date, date2) =>
+    Math.round(Math.abs(date - date2) / 86400000);
+
+  const dayDiff = calcDaysPassed(new Date(), date);
+
+  if (dayDiff === 0) return 'today';
+  if (dayDiff === 1) return 'Yesterday';
+  if (dayDiff < 7) return `${dayDiff} days ago`;
+  return new Intl.DateTimeFormat(date).format(date);
 };
 
 const showBalanceAndDate = () => {
   // Show date
   const today = new Date();
-  elements.currDateEl.textContent = `${formatDateTime()}`;
+  elements.currDateEl.textContent = `${formatCurrDateTime()}`;
 
   // Show balance
   const balance = config.currentAccount.movements.reduce(
