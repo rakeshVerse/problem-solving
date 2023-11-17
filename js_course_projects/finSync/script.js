@@ -2,10 +2,12 @@
 
 // Data
 const account1 = {
-  owner: 'John Smith',
+  owner: 'Jatin Singh',
   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
   interestRate: 1.2, // %
   pin: 1111,
+  locale: 'hi',
+  currency: 'INR',
 };
 
 const account2 = {
@@ -13,20 +15,26 @@ const account2 = {
   movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
   interestRate: 1.5,
   pin: 2222,
+  locale: 'en-US',
+  currency: 'USD',
 };
 
 const account3 = {
-  owner: 'Brad Williams',
+  owner: 'Takuya Kimura',
   movements: [200, -200, 340, -300, -20, 50, 400, -460],
   interestRate: 0.7,
   pin: 3333,
+  locale: 'ja-JP',
+  currency: 'JPY',
 };
 
 const account4 = {
-  owner: 'Steve Bradshaw Lee',
+  owner: 'Paula Barra',
   movements: [430, 1000, 700, 50, 90],
   interestRate: 1,
   pin: 4444,
+  locale: 'de-DE',
+  currency: 'EUR',
 };
 
 const accounts = [account1, account2, account3, account4];
@@ -87,6 +95,11 @@ const createUsername = () =>
         .join(''))
   );
 
+const greet = () =>
+  (elements.greetEl.textContent = `Welcome, ${
+    config.currentAccount.owner.split(' ')[0]
+  }!`);
+
 // Get account by given userName
 const findAcc = userName =>
   accounts.filter(acc => userName === acc.username)[0];
@@ -101,12 +114,22 @@ const clearInputs = inputs => inputs.forEach(input => (input.value = ''));
 // Show/Hide main section
 const showHideMain = () => elements.mainContainerEl.classList.toggle('hidden');
 
+const formatCurrency = number =>
+  new Intl.NumberFormat(config.currentAccount.locale, {
+    style: 'currency',
+    currency: config.currentAccount.currency,
+  }).format(number);
+
+const formatDateTime = () =>
+  new Intl.DateTimeFormat(config.currentAccount.locale, {
+    dateStyle: 'short',
+    timeStyle: 'short',
+  }).format(new Date());
+
 const showBalanceAndDate = () => {
   // Show date
   const today = new Date();
-  elements.currDateEl.textContent = `${today.getFullYear()}/${
-    today.getMonth() + 1
-  }/${today.getDate()}, ${today.getHours()}:${today.getMinutes()}`;
+  elements.currDateEl.textContent = `${formatDateTime()}`;
 
   // Show balance
   const balance = config.currentAccount.movements.reduce(
@@ -114,13 +137,8 @@ const showBalanceAndDate = () => {
     0
   );
   config.currentAccount.currBalance = balance;
-  elements.currBalanceEl.textContent = `$${balance}`;
+  elements.currBalanceEl.textContent = `${formatCurrency(balance)}`;
 };
-
-const greet = () =>
-  (elements.greetEl.textContent = `Welcome, ${
-    config.currentAccount.owner.split(' ')[0]
-  }!`);
 
 // Calculate total deposit and withdrawl
 const showSummary = () => {
@@ -133,16 +151,18 @@ const showSummary = () => {
     { deposit: 0, withdrawl: 0 }
   );
 
-  elements.totDepositEl.textContent = `$${deposit}`;
-  elements.totWithdrawlEl.textContent = `$${Math.abs(withdrawl)}`;
+  elements.totDepositEl.textContent = `${formatCurrency(deposit)}`;
+  elements.totWithdrawlEl.textContent = `${formatCurrency(
+    Math.abs(withdrawl)
+  )}`;
 
   /**
    * Calculate interest:
    * - interest for each deposit (deposit * interestRate/100)
    * - if interest is atleast one add interest
    */
-  elements.interestEl.textContent = `$${config.currentAccount.movements
-    .reduce((totInterest, amt) => {
+  elements.interestEl.textContent = `${formatCurrency(
+    config.currentAccount.movements.reduce((totInterest, amt) => {
       // Calculate interest for each deposit
       const interest =
         amt > 0 && (amt * config.currentAccount.interestRate) / 100;
@@ -150,7 +170,7 @@ const showSummary = () => {
       // Calculate interest sum
       return interest >= 1 ? totInterest + interest : totInterest;
     }, 0)
-    .toFixed(2)}`;
+  )}`;
 };
 
 // Sort movements and store it in config
@@ -174,7 +194,7 @@ const showTransactions = () => {
       i + 1
     } ${amt > 0 ? `deposit` : `withdrawl`}</p>
       <p class="transac-date">12/12/12</p>
-      <p class="transac-amt">$${Math.abs(amt)}</p>
+      <p class="transac-amt">${formatCurrency(amt)}</p>
     </li>`;
     elements.transacListEl.insertAdjacentHTML('afterbegin', html);
   });
@@ -197,17 +217,6 @@ const updateData = () => {
   showTransactions();
   showSummary();
 };
-
-// Init
-const init = () => {
-  elements.userNameEl.focus(); // set focus on username input
-  createUsername();
-
-  // temp login
-  // config.currentAccount = account1;
-  // updateUIForLogin();
-};
-init();
 
 //////////////////////////// LOGOUT ///////////////////////////////////
 const logOut = () => {
@@ -398,3 +407,14 @@ elements.sortBtn.addEventListener('click', () => {
 
 //////////////////////// LOG OUT //////////////////////////////
 elements.logOutBtn.addEventListener('click', logOut);
+
+/////////////////////////////// INIT /////////////////////////////////
+const init = () => {
+  elements.userNameEl.focus(); // set focus on username input
+  createUsername();
+
+  // temp login
+  config.currentAccount = account1;
+  updateUIForLogin();
+};
+init();
