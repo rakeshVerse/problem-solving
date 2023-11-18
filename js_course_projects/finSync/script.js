@@ -123,6 +123,7 @@ const config = {
   sortedDates: [],
   logOutTimer: 300, // in seconds
   logOutInterval: '',
+  isLoggedOut: false,
 };
 
 // FUNCTIONS
@@ -163,12 +164,14 @@ const formatCurrency = number =>
     currency: config.currentAccount.currency,
   }).format(number);
 
+// Format current date as per account owner's locale
 const formatCurrDateTime = () =>
   new Intl.DateTimeFormat(config.currentAccount.locale, {
     dateStyle: 'short',
     timeStyle: 'short',
   }).format(new Date());
 
+// Movements date formating
 const formatDate = date => {
   // Calculate date diff
   const calcDaysPassed = (date, date2) =>
@@ -305,6 +308,11 @@ const logOut = () => {
   clearData();
 };
 
+elements.logOutBtn.addEventListener('click', () => {
+  config.isLoggedOut = true;
+  logOut();
+});
+
 //////////////////////////// TIMER ///////////////////////////////////
 const startLogOutTimer = () => {
   const tick = () => {
@@ -316,7 +324,11 @@ const startLogOutTimer = () => {
     elements.logOutTimerEl.textContent = `${minutes}: ${seconds}`;
 
     // if timer 0, logout
-    timer === 0 && logOut();
+    // timer === 0 && logOut();
+    if (timer === 0) {
+      config.isLoggedOut = true;
+      logOut();
+    }
 
     // decrement timer by 1
     timer--;
@@ -333,8 +345,9 @@ const updateUIForLogin = () => {
   logOut(); // clear previous account
 
   // If not first login, wait for 1s before log-in to get the fade-out fade-in effect
-  let timer = config.firstLogin ? 0 : 1;
+  let timer = config.firstLogin || config.isLoggedOut ? 0 : 1;
   config.firstLogin = false;
+  config.isLoggedOut = false;
 
   setTimeout(() => {
     showHideMain();
@@ -385,9 +398,7 @@ const transferCB = () => {
   ) {
     // Make entries on both (current & transerTo) accounts movements
     config.currentAccount.movements.push(-transferAmt);
-    config.currentAccount.movementsDates.push(new Date().toISOString());
     transferAccount.movements.push(transferAmt);
-    transferAccount.movementsDates.push(new Date().toISOString());
 
     // Update UI
     clearData();
@@ -411,8 +422,6 @@ const requestLoanCB = () => {
   ) {
     // Add loan amount to movements
     config.currentAccount.movements.push(loanAmount);
-    config.currentAccount.movementsDates.push(new Date().toISOString());
-
     // Update UI
     clearData();
     updateData();
@@ -479,16 +488,13 @@ elements.sortBtn.addEventListener('click', () => {
   showTransactions();
 });
 
-//////////////////////// LOG OUT //////////////////////////////
-elements.logOutBtn.addEventListener('click', logOut);
-
 /////////////////////////////// INIT /////////////////////////////////
 const init = () => {
   elements.userNameEl.focus(); // set focus on username input
   createUsername();
 
-  // temp login
-  config.currentAccount = account1;
-  updateUIForLogin();
+  // // temp login
+  // config.currentAccount = account1;
+  // updateUIForLogin();
 };
 init();
