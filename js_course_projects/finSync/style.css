@@ -127,6 +127,7 @@ main {
 
 /* transactions */
 .transac {
+  order: 2;
   flex-grow: 1;
   overflow-y: scroll;
   border-radius: 9px;
@@ -194,15 +195,18 @@ figure h3 {
 }
 
 .loan {
-  background-color: #ffcb00cf;
+  /* background-color: #ffcb00cf; */
+  background-color: #40e3d4;
 }
 
 .transfer {
-  background-color: #3eb51db0;
+  /* background-color: #3eb51db0; */
+  background-color: #ffe13d;
 }
 
 .close {
-  background-color: #f009;
+  /* background-color: #f009; */
+  background-color: #f16262;
 }
 
 .form-flex div {
