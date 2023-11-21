@@ -1,7 +1,7 @@
 /* ******************************************* */
 /* ***************** Header ****************** */
 /* ******************************************* */
-header {
+.header {
   display: flex;
   height: 8rem;
   justify-content: space-around;
@@ -10,7 +10,7 @@ header {
   position: relative;
 }
 
-header img {
+.header img {
   width: 18rem;
 }
 
@@ -174,9 +174,12 @@ header img {
   flex-grow: 1;
 }
 
+.download-txt > * {
+  padding-bottom: 0;
+}
+
 .download-txt > *:first-child {
   font-size: 1.6rem;
-  padding-bottom: 0;
 }
 
 .download-txt > *:last-child {
@@ -219,3 +222,119 @@ header img {
 /* ******************************************* */
 /* ***************** Modal ******************* */
 /* ******************************************* */
+.modal-login {
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 40rem;
+  height: 60rem;
+  padding: 6rem;
+  border-radius: 0.3rem;
+  z-index: 1;
+  transition: all 0.7s ease-out;
+
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 20%);
+}
+
+.backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  /* background-color: #ffffff37; */
+  background-color: #3148972e;
+  backdrop-filter: blur(4px);
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+
+  /* for slide effect */
+  right: 0;
+  transform: translate(100%, 20%);
+}
+
+.modal-body {
+  margin-bottom: 5rem;
+}
+
+.modal-footer {
+  /* margin-bottom: 10rem; */
+}
+
+.modal-form {
+  gap: 3rem;
+}
+
+.modal-form-inputs {
+  gap: 1rem;
+}
+
+.modal-form-inputs input {
+  outline: none;
+  border: none;
+  background-color: #4b4747;
+}
+
+.btn-modal-login {
+  width: 100%;
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  padding: 1.2rem;
+}
+
+.modal-form-actions {
+  font-size: 1.2rem;
+}
+
+.modal-help {
+  float: right;
+}
+
+.modal-help:link,
+.modal-help:visited,
+.modal-footer > *:first-child a:link,
+.modal-footer > *:first-child a:visited,
+.modal-footer > *:last-child a:link,
+.modal-footer > *:last-child a:visited {
+  text-decoration: none;
+  color: #fff;
+}
+
+.modal-help:hover,
+.modal-footer > *:first-child a:hover,
+.modal-footer > *:last-child a:hover {
+  text-decoration: underline;
+}
+
+.modal-footer > * {
+  color: #b9b4b4;
+}
+
+.modal-footer > *:first-child {
+  font-size: 1.6rem;
+}
+
+.modal-footer > *:first-child a {
+  font-weight: 500;
+}
+
+.modal-footer > *:last-child {
+  font-size: 1.3rem;
+}
+
+.modal-footer > *:last-child a:link {
+  color: blue;
+}
+
+.btn-modal-close {
+  position: absolute;
+  top: 2%;
+  right: 5%;
+  font-size: 2rem;
+  font-weight: 600;
+  cursor: pointer;
+}

@@ -46,6 +46,7 @@ section {
   margin: 0 auto;
 }
 
+/* grid */
 .grid {
   display: grid;
 }
@@ -55,6 +56,12 @@ section {
   align-items: center;
   column-gap: 2rem;
   row-gap: 8rem;
+}
+
+/* flex */
+.flex-col {
+  display: flex;
+  flex-direction: column;
 }
 
 /* Buttons */
@@ -81,6 +88,13 @@ section {
 
 .heading-secondary {
   font-size: 4.4rem;
+  letter-spacing: -0.9px;
+  padding-bottom: 2rem;
+}
+
+.heading-tertiary {
+  font-size: 3.6rem;
+  font-weight: 300;
   letter-spacing: -0.9px;
   padding-bottom: 2rem;
 }

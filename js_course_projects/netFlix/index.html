@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
-    <header>
+    <header class="header">
       <img src="assets/images/logo.png" alt="app logo" />
       <div class="header-options">
         <div class="option-box">
@@ -186,8 +186,48 @@
     </main>
     <footer></footer>
     <div class="scroll-top"></div>
-    <div class="login-modal"></div>
-    <div class="backdrop"></div>
+    <div class="modal-login hidden">
+      <header class="modal-header">
+        <h3 class="heading-tertiary">Sign In</h3>
+      </header>
+      <main class="modal-body">
+        <form action="" class="flex-col modal-form">
+          <div class="flex-col modal-form-inputs">
+            <input
+              type="email"
+              name=""
+              id=""
+              class="input"
+              placeholder="Email or phone number"
+            />
+            <input
+              type="password"
+              name=""
+              id=""
+              class="input"
+              placeholder="Password"
+            />
+          </div>
+          <div class="modal-form-actions">
+            <button class="btn btn-modal-login">Sign In</button>
+            <div>
+              <input type="checkbox" name="remember" id="remember" checked />
+              <label for="remember">Remember me</label>
+              <a href="#" class="modal-help">Need help?</a>
+            </div>
+          </div>
+        </form>
+      </main>
+      <footer class="modal-footer">
+        <p>New to Netflix? <a href="#">Sign up now</a>.</p>
+        <p>
+          This page is protected by Google reCAPTCHA to ensure you're not a bot.
+          <a href="#">Learn more.</a>
+        </p>
+      </footer>
+      <p class="btn-modal-close">x</p>
+    </div>
+    <div class="backdrop hidden"></div>
 
     <script src="assets/js/script.js"></script>
   </body>
