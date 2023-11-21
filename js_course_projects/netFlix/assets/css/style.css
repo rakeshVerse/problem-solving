@@ -112,6 +112,82 @@ header img {
 /* *************** Features ****************** */
 /* ******************************************* */
 
+.section-features {
+  padding-bottom: 12.6rem;
+}
+
+.feature-img {
+  width: 100%;
+}
+
+.feature-txt p {
+  font-size: 2rem;
+}
+
+.feature-img-box {
+  position: relative;
+}
+
+.video-box {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: -1;
+}
+
+.video-box-tv {
+  width: 73%;
+  transform: translate(-50.5%, 37%);
+}
+
+.video-box-devices {
+  width: 61%;
+  transform: translate(-50.5%, 14%);
+}
+
+.video-box video {
+  width: 100%;
+  height: 100%;
+}
+
+.download-box {
+  position: absolute;
+  bottom: 32px;
+  left: 22%;
+
+  width: 30rem;
+  border: 1px solid #ffffff47;
+  border-radius: 0.9rem;
+  padding: 0.3rem 1rem;
+  background-color: var(--color-secondary);
+
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+}
+
+.stranger-things-img {
+  height: 8rem;
+}
+
+.download-txt {
+  flex-grow: 1;
+}
+
+.download-txt > *:first-child {
+  font-size: 1.6rem;
+  padding-bottom: 0;
+}
+
+.download-txt > *:last-child {
+  font-size: 1.2rem;
+  color: #00e7ff;
+}
+
+.download-img {
+  height: 5rem;
+}
+
 /* ******************************************* */
 /* ***************** Popular ***************** */
 /* ******************************************* */
