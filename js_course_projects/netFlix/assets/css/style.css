@@ -210,6 +210,87 @@
 /* ******************************************* */
 /* ***************** Faq ******************** */
 /* ******************************************* */
+.section-faq {
+  padding-bottom: 12.8rem;
+}
+
+.faq-container {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.faq-section-heading {
+  text-align: center;
+}
+
+/*  flex container */
+.faqs-box {
+  gap: 1rem;
+  margin-bottom: 4rem;
+}
+
+/* faq flex item */
+.faq-box {
+  background-color: rgb(45, 45, 45);
+}
+
+/* header */
+.faq-box header {
+  padding: 2rem;
+}
+
+.faq-box header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 2.2rem;
+  cursor: pointer;
+}
+
+.faq-box header:hover {
+  background-color: rgb(65, 65, 65);
+}
+
+.faq-box header h4 {
+  font-weight: 400;
+}
+
+.btn-faq {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.faq-box main > *:last-child {
+  padding-bottom: 0;
+}
+
+/* Show/hide logic */
+
+/* main hidden */
+.close-faq-main {
+  font-size: 2rem;
+
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.6s ease-in-out, padding 0.6s ease;
+}
+
+/* main open */
+.open .close-faq-main {
+  max-height: 20rem;
+  padding: 2rem;
+}
+
+/* rotate btn when open*/
+.open .btn-faq {
+  rotate: 45deg;
+}
+
+.section-faq .hero-tertiary-txt {
+  text-align: center;
+}
 
 /* ******************************************* */
 /* ***************** Footer ****************** */
@@ -244,6 +325,7 @@
   height: 60rem;
   padding: 6rem;
   border-radius: 0.3rem;
+  opacity: 1;
   z-index: 1;
   transition: all 0.7s ease-out;
 
@@ -275,10 +357,6 @@
 
 .modal-body {
   margin-bottom: 5rem;
-}
-
-.modal-footer {
-  /* margin-bottom: 10rem; */
 }
 
 .modal-form {
