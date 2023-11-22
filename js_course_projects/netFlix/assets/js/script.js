@@ -49,3 +49,27 @@ faqContainer.addEventListener('click', function (e) {
   // toggle class 'open' for current faq
   currentFaq.classList.toggle('open');
 });
+
+///////////////////////// TABS ///////////////////////////
+
+const containerTabHead = document.querySelector('.devices-tab-head');
+const containerTabContent = document.querySelector('.device-tab-content-box');
+const tabContents = document.querySelectorAll('.device-tab-content');
+const tabHeads = document.querySelectorAll('.device-tab-head');
+
+containerTabHead.addEventListener('click', e => {
+  const tabHead = e.target.closest('.device-tab-head');
+
+  // if not clicked on tab head, return
+  if (!tabHead) return;
+
+  // remove active from all tab heads and contents
+  tabHeads.forEach(tabHead => tabHead.classList.remove('active'));
+  tabContents.forEach(tabContent => tabContent.classList.remove('active'));
+
+  // add active to clicked tab head and content
+  containerTabContent
+    .querySelector(`.tab-${tabHead.dataset.type}`)
+    .classList.add('active');
+  tabHead.classList.add('active');
+});

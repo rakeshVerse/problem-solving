@@ -194,11 +194,274 @@
 /* ******************************************* */
 /* ***************** Popular ***************** */
 /* ******************************************* */
+.section-popular {
+  margin-bottom: 0;
+}
 
 /* ******************************************* */
 /* ***************** Devices ***************** */
 /* ******************************************* */
 
+.section-devices header {
+  height: 28rem;
+  background-image: url('../images/devices/header.jpg');
+  background-size: cover;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-devices header h2 {
+  padding-bottom: 0;
+}
+
+/* ********** Tab Head *********** */
+.devices-tab-head {
+  padding-left: 0;
+  text-align: center;
+  background-color: #fff;
+  color: #555;
+  font-size: 1.2rem;
+  font-weight: 700;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.devices-tab-head > li {
+  flex-basis: 25%;
+  cursor: pointer;
+  list-style: none;
+  border-right: 1px solid #eee;
+  border-bottom: 1.6rem solid var(--color-primary);
+  height: 12rem;
+
+  background-position: center 35%;
+  background-repeat: no-repeat;
+  background-size: auto 4rem;
+}
+
+.devices-tab-head > li span {
+  display: block;
+  margin: 70px 0 0 0;
+}
+
+/* tab header images */
+.devices-tab-head > li:first-child {
+  background-image: url('../images/devices/media-player.webp');
+}
+.devices-tab-head > li:nth-child(2) {
+  background-image: url('../images/devices/hdtv.webp');
+}
+.devices-tab-head > li:nth-child(3) {
+  background-image: url('../images/devices/game-console.webp');
+}
+.devices-tab-head > li:nth-child(4) {
+  background-image: url('../images/devices/mvpd.webp');
+}
+.devices-tab-head > li:nth-child(5) {
+  background-image: url('../images/devices/blu-ray-player.webp');
+}
+.devices-tab-head > li:nth-child(6) {
+  background-image: url('../images/devices/phones-and-tablet.webp');
+}
+.devices-tab-head > li:last-child {
+  background-image: url('../images/devices/laptop-active.webp');
+}
+
+.devices-tab-head > li:hover {
+  background-color: #f4f4f496;
+}
+
+/* ********** Tab Content *********** */
+
+.device-tab-content-box {
+  /* max-height: 40rem; */
+  height: 36rem;
+  background-image: url('../images/devices/device-panel-background2.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
+.device-tab-content-box .container {
+  padding-left: 10rem;
+  padding-right: 10rem;
+}
+
+.device-tab-content {
+  display: flex;
+  gap: 24rem;
+}
+
+/* Text content */
+.device-tab-content .text-box {
+  padding-top: 4rem;
+  flex-basis: 55%;
+}
+
+.device-tab-content .text-box h4 {
+  font-size: 3rem;
+  font-weight: 400;
+  border-left: 1px solid var(--color-primary);
+  padding-left: 2rem;
+  margin-bottom: 3rem;
+}
+
+.device-tab-content .text-box p {
+  font-size: 1.2rem;
+}
+
+/* Brand logos */
+.device-tab-content .brand-logos {
+  flex-basis: 45%;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 0.2rem;
+}
+
+.brand-logos a {
+  background-color: black;
+  background-repeat: no-repeat;
+
+  background-position: center;
+}
+
+.brand-logos div {
+  background: #1a1a1a
+    url('../images/devices/media-player-brand-logos/checkerboard.webp');
+}
+
+/* Media players brand logos */
+.brand-logos-media-players a {
+  height: 17.9rem;
+}
+
+.brand-logos-media-players > a:first-child {
+  background-image: url('../images/devices/media-player-brand-logos/appletv_rev.webp');
+  background-size: auto 3rem;
+}
+.brand-logos-media-players > a:nth-child(2) {
+  background-image: url('../images/devices/media-player-brand-logos/g-chromecast.webp');
+  background-size: auto 2rem;
+}
+.brand-logos-media-players > a:nth-child(3) {
+  background-image: url('../images/devices/media-player-brand-logos/portal-from-facebook.webp');
+  background-size: auto 6rem;
+}
+
+/* Hdtv brand logos */
+.brand-logos-hdtvs a {
+  height: 11.9rem;
+}
+
+.brand-logos-hdtvs > a:first-child {
+  background-image: url('../images/devices/hdtv-brand-logos/hisenselogo.webp');
+  background-size: auto 1.6rem;
+}
+.brand-logos-hdtvs > a:nth-child(2) {
+  background-image: url('../images/devices/hdtv-brand-logos/lg-logo-3d-tagline-white.webp');
+  background-size: auto 3rem;
+}
+.brand-logos-hdtvs > a:nth-child(3) {
+  background-image: url('../images/devices/hdtv-brand-logos/panasonic_logo_bl_posi_png.webp');
+  background-size: auto 1.6rem;
+}
+.brand-logos-hdtvs > a:nth-child(4) {
+  background-image: url('../images/devices/hdtv-brand-logos/philips_transparent_logo.webp');
+  background-size: auto 1.6rem;
+}
+.brand-logos-hdtvs > a:nth-child(5) {
+  background-image: url('../images/devices/hdtv-brand-logos/samsung_lettermark_white_rgb.webp');
+  background-size: auto 1.6rem;
+}
+
+/* Game consoles brand logos */
+.brand-logos-game-consoles a {
+  height: 11.9rem;
+}
+
+.brand-logos-game-consoles > a:first-child {
+  background-image: url('../images/devices/game-consoles-brand-logos/ps3.webp');
+  background-size: auto 1.4rem;
+}
+.brand-logos-game-consoles > a:nth-child(2) {
+  background-image: url('../images/devices/game-consoles-brand-logos/ps4.webp');
+  background-size: auto 1.4rem;
+}
+.brand-logos-game-consoles > a:nth-child(3) {
+  background-image: url('../images/devices/game-consoles-brand-logos/ps5-logo.webp');
+  background-size: auto 1.4rem;
+}
+.brand-logos-game-consoles > a:nth-child(4) {
+  background-image: url('../images/devices/game-consoles-brand-logos/xbox360_2013_stacked_wht_rgb.webp');
+  background-size: auto 4rem;
+}
+.brand-logos-game-consoles > a:nth-child(5) {
+  background-image: url('../images/devices/game-consoles-brand-logos/xboxone_stacked_wht_rgb.webp');
+  background-size: auto 4rem;
+}
+.brand-logos-game-consoles > a:last-child {
+  background-image: url('../images/devices/game-consoles-brand-logos/xboxseriesxs-2020-stack-wht-rgb-1-copy-xboxallaccess-2020-stacked-dkgray-rgb.png');
+  background-size: auto 4rem;
+}
+
+/* Blu ray brand logos */
+.brand-logos-blu-ray a {
+  height: 17.9rem;
+}
+
+.brand-logos-blu-ray > a:first-child {
+  background-image: url('../images/devices/hdtv-brand-logos/lg-logo-3d-tagline-white.webp');
+  background-size: auto 3rem;
+}
+.brand-logos-blu-ray > a:nth-child(2) {
+  background-image: url('../images/devices/hdtv-brand-logos/panasonic_logo_bl_posi_png.webp');
+  background-size: auto 1.6rem;
+}
+.brand-logos-blu-ray > a:nth-child(3) {
+  background-image: url('../images/devices/hdtv-brand-logos/samsung_lettermark_white_rgb.webp');
+  background-size: auto 1.6rem;
+}
+.brand-logos-blu-ray > a:nth-child(4) {
+  background-image: url('../images/devices/hdtv-brand-logos/hisenselogo.webp');
+  background-size: auto 1.6rem;
+}
+
+/* Smartphones brand logos */
+.brand-logos-smartphones a {
+  height: 17.9rem;
+}
+
+.brand-logos-smartphones > a:first-child {
+  background-image: url('../images/devices/smartphones-brand-logos/android.webp');
+  background-size: auto 2rem;
+}
+.brand-logos-smartphones > a:nth-child(2) {
+  background-image: url('../images/devices/smartphones-brand-logos/apple_logo_360.webp');
+  background-size: auto 3rem;
+}
+.brand-logos-smartphones > a:nth-child(3) {
+  background-image: url('../images/devices/smartphones-brand-logos/windows-phone.webp');
+  background-size: auto 1.6rem;
+}
+
+/* Hide */
+.device-tab-content {
+  display: none;
+}
+
+/* Show */
+.active {
+  display: flex;
+  justify-content: center;
+}
+
+/* Show header border bottom */
+.devices-tab-head .active {
+  border-bottom: 0;
+}
 /* ******************************************* */
 /* ***************** Top ******************** */
 /* ******************************************* */
