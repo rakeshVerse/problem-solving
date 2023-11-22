@@ -268,7 +268,7 @@
   background-image: url('../images/devices/phones-and-tablet.webp');
 }
 .devices-tab-head > li:last-child {
-  background-image: url('../images/devices/laptop-active.webp');
+  background-image: url('../images/devices/laptop.webp');
 }
 
 .devices-tab-head > li:hover {
