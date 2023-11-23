@@ -74,8 +74,6 @@ containerTabHead.addEventListener('click', e => {
   tabHead.classList.add('active');
 });
 
-///////////////////////// SLIDER (About) ///////////////////////////
-
 const slideContainer = document.querySelector(
   '.section-about .slide-container'
 );
@@ -132,3 +130,11 @@ const init = () => {
 };
 
 init();
+
+///////////////////////// SCROLL TO TOP ///////////////////////////
+document.querySelector('.scroll-top').addEventListener('click', e => {
+  e.preventDefault();
+  document.querySelector('body').scrollIntoView({
+    behavior: 'smooth',
+  });
+});
