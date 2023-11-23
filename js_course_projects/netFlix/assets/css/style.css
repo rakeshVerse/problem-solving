@@ -196,6 +196,88 @@
 /* ******************************************* */
 .section-popular {
   margin-bottom: 0;
+  padding-bottom: 12.8rem;
+}
+
+.popular-heading {
+  text-align: center;
+}
+
+.popular-sub-txt {
+  text-align: center;
+  font-size: 2rem;
+  padding-bottom: 5rem;
+}
+
+.popular-container {
+  position: relative;
+}
+
+.popular-container-heading {
+  margin: 0 8rem;
+  text-transform: uppercase;
+  font-size: 1.6rem;
+}
+
+.popular-container ul {
+  font-size: 2rem;
+  margin: 0 8rem;
+  padding: 0;
+
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+
+  display: flex;
+  gap: 1.2rem;
+}
+
+.popular-container ul img {
+  width: 30rem;
+}
+
+.popular-container ul a:link {
+  text-decoration: none;
+}
+
+.popular-container ul p {
+  text-align: center;
+  padding-bottom: 0;
+  font-size: 1.4rem;
+  color: #fff;
+}
+
+.popular-container ul > li {
+  list-style: none;
+}
+
+.popular-container .btn-scroll {
+  position: absolute;
+  top: 30%;
+  z-index: 1;
+
+  color: var(--color-primary);
+  background: none;
+  width: 5rem;
+  cursor: pointer;
+}
+
+.popular-container .btn-scroll:hover {
+  color: var(--color-primary-darker);
+}
+
+.popular-container .btn-scroll-left {
+  left: 2%;
+  transform: translate(0%, 50%);
+}
+
+.popular-container .btn-scroll-right {
+  right: 2%;
+  transform: translate(0%, 50%) rotate(180deg);
+}
+
+.popular-container .hide {
+  display: none;
 }
 
 /* ******************************************* */
