@@ -5,7 +5,7 @@ const btnCloseModal = document.querySelector('.btn-modal-close');
 const modalLogin = document.querySelector('.modal-login');
 const backdrop = document.querySelector('.backdrop');
 
-/////////////////////// Modal ///////////////////////////
+/////////////////////// Modal (Sign In) ///////////////////////////
 
 const showHideModal = () => {
   modalLogin.classList.toggle('hidden');
@@ -50,7 +50,7 @@ faqContainer.addEventListener('click', function (e) {
   currentFaq.classList.toggle('open');
 });
 
-///////////////////////// TABS ///////////////////////////
+///////////////////////// TABS (Devices) ///////////////////////////
 
 const containerTabHead = document.querySelector('.devices-tab-head');
 const containerTabContent = document.querySelector('.device-tab-content-box');
@@ -73,3 +73,62 @@ containerTabHead.addEventListener('click', e => {
     .classList.add('active');
   tabHead.classList.add('active');
 });
+
+///////////////////////// SLIDER (About) ///////////////////////////
+
+const slideContainer = document.querySelector(
+  '.section-about .slide-container'
+);
+const slides = document.querySelectorAll('.section-about .slide');
+const btnLeft = document.querySelector('.section-about .btn-slide-left');
+const btnRight = document.querySelector('.section-about .btn-slide-right');
+
+const totalSlides = slides.length - 1;
+let currentSlide = 0;
+
+// Formula: (i - currentSlide) * 100
+const slide = currentSlide =>
+  slides.forEach(
+    (slide, i) =>
+      (slide.style.transform = `translateX(${(i - currentSlide) * 100}%)`)
+  );
+
+const slideRigth = function () {
+  if (currentSlide === totalSlides) currentSlide = 0;
+  else currentSlide++;
+  slide(currentSlide);
+};
+
+const slideLeft = () => {
+  if (currentSlide === 0) currentSlide = totalSlides;
+  else currentSlide--;
+  slide(currentSlide);
+};
+
+// Event handling
+btnRight.addEventListener('click', slideRigth);
+btnLeft.addEventListener('click', slideLeft);
+
+// Auto slide
+let pause = false;
+const autoSlide = sec =>
+  setInterval(() => {
+    pause || slideRigth();
+  }, sec * 1000);
+
+// pause auto slider on hover
+slideContainer.addEventListener('mouseover', () => {
+  pause = true;
+});
+
+// resume auto slider on hover out
+slideContainer.addEventListener('mouseout', () => {
+  pause = false;
+});
+
+const init = () => {
+  slide(currentSlide);
+  autoSlide(5);
+};
+
+init();
