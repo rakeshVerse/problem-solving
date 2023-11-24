@@ -743,6 +743,45 @@
 /* ***************** Footer ****************** */
 /* ******************************************* */
 
+.footer-section {
+  padding-bottom: 12.8rem;
+}
+
+.footer-section .container {
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
+
+.footer-section .que {
+  font-size: 1.4rem;
+}
+
+.footer-cols {
+  display: flex;
+  gap: 15rem;
+}
+
+.footer-col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  padding-left: 0;
+}
+
+.footer-col ul > li {
+  list-style: none;
+  font-size: 1.2rem;
+}
+
+.footer-section .anchor-link {
+  color: #b1abab;
+}
+
+.footer-option-box {
+  width: fit-content;
+  margin-top: 4rem;
+}
+
 /* ******************************************* */
 /* ***************** Scroll to top *********** */
 /* ******************************************* */
