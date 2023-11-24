@@ -36,9 +36,26 @@ body {
   /* line-height: 1.9; */
 }
 
-section {
+/* section {
   border-bottom: 0.8rem solid var(--color-secondary-lighter);
   margin-bottom: 12.8rem;
+} */
+
+.hr {
+  position: relative;
+  height: 7px;
+  background-size: contain;
+  background-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgb(255, 0, 13) 50%,
+    transparent 100%
+  );
+  margin-bottom: 12.8rem;
+}
+
+.no-margin-btm {
+  margin-bottom: 0;
 }
 
 .container {
