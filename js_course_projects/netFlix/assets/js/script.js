@@ -241,6 +241,24 @@ document.querySelector('.scroll-top').addEventListener('click', e => {
   });
 });
 
+///////////////////////// SCROLL TO SECTION ///////////////////////////
+document.querySelector('.main-nav-links').addEventListener('click', e => {
+  e.preventDefault();
+
+  // traverse to menu item
+  const menu = e.target.closest('.main-nav-link');
+  if (!menu) return;
+
+  // get section id from menu's href attribute
+  const secId = menu.getAttribute('href');
+
+  // scroll to section using section id
+  document.querySelector(secId).scrollIntoView({
+    behavior: 'smooth',
+    block: 'start',
+  });
+});
+
 ///////////////////////// INTERSECTION OBSERVER API ///////////////////////////
 
 // STICKY NAV
