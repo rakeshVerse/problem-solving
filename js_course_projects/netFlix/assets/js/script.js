@@ -240,3 +240,38 @@ document.querySelector('.scroll-top').addEventListener('click', e => {
     behavior: 'smooth',
   });
 });
+
+///////////////////////// INTERSECTION OBSERVER API ///////////////////////////
+
+// STICKY NAV
+const sectionHero = document.querySelector('.section-hero');
+const header = document.querySelector('.header');
+
+// Observer API
+
+// 1. options
+const heroSecObserverOps = {
+  threshold: 0, // 0%
+};
+
+// 2. callback
+const heroSecObserverCB = entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // hide sticky nav
+      header.classList.remove('sticky-nav');
+    } else {
+      // show sticky nav
+      header.classList.add('sticky-nav');
+    }
+  });
+};
+
+// 3. create observer and observe hero section
+const heroSecObserver = new IntersectionObserver(
+  heroSecObserverCB,
+  heroSecObserverOps
+);
+heroSecObserver.observe(sectionHero);
+
+////////////////////////
