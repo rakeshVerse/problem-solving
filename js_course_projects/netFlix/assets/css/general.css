@@ -81,6 +81,7 @@ body {
   flex-direction: column;
 }
 
+/* image background fix */
 .background-fix {
   background-attachment: fixed;
   background-position: center;
