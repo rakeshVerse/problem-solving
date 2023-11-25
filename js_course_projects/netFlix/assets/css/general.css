@@ -81,6 +81,13 @@ body {
   flex-direction: column;
 }
 
+.background-fix {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 /* Buttons */
 .btn {
   background-color: var(--color-primary);
