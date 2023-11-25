@@ -49,11 +49,10 @@
 }
 
 .hero-img-box {
-  /* position: absolute; */
+  background-image: url('../images/cover.jpg');
   position: relative;
   top: -8rem;
   z-index: -1;
-  /* height: 100%; */
   height: 100vh;
   overflow-y: hidden;
 }
@@ -282,7 +281,6 @@
 .section-devices header {
   height: 28rem;
   background-image: url('../images/devices/header.jpg');
-  background-size: cover;
 
   display: flex;
   align-items: center;
