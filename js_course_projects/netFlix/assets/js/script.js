@@ -234,12 +234,14 @@ const horizontalScroll = () => {
 horizontalScroll();
 
 ///////////////////////// SCROLL TO TOP ///////////////////////////
-document.querySelector('.scroll-top').addEventListener('click', e => {
-  e.preventDefault();
-  document.querySelector('body').scrollIntoView({
-    behavior: 'smooth',
-  });
-});
+document.querySelectorAll('.scroll-top').forEach(ele =>
+  ele.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector('body').scrollIntoView({
+      behavior: 'smooth',
+    });
+  })
+);
 
 ///////////////////////// SCROLL TO SECTION ///////////////////////////
 document.querySelector('.main-nav-links').addEventListener('click', e => {
