@@ -14,6 +14,7 @@
 
 .header img {
   width: 18rem;
+  cursor: pointer;
 }
 
 .header-menus {
@@ -831,7 +832,7 @@
 /* ******************************************* */
 /* ***************** Scroll to top *********** */
 /* ******************************************* */
-.scroll-top {
+.scroll-top-btn {
   position: fixed;
   bottom: 10%;
   right: 3%;
