@@ -261,6 +261,23 @@ document.querySelector('.main-nav-links').addEventListener('click', e => {
   });
 });
 
+////////////////////////////// MENU EFFECT ////////////////////////////////
+const navContainer = document.querySelector('.main-nav-links');
+const menuItems = document.querySelectorAll('.main-nav-link');
+
+const setMenuOpacity = function (e) {
+  // menu
+  const currentMenu = e.target.closest('.main-nav-link');
+  if (!currentMenu) return;
+
+  menuItems.forEach(menu => {
+    if (menu != currentMenu) menu.style.opacity = this;
+  });
+};
+
+navContainer.addEventListener('mouseover', setMenuOpacity.bind(0.5));
+navContainer.addEventListener('mouseout', setMenuOpacity.bind(1));
+
 ///////////////////////// INTERSECTION OBSERVER API ///////////////////////////
 
 // STICKY NAV
