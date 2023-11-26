@@ -25,10 +25,14 @@
 
 .main-nav-links {
   padding-left: 0;
+  width: 45rem;
+  padding-right: 2rem;
+  border-right: 3px solid var(--color-primary);
 
   display: flex;
   gap: 2rem;
   align-items: center;
+  justify-content: space-around;
 }
 
 .main-nav-links > li {
