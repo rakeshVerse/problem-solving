@@ -39,9 +39,28 @@ body {
 section {
   /* border-bottom: 0.8rem solid var(--color-secondary-lighter);
   margin-bottom: 12.8rem; */
+}
 
+.scroll-margin {
+  /* initial header offset */
+  scroll-margin: 18rem;
+}
+
+.scroll-margin-sm {
   /* header offset */
   scroll-margin: 8rem;
+}
+
+.section-slide-down {
+  /* reveal section with slide up effect */
+  opacity: 0;
+  transform: translateY(10rem);
+  transition: all 1s;
+}
+
+.section-slide-up {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .hr {

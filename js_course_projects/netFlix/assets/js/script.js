@@ -312,3 +312,46 @@ const heroSecObserver = new IntersectionObserver(
 heroSecObserver.observe(sectionHero);
 
 ////////////////////////
+
+// SECTION REVEAL
+const sections = document.querySelectorAll('.section');
+
+// Observer API
+
+// 1. options
+const sectionObserverOps = {
+  threshold: 0.1, // 10%
+};
+
+// 2. callback
+const sectionObserverCB = (entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const section = entry.target;
+
+      // re-set header offset
+      const isTranslate = section.dataset.translate;
+      if (isTranslate === 'true') {
+        section.dataset.translate = 'false';
+        section.style.scrollMargin = '8rem';
+      }
+
+      // show section with slide up effect
+      section.classList.add('section-slide-up');
+
+      // stop observing section
+      observer.unobserve(section);
+    }
+  });
+};
+
+// 3. create observer and pass callback & options
+const sectionObserver = new IntersectionObserver(
+  sectionObserverCB,
+  sectionObserverOps
+);
+
+// 4. observe each section
+sections.forEach(section => sectionObserver.observe(section));
+
+/////////////////////////////////////////////////////////////////
