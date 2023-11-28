@@ -1,0 +1,150 @@
+/* :root {
+  --color-brand--1: #ffb545;
+  --color-brand--2: #00c46a;
+
+  --color-dark--1: #2d3439;
+  --color-dark--2: #42484d;
+
+  --color-light--1: #aaa;
+  --color-light--2: #ececec;
+
+  --color-light--3: rgb(214, 222, 224);
+} */
+
+:root {
+  --color-brand--1: #ff7373;
+  --color-brand--2: #00c46a;
+
+  --color-light--1: #fff;
+  --color-light--2: #ddd;
+
+  --color-dark--1: #ccc;
+  --color-dark--2: #222;
+  --color-dark--3: #444;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Manrope', sans-serif;
+  color: var(--color-dark--2);
+  font-weight: 400;
+  background-color: #fff;
+  height: 100vh;
+  overscroll-behavior-y: none;
+
+  display: flex;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.workout-container {
+  background-color: var(--color-light--1);
+  flex-basis: 50rem;
+  padding: 3rem 4rem;
+}
+
+.map-container {
+  background-color: blue;
+  flex-grow: 1;
+}
+
+.app-logo {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.app-logo img {
+  width: 12rem;
+}
+
+.workout-list {
+  height: calc(100vh - 26rem);
+  overflow-y: scroll;
+}
+
+.workout,
+.workout-form {
+  background-color: var(--color-light--2);
+  padding: 1.8rem 2.5rem;
+  border-radius: 0.6rem;
+  margin-bottom: 2rem;
+}
+
+.workout-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 1.5rem;
+  column-gap: 2.5rem;
+}
+
+.workout-form div {
+  display: flex;
+  gap: 1rem;
+}
+
+.workout-form label {
+  font-size: 1.6rem;
+  font-weight: 600;
+  flex-grow: 1;
+}
+
+.workout-form select,
+.workout-form input {
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.4rem;
+  width: 9rem;
+  background-color: var(--color-dark--1);
+  border: none;
+  outline: none;
+  border-radius: 0.3rem;
+  padding: 0.3rem 0.8rem;
+  transition: all 1s;
+}
+
+.workout-form select:focus,
+.workout-form input:focus {
+  background-color: var(--color-light--1);
+}
+
+.workout {
+  list-style: none;
+}
+
+.workout-running {
+  border-left: 0.7rem solid var(--color-brand--1);
+}
+.workout-cycling {
+  border-left: 0.7rem solid var(--color-brand--2);
+}
+
+.workout-details-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.workout-title {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.workout-icon {
+  font-size: 2rem;
+}
+.workout-value {
+  font-size: 1.9rem;
+}
+.workout-unit {
+  font-size: 1.4rem;
+  color: var(--color-dark--3);
+}
