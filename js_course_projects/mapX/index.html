@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mapX - Chart your fitness. Map your moves!</title>
+    <link rel="shortcut icon" href="icon.png" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <!-- Workout panel -->
+    <div class="workout-container">
+      <!-- logo -->
+      <div class="app-logo">
+        <img src="logo.png" alt="" />
+      </div>
+
+      <!-- form -->
+      <form action="" class="workout-form">
+        <div>
+          <label for="workout-type">Type</label>
+          <select name="workout-type" id="workout-type">
+            <option value="1">Running</option>
+            <option value="2">Cycling</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="workout-distance">Distance</label>
+          <input type="text" name="workout-distance" id="" placeholder="km" />
+        </div>
+
+        <div>
+          <label for="workout-duration">Duration</label>
+          <input type="text" name="workout-duration" id="" placeholder="min" />
+        </div>
+
+        <div class="cadence-box">
+          <label for="workout-cadence">Cadence</label>
+          <input
+            type="text"
+            name="workout-cadence"
+            id=""
+            placeholder="step/min"
+          />
+        </div>
+
+        <div class="elevation-box hidden">
+          <label for="workout-elevation">Elev Gain</label>
+          <input
+            type="text"
+            name="workout-elevation"
+            id=""
+            placeholder="meters"
+          />
+        </div>
+      </form>
+
+      <!-- workouts -->
+      <ul class="workout-list">
+        <!-- running -->
+        <li class="workout workout-running">
+          <h2 class="workout-title">Running on Nov 18</h2>
+          <div class="workout-details-box">
+            <div class="workout-details">
+              <span class="workout-icon">🏃🏾</span>
+              <span class="workout-value">2</span>&nbsp;
+              <span class="workout-unit">KM</span>
+            </div>
+
+            <div class="workout-details">
+              <span class="workout-icon">⏱</span>
+              <span class="workout-value">2</span>&nbsp;
+              <span class="workout-unit">MIN</span>
+            </div>
+
+            <div class="workout-details">
+              <span class="workout-icon">⚡️</span>
+              <span class="workout-value">1.0</span>&nbsp;
+              <span class="workout-unit">MIN/KM</span>
+            </div>
+
+            <div class="workout-details">
+              <span class="workout-icon">🦶🏿</span>
+              <span class="workout-value">2</span>&nbsp;
+              <span class="workout-unit">SPM</span>
+            </div>
+          </div>
+        </li>
+
+        <!-- cycling -->
+        <li class="workout workout-cycling">
+          <h2 class="workout-title">Cycling on Nov 18</h2>
+          <div class="workout-details-box">
+            <div class="workout-details">
+              <span class="workout-icon">🚴‍♀️ </span>
+              <span class="workout-value">2 </span>
+              <span class="workout-unit">KM</span>
+            </div>
+
+            <div class="workout-details">
+              <span class="workout-icon">⏱ </span>
+              <span class="workout-value">2 </span>
+              <span class="workout-unit">MIN</span>
+            </div>
+
+            <div class="workout-details">
+              <span class="workout-icon">⚡️</span>
+              <span class="workout-value">1.0 </span>
+              <span class="workout-unit"> KM/H </span>
+            </div>
+
+            <div class="workout-details">
+              <span class="workout-icon">⛰ </span>
+              <span class="workout-value">2 </span>
+              <span class="workout-unit">M</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Map -->
+    <div class="map-container"></div>
+  </body>
+</html>
