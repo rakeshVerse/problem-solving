@@ -52,25 +52,28 @@ body {
   display: none !important;
 }
 
+/* Side panel */
 .workout-container {
   background-color: var(--color-light--1);
   flex-basis: 50rem;
   padding: 3rem 4rem;
 }
 
+/* Map container */
 .map-container {
   flex-grow: 1;
   background-color: var(--color-light--2);
 }
 
+/* Logo */
 .app-logo {
   text-align: center;
   margin-bottom: 3rem;
 }
 
-.app-logo img {
+/* .app-logo img {
   width: 12rem;
-}
+} */
 
 .app-logo-svg {
   width: 14rem;
@@ -91,6 +94,16 @@ body {
   grid-template-columns: 1fr 1fr;
   row-gap: 1.5rem;
   column-gap: 2.5rem;
+  transform: translateY(0rem);
+  transition: all 0.8s, transform 0.5s;
+}
+
+.workout-form.hidden-form {
+  opacity: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  transform: translateY(-10rem);
 }
 
 .workout-form div {
@@ -102,6 +115,10 @@ body {
   font-size: 1.6rem;
   font-weight: 600;
   flex-grow: 1;
+}
+
+.workout-form select {
+  cursor: pointer;
 }
 
 .workout-form select,
