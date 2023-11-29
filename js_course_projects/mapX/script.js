@@ -1,3 +1,4 @@
+let map;
 /////////////////////////// Toggle Candence/Elevation /////////////////
 const toggleCadenceAndElevation = () => {
   const typeSelectEl = document.querySelector('#workout-type');
@@ -22,13 +23,16 @@ const toggleCadenceAndElevation = () => {
 
 // LEAFLET: Load Map
 const loadMap = (lat, lng) => {
-  var map = L.map('map').setView([lat, lng], 13);
+  map = L.map('map').setView([lat, lng], 13);
 
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution:
       '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   }).addTo(map);
+
+  // Map click event
+  map.on('click', onMapClick);
 };
 
 // GEOLOACTION API: Get user's position
@@ -58,6 +62,15 @@ const getUserPosition = () => {
   }
 };
 /////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////// MAP CLICK ////////////////////////////////
+const onMapClick = e => {
+  console.log(e);
+  // Show form
+  const workoutForm = document.querySelector('.workout-form');
+  workoutForm.classList.toggle('hidden-form');
+  // console.log('You clicked the map at ' + e.latlng);
+};
 
 ////////////////////////////////////// INIT ///////////////////////////////////////////
 const init = () => {
