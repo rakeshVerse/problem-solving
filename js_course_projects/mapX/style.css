@@ -12,14 +12,18 @@
 } */
 
 :root {
-  --color-brand--1: #ff7373;
+  /* --color-brand--1: #ff7373; */
+  --color-brand--1: #ff5959;
   --color-brand--2: #00c46a;
 
   --color-light--1: #fff;
-  --color-light--2: #ddd;
+  /* --color-light--2: #ddd; */
+  --color-light--2: #dddddd4f;
 
-  --color-dark--1: #ccc;
-  --color-dark--2: #222;
+  /* --color-dark--1: #ccc; */
+  --color-dark--1: #cccccc3b;
+  /* --color-dark--2: #222; */
+  --color-dark--2: #555;
   --color-dark--3: #444;
 }
 
@@ -55,8 +59,8 @@ body {
 }
 
 .map-container {
-  background-color: blue;
   flex-grow: 1;
+  background-color: var(--color-light--2);
 }
 
 .app-logo {
@@ -68,16 +72,17 @@ body {
   width: 12rem;
 }
 
-.workout-list {
-  height: calc(100vh - 26rem);
-  overflow-y: scroll;
+.app-logo-svg {
+  width: 14rem;
+  height: 6rem;
 }
 
+/* Form */
 .workout,
 .workout-form {
   background-color: var(--color-light--2);
   padding: 1.8rem 2.5rem;
-  border-radius: 0.6rem;
+  /* border-radius: 0.6rem; */
   margin-bottom: 2rem;
 }
 
@@ -102,19 +107,27 @@ body {
 .workout-form select,
 .workout-form input {
   font-family: 'Manrope', sans-serif;
+  color: var(--color-dark--2);
   font-size: 1.4rem;
   width: 9rem;
   background-color: var(--color-dark--1);
   border: none;
   outline: none;
-  border-radius: 0.3rem;
+  /* border-radius: 0.3rem; */
   padding: 0.3rem 0.8rem;
-  transition: all 1s;
+  transition: all 0.5s;
 }
 
 .workout-form select:focus,
 .workout-form input:focus {
   background-color: var(--color-light--1);
+}
+
+/* Workout */
+
+.workout-list {
+  height: calc(100vh - 26rem);
+  overflow-y: scroll;
 }
 
 .workout {
