@@ -84,11 +84,93 @@ const onMapClick = e => {
 };
 
 /////////////////////////////////// FORM SUBMIT ///////////////////////
+// Render workouts
+const renderWorkouts = workouts => {
+  // Calculate speed
+  const calcSpeed = (type, distance, time) => {
+    if (type === 1) return distance / time;
+    if (type === 2) return distance / (time / 60);
+  };
+
+  const formatDate = date =>
+    `${date.toLocaleString('default', { month: 'short' })} ${date.getDate()}`;
+
+  const workoutContainer = document.querySelector('.workout-list');
+  workoutContainer.textContent = '';
+
+  workouts.forEach(workout => {
+    console.log(workout.date);
+    console.log(new Date(workout.date));
+    console.log(formatDate(new Date(workout.date)));
+
+    let title = '';
+    let speedUnit = '';
+    let measure = '';
+
+    switch (workout.type) {
+      case 1:
+        // Running
+        title = `Running`;
+        speedUnit = `MIN/KM`;
+        measure = `
+        <span class="workout-icon">🦶🏿</span>
+        <span class="workout-value">${workout.cadence}</span>
+        <span class="workout-unit">SPM</span>`;
+        break;
+      case 2:
+        // Cycling
+        title = `Cycling`;
+        speedUnit = `KM/H`;
+        measure = `
+        <span class="workout-icon">⛰ </span>
+        <span class="workout-value">${workout.elevation} </span>
+        <span class="workout-unit">M</span>`;
+        break;
+    }
+
+    let html = `
+    <li class="workout workout-${workout.type}">
+      <h2 class="workout-title">${title} on ${formatDate(
+      new Date(workout.date)
+    )}</h2>
+      <div class="workout-details-box">
+        <div class="workout-details">
+          <span class="workout-icon">🏃🏾</span>
+          <span class="workout-value">${workout.distance}</span>
+          <span class="workout-unit">KM</span>
+        </div>
+
+        <div class="workout-details">
+          <span class="workout-icon">⏱</span>
+          <span class="workout-value">${workout.duration}</span>
+          <span class="workout-unit">MIN</span>
+        </div>
+
+        <div class="workout-details">
+          <span class="workout-icon">⚡️</span>
+          <span class="workout-value">${calcSpeed(
+            workout.type,
+            workout.distance,
+            workout.duration
+          )}</span>
+          <span class="workout-unit">${speedUnit}</span>
+        </div>
+
+        <div class="workout-details">
+          ${measure}
+        </div>
+      </div>
+    </li>`;
+
+    workoutContainer.insertAdjacentHTML('afterbegin', html);
+  });
+};
+
 // Save state
 const saveState = data => {
   const obj = {};
   for (const [key, value] of data) {
-    obj[key] = +value.trim();
+    obj[key] = key === 'date' ? value : +value.trim();
   }
 
   appState.push(obj);
@@ -146,12 +228,13 @@ workoutForm.addEventListener('keyup', function (e) {
   this.classList.add('hidden-form');
 
   // Save state
-  console.log(workoutPosition);
   formData.append('lat', workoutPosition.lat);
   formData.append('lng', workoutPosition.lng);
+  formData.append('date', new Date().toISOString());
   saveState(formData);
 
-  // Show card
+  // Render workouts
+  renderWorkouts(appState);
 });
 
 //////////////////////////////// INIT //////////////////////////
