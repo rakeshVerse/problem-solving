@@ -24,7 +24,7 @@
   --color-dark--1: #cccccc3b;
   /* --color-dark--2: #222; */
   --color-dark--2: #555;
-  --color-dark--3: #444;
+  --color-dark--3: #333;
 }
 
 * {
@@ -195,15 +195,18 @@ body {
 .workout-title {
   font-size: 1.8rem;
   margin-bottom: 1rem;
+  font-weight: 600;
 }
 
 .workout-icon {
-  font-size: 2rem;
+  font-size: 2.4rem;
+  color: var(--color-brand--2);
 }
 .workout-value {
   font-size: 1.9rem;
+  color: var(--color-dark--3);
 }
 .workout-unit {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: var(--color-dark--3);
 }

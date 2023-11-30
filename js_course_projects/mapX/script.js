@@ -84,12 +84,13 @@ const onMapClick = e => {
 };
 
 /////////////////////////////////// FORM SUBMIT ///////////////////////
+
 // Render workouts
 const renderWorkouts = workouts => {
   // Calculate speed
   const calcSpeed = (type, distance, time) => {
-    if (type === 1) return distance / time;
-    if (type === 2) return distance / (time / 60);
+    if (type === 1) return (time / distance).toFixed(1);
+    if (type === 2) return (distance / (time / 60)).toFixed(1);
   };
 
   const formatDate = date =>
@@ -99,26 +100,25 @@ const renderWorkouts = workouts => {
   workoutContainer.textContent = '';
 
   workouts.forEach(workout => {
-    console.log(workout.date);
-    console.log(new Date(workout.date));
-    console.log(formatDate(new Date(workout.date)));
-
     let title = '';
+    let typeLogo = '';
     let speedUnit = '';
     let measure = '';
 
     switch (workout.type) {
       case 1:
         // Running
+        typeLogo = `🏃🏾`;
         title = `Running`;
         speedUnit = `MIN/KM`;
         measure = `
-        <span class="workout-icon">🦶🏿</span>
+        <span class="workout-icon">👣</span>
         <span class="workout-value">${workout.cadence}</span>
         <span class="workout-unit">SPM</span>`;
         break;
       case 2:
         // Cycling
+        typeLogo = `🚴‍♀️`;
         title = `Cycling`;
         speedUnit = `KM/H`;
         measure = `
@@ -135,7 +135,7 @@ const renderWorkouts = workouts => {
     )}</h2>
       <div class="workout-details-box">
         <div class="workout-details">
-          <span class="workout-icon">🏃🏾</span>
+          <span class="workout-icon">${typeLogo}</span>
           <span class="workout-value">${workout.distance}</span>
           <span class="workout-unit">KM</span>
         </div>
