@@ -1,25 +1,38 @@
 let map;
+const appState = [];
+let workoutPosition;
+const workoutForm = document.querySelector('.workout-form');
+const workoutFormErr = document.querySelector('.form-error');
+
 /////////////////////////// Toggle Candence/Elevation /////////////////
 const toggleCadenceAndElevation = () => {
   const typeSelectEl = document.querySelector('#workout-type');
-  const runningUnitEl = document.querySelector('.cadence-box');
-  const cyclingUnitEl = document.querySelector('.elevation-box');
+  const typeInputBoxes = document.querySelectorAll('.type-toggle');
+  const typeInputs = document.querySelectorAll('.type-toggle input');
+  const inputElevationEl = document.querySelector('.workout-elevation');
 
-  // initially set option to running
+  // initially set option to running & disable elevation input
   typeSelectEl.value = 1;
+  inputElevationEl.disabled = true;
 
   // Show/Hide Cadence/Elevation
   const toggleUnitByType = () => {
-    runningUnitEl.classList.toggle('hidden');
-    cyclingUnitEl.classList.toggle('hidden');
+    typeInputBoxes.forEach((inputBox, i) => {
+      // toggle hidden forEach inputBox
+      inputBox.classList.toggle('hidden');
+
+      // add/remove attribute 'disabled' to input
+      // disabled input will not be part of FormData()
+      if (inputBox.classList.contains('hidden')) typeInputs[i].disabled = true;
+      else typeInputs[i].disabled = false;
+    });
   };
 
   // Event: On select change, show/Hide Cadence/Elevation
   typeSelectEl.addEventListener('change', toggleUnitByType);
 };
-/////////////////////////////////////////////////////////////////////////////////////
 
-/////////////////////////////////// Show Map ///////////////////////////////////
+/////////////////////////////////// Show Map ////////////////////////////
 
 // LEAFLET: Load Map
 const loadMap = (lat, lng) => {
@@ -61,21 +74,91 @@ const getUserPosition = () => {
     error();
   }
 };
-/////////////////////////////////////////////////////////////////////////////////
 
-////////////////////////////////////// MAP CLICK ////////////////////////////////
+// Map click event
 const onMapClick = e => {
-  console.log(e);
   // Show form
-  const workoutForm = document.querySelector('.workout-form');
-  workoutForm.classList.toggle('hidden-form');
-  // console.log('You clicked the map at ' + e.latlng);
+  workoutForm.classList.remove('hidden-form');
+
+  workoutPosition = e.latlng;
 };
 
-////////////////////////////////////// INIT ///////////////////////////////////////////
+/////////////////////////////////// FORM SUBMIT ///////////////////////
+// Save state
+const saveState = data => {
+  const obj = {};
+  for (const [key, value] of data) {
+    obj[key] = +value.trim();
+  }
+
+  appState.push(obj);
+  console.log(appState);
+};
+
+// All inputs must be positive numbers
+const validateInputs = inputs => {
+  console.log(inputs);
+  for (const [key, value] of inputs) {
+    // console.log(`${key}: ${value}\n`);
+    const input = +value.trim();
+    if (input == '' || input <= 0 || !isFinite(input)) return false;
+  }
+
+  return true;
+};
+
+const clearInputs = form => {
+  const inputs = form.querySelectorAll('input');
+  inputs.forEach(input => {
+    input.value = '';
+  });
+};
+
+// hide form error on click
+workoutFormErr.addEventListener('click', function () {
+  this.classList.add('hidden-err');
+});
+
+// On enter submit form
+workoutForm.addEventListener('keyup', function (e) {
+  // Key must be enter
+  if (e.key !== 'Enter') return;
+
+  // Get form data
+  const formData = new FormData(this);
+  // console.log(formData);
+
+  // Validate
+  // if not valid show alert
+  if (!validateInputs(formData)) {
+    workoutFormErr.classList.remove('hidden-err');
+    return;
+  }
+
+  // Remove error message, if already shown
+  if (!workoutFormErr.classList.contains('hidden-err'))
+    workoutFormErr.classList.add('hidden-err');
+
+  // Clear form input
+  clearInputs(this);
+
+  // Hide form
+  this.classList.add('hidden-form');
+
+  // Save state
+  console.log(workoutPosition);
+  formData.append('lat', workoutPosition.lat);
+  formData.append('lng', workoutPosition.lng);
+  saveState(formData);
+
+  // Show card
+});
+
+//////////////////////////////// INIT //////////////////////////
 const init = () => {
   toggleCadenceAndElevation();
   getUserPosition();
+  clearInputs(workoutForm);
 };
 
 init();

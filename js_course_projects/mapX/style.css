@@ -103,7 +103,7 @@ body {
   height: 0;
   padding: 0;
   margin: 0;
-  transform: translateY(-10rem);
+  transform: translateY(-5rem);
 }
 
 .workout-form div {
@@ -138,6 +138,34 @@ body {
 .workout-form select:focus,
 .workout-form input:focus {
   background-color: var(--color-light--1);
+}
+
+/* form error msg */
+.form-error {
+  background-color: var(--color-brand--1);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  color: #fff;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transform: translateY(0rem);
+  transition: all 1s, transform 0.5s;
+}
+
+.form-error .err-code {
+  font-weight: 800;
+}
+
+.form-error .err-msg {
+  font-weight: 600;
+}
+
+.form-error.hidden-err {
+  transform: translateY(-5rem);
+  opacity: 0;
+  padding: 0;
+  margin: 0;
+  height: 0;
 }
 
 /* Workout */
