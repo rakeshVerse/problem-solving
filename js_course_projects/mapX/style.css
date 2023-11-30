@@ -94,8 +94,9 @@ body {
   grid-template-columns: 1fr 1fr;
   row-gap: 1.5rem;
   column-gap: 2.5rem;
-  transform: translateY(0rem);
-  transition: all 0.8s, transform 0.5s;
+  /* transform: translateY(0rem); */
+  height: 10.2rem;
+  transition: all 0.5s;
 }
 
 .workout-form.hidden-form {
@@ -179,10 +180,10 @@ body {
   list-style: none;
 }
 
-.workout-running {
+.workout-1 {
   border-left: 0.7rem solid var(--color-brand--1);
 }
-.workout-cycling {
+.workout-2 {
   border-left: 0.7rem solid var(--color-brand--2);
 }
 
