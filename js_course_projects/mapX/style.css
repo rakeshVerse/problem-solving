@@ -41,9 +41,10 @@ body {
   font-family: 'Manrope', sans-serif;
   color: var(--color-dark--2);
   font-weight: 400;
-  background-color: #fff;
+  background-color: var(--color-light--1);
   height: 100vh;
   overscroll-behavior-y: none;
+  overflow-y: hidden;
 
   display: flex;
 }
@@ -104,6 +105,7 @@ body {
   height: 0;
   padding: 0;
   margin: 0;
+  visibility: hidden;
   transform: translateY(-5rem);
 }
 
@@ -146,10 +148,9 @@ body {
   background-color: var(--color-brand--1);
   padding: 1rem;
   margin-bottom: 1rem;
-  color: #fff;
+  color: var(--color-light--1);
   font-size: 1.6rem;
   cursor: pointer;
-  transform: translateY(0rem);
   transition: all 1s, transform 0.5s;
 }
 
@@ -167,12 +168,16 @@ body {
   padding: 0;
   margin: 0;
   height: 0;
+  visibility: hidden;
 }
 
 /* Workout */
 
 .workout-list {
-  height: calc(100vh - 26rem);
+  /* container top padding + logo height + logo margin bottom + margin bottom
+  i.e. 3 + 6 + 3 + 3 = 15rem
+  */
+  height: calc(100vh - 15rem);
   overflow-y: scroll;
 }
 
@@ -180,9 +185,11 @@ body {
   list-style: none;
 }
 
+/* border for running */
 .workout-1 {
   border-left: 0.7rem solid var(--color-brand--1);
 }
+/* border for cycling */
 .workout-2 {
   border-left: 0.7rem solid var(--color-brand--2);
 }
@@ -200,7 +207,6 @@ body {
 
 .workout-icon {
   font-size: 2.4rem;
-  color: var(--color-brand--2);
 }
 .workout-value {
   font-size: 1.9rem;
@@ -209,4 +215,26 @@ body {
 .workout-unit {
   font-size: 1.3rem;
   color: var(--color-dark--3);
+}
+
+/* Map pop-up */
+.leaflet-popup .leaflet-popup-content-wrapper {
+  background-color: var(--color-light--1);
+  color: var(--color-dark--2);
+  border-radius: 0;
+}
+
+.running-popup .leaflet-popup-content-wrapper {
+  border-left: 0.7rem solid var(--color-brand--1);
+}
+.cycling-popup .leaflet-popup-content-wrapper {
+  border-left: 0.7rem solid var(--color-brand--2);
+}
+
+.leaflet-popup .leaflet-popup-content {
+  font-size: 1.8rem;
+}
+
+.leaflet-popup .leaflet-popup-tip {
+  background-color: var(--color-light--1);
 }
