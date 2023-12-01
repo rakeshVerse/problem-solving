@@ -1,14 +1,18 @@
 let map;
 const appState = [];
 let workoutPosition;
+
+// Elements
 const workoutForm = document.querySelector('.workout-form');
 const workoutFormErr = document.querySelector('.form-error');
 const inputDistance = document.getElementById('distance');
+const introEl = document.querySelector('.intro');
 
 /////////////////////////////// General /////////////////////////////
 const showForm = () => {
   workoutForm.classList.remove('hidden-form');
 
+  // set focus on first input
   setTimeout(() => {
     inputDistance.focus();
   }, 600);
@@ -51,8 +55,8 @@ const toggleCadenceAndElevation = () => {
 /////////////////////////////////// Show Map ////////////////////////////
 
 // LEAFLET: Load Map
-const loadMap = (lat, lng) => {
-  map = L.map('map').setView([lat, lng], 13);
+const loadMap = (lat, lng, zoom) => {
+  map = L.map('map').setView([lat, lng], zoom);
 
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -71,15 +75,15 @@ const getUserPosition = () => {
     const { latitude, longitude } = position.coords;
 
     // load map for user's coords
-    loadMap(latitude, longitude);
+    loadMap(latitude, longitude, 13);
   };
 
   // On error
   const error = () => {
     console.log(`Couldn't get your location!`);
 
-    // load map using london coords
-    loadMap(51.505, -0.09);
+    // load map: show entire world
+    loadMap(0, 0, 2.5);
   };
 
   /* geolocation is available  or not*/
@@ -97,6 +101,9 @@ const onMapClick = e => {
 
   // store coords of clicked position
   workoutPosition = e.latlng;
+
+  // hide intro
+  if (!introEl.classList.contains('hidden')) introEl.classList.add('hidden');
 };
 
 /////////////////////////////////// FORM SUBMIT ///////////////////////
@@ -165,7 +172,9 @@ const renderWorkouts = workouts => {
     }
 
     let html = `
-    <li class="workout workout-${workout.type}">
+    <li class="workout workout-${workout.type}" data-lat="${
+      workout.lat
+    }" data-lng= "${workout.lng}">
       <h2 class="workout-title">${title}</h2>
       <div class="workout-details-box">
         <div class="workout-details">
@@ -274,6 +283,18 @@ workoutForm.addEventListener('keyup', function (e) {
 
   // Render marker
   // renderMarker(workoutPosition.lat, workoutPosition.lng);
+});
+
+//////////////////////////////// Pan Map //////////////////////////
+// Pan map to the center with click on workout
+const workoutList = document.querySelector('.workout-list');
+
+workoutList.addEventListener('click', function (e) {
+  const workout = e.target.closest('.workout');
+
+  if (!workout) return;
+
+  map.flyTo([workout.dataset.lat, workout.dataset.lng], 13);
 });
 
 //////////////////////////////// INIT //////////////////////////
