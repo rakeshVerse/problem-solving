@@ -53,6 +53,12 @@ body {
   display: none !important;
 }
 
+.intro {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #777;
+}
+
 /* Side panel */
 .workout-container {
   background-color: var(--color-light--1);
@@ -183,6 +189,7 @@ body {
 
 .workout {
   list-style: none;
+  cursor: pointer;
 }
 
 /* border for running */
