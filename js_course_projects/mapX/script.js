@@ -3,6 +3,20 @@ const appState = [];
 let workoutPosition;
 const workoutForm = document.querySelector('.workout-form');
 const workoutFormErr = document.querySelector('.form-error');
+const inputDistance = document.getElementById('distance');
+
+/////////////////////////////// General /////////////////////////////
+const showForm = () => {
+  workoutForm.classList.remove('hidden-form');
+
+  setTimeout(() => {
+    inputDistance.focus();
+  }, 600);
+};
+
+const hideForm = () => {
+  workoutForm.classList.add('hidden-form');
+};
 
 /////////////////////////// Toggle Candence/Elevation /////////////////
 const toggleCadenceAndElevation = () => {
@@ -25,6 +39,8 @@ const toggleCadenceAndElevation = () => {
       // disabled input will not be part of FormData()
       if (inputBox.classList.contains('hidden')) typeInputs[i].disabled = true;
       else typeInputs[i].disabled = false;
+
+      inputDistance.focus();
     });
   };
 
@@ -77,13 +93,27 @@ const getUserPosition = () => {
 
 // Map click event
 const onMapClick = e => {
-  // Show form
-  workoutForm.classList.remove('hidden-form');
+  showForm();
 
+  // store coords of clicked position
   workoutPosition = e.latlng;
 };
 
 /////////////////////////////////// FORM SUBMIT ///////////////////////
+// Render marker
+const renderMarker = (content, className, lat, lng) => {
+  var marker = L.marker([lat, lng]).addTo(map);
+
+  // popup options
+  var options = {
+    maxWidth: '500',
+    closeOnClick: false,
+    autoClose: false,
+    className: className,
+  };
+
+  marker.bindPopup(content, options).openPopup();
+};
 
 // Render workouts
 const renderWorkouts = workouts => {
@@ -101,16 +131,20 @@ const renderWorkouts = workouts => {
 
   workouts.forEach(workout => {
     let title = '';
+    let popupTitle = '';
     let typeLogo = '';
     let speedUnit = '';
     let measure = '';
+    let popupClass = '';
 
     switch (workout.type) {
       case 1:
         // Running
         typeLogo = `🏃🏾`;
-        title = `Running`;
+        title = `Running on ${formatDate(new Date(workout.date))}`;
+        popupTitle = `🏃🏾 ${title}`;
         speedUnit = `MIN/KM`;
+        popupClass = `running-popup`;
         measure = `
         <span class="workout-icon">👣</span>
         <span class="workout-value">${workout.cadence}</span>
@@ -119,8 +153,10 @@ const renderWorkouts = workouts => {
       case 2:
         // Cycling
         typeLogo = `🚴‍♀️`;
-        title = `Cycling`;
+        title = `Cycling on ${formatDate(new Date(workout.date))}`;
+        popupTitle = `🚴‍♀️ ${title}`;
         speedUnit = `KM/H`;
+        popupClass = `cycling-popup`;
         measure = `
         <span class="workout-icon">⛰ </span>
         <span class="workout-value">${workout.elevation} </span>
@@ -130,9 +166,7 @@ const renderWorkouts = workouts => {
 
     let html = `
     <li class="workout workout-${workout.type}">
-      <h2 class="workout-title">${title} on ${formatDate(
-      new Date(workout.date)
-    )}</h2>
+      <h2 class="workout-title">${title}</h2>
       <div class="workout-details-box">
         <div class="workout-details">
           <span class="workout-icon">${typeLogo}</span>
@@ -163,6 +197,8 @@ const renderWorkouts = workouts => {
     </li>`;
 
     workoutContainer.insertAdjacentHTML('afterbegin', html);
+
+    renderMarker(popupTitle, popupClass, workout.lat, workout.lng);
   });
 };
 
@@ -225,7 +261,7 @@ workoutForm.addEventListener('keyup', function (e) {
   clearInputs(this);
 
   // Hide form
-  this.classList.add('hidden-form');
+  hideForm();
 
   // Save state
   formData.append('lat', workoutPosition.lat);
@@ -235,6 +271,9 @@ workoutForm.addEventListener('keyup', function (e) {
 
   // Render workouts
   renderWorkouts(appState);
+
+  // Render marker
+  // renderMarker(workoutPosition.lat, workoutPosition.lng);
 });
 
 //////////////////////////////// INIT //////////////////////////
