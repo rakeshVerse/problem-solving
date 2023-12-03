@@ -1,8 +1,23 @@
 let map;
 const appState = [];
 let workoutPosition;
+const config = {
+  1: {
+    logo: `🏃🏾`,
+    workout: `Running`,
+    speedUnit: `MIN/KM`,
+    popupClass: `running-popup`,
+  },
+  2: {
+    logo: `🚴‍♀️`,
+    workout: `Cycling`,
+    speedUnit: `KM/H`,
+    popupClass: `cycling-popup`,
+  },
+};
 
 // Elements
+const workoutContainer = document.querySelector('.workout-list');
 const workoutForm = document.querySelector('.workout-form');
 const workoutFormErr = document.querySelector('.form-error');
 const inputDistance = document.getElementById('distance');
@@ -106,7 +121,85 @@ const onMapClick = e => {
   if (!introEl.classList.contains('hidden')) introEl.classList.add('hidden');
 };
 
-/////////////////////////////////// FORM SUBMIT ///////////////////////
+////////////////////////// RENDER WORKOUTS AND MARKERS /////////////////////
+
+// Get data as per workout type
+const getWorkoutMeasureEl = workout => {
+  let measure = '';
+
+  switch (workout.type) {
+    case 1:
+      // Running
+      measure = `
+      <span class="workout-icon">👣</span>
+      <span class="workout-value">${workout.cadence}</span>
+      <span class="workout-unit">SPM</span>`;
+      break;
+    case 2:
+      // Cycling
+      measure = `
+      <span class="workout-icon">⛰</span>
+      <span class="workout-value">${workout.elevation}</span>
+      <span class="workout-unit">M</span>`;
+      break;
+  }
+
+  return measure;
+};
+
+/**
+ * Render single workout
+ * @param {object} workout Workout object
+ */
+const renderWorkout = workout => {
+  let html = `
+    <li class="workout workout-${workout.type}" 
+      data-lat="${workout.lat}" data-lng= "${workout.lng}">
+  
+      <h2 class="workout-title">${workout.title}</h2>
+
+      <div class="workout-details-box">
+        <div class="workout-details">
+          <span class="workout-icon">${config[workout.type].logo}</span>
+          <span class="workout-value">${workout.distance}</span>
+          <span class="workout-unit">KM</span>
+        </div>
+
+        <div class="workout-details">
+          <span class="workout-icon">⏱</span>
+          <span class="workout-value">${workout.duration}</span>
+          <span class="workout-unit">MIN</span>
+        </div>
+
+        <div class="workout-details">
+          <span class="workout-icon">⚡️</span>
+          <span class="workout-value">${workout.speed}</span>
+          <span class="workout-unit">${config[workout.type].speedUnit}</span>
+        </div>
+
+        <div class="workout-details">${getWorkoutMeasureEl(workout)}</div>
+      </div>
+    </li>`;
+
+  workoutContainer.insertAdjacentHTML('afterbegin', html);
+};
+
+const renderMarkerAndPopup = workout => {
+  // Marker
+  var marker = L.marker([workout.lat, workout.lng]).addTo(map);
+
+  // Popup
+  var options = {
+    maxWidth: '500',
+    closeOnClick: false,
+    autoClose: false,
+    className: config[workout.type].popupClass,
+  };
+
+  const content = `${config[workout.type].logo} ${workout.title}`;
+  marker.bindPopup(content, options).openPopup();
+};
+
 // Render marker
 const renderMarker = (content, className, lat, lng) => {
   var marker = L.marker([lat, lng]).addTo(map);
@@ -124,16 +217,6 @@ const renderMarker = (content, className, lat, lng) => {
 
 // Render workouts
 const renderWorkouts = workouts => {
-  // Calculate speed
-  const calcSpeed = (type, distance, time) => {
-    if (type === 1) return (time / distance).toFixed(1);
-    if (type === 2) return (distance / (time / 60)).toFixed(1);
-  };
-
-  const formatDate = date =>
-    `${date.toLocaleString('default', { month: 'short' })} ${date.getDate()}`;
-
-  const workoutContainer = document.querySelector('.workout-list');
   workoutContainer.textContent = '';
 
   workouts.forEach(workout => {
@@ -211,41 +294,61 @@ const renderWorkouts = workouts => {
   });
 };
 
-// Save state
-const saveState = data => {
+/////////////////////////////////// FORM SUBMIT ///////////////////////
+/**
+ * Sanitize inputs: trim, convert numeric sting to number
+ * @param {object} inputs formData
+ * @returns Object contains sanitized inputs
+ */
+const getSanitizedObj = inputs => {
   const obj = {};
-  for (const [key, value] of data) {
-    obj[key] = key === 'date' ? value : +value.trim();
+  for (const [key, value] of inputs) {
+    obj[key] = +value.trim();
   }
 
-  appState.push(obj);
-  console.log(appState);
+  return obj;
 };
 
 // All inputs must be positive numbers
 const validateInputs = inputs => {
-  console.log(inputs);
-  for (const [key, value] of inputs) {
-    // console.log(`${key}: ${value}\n`);
-    const input = +value.trim();
-    if (input == '' || input <= 0 || !isFinite(input)) return false;
+  const values = Object.values(inputs);
+
+  for (const value of values) {
+    if (value <= 0 || !isFinite(value)) return false;
   }
 
   return true;
 };
 
-const clearInputs = form => {
-  const inputs = form.querySelectorAll('input');
-  inputs.forEach(input => {
-    input.value = '';
-  });
+// Clear all the input fields
+const clearInputs = form =>
+  form.querySelectorAll('input').forEach(input => (input.value = ''));
+
+/**
+ * Add additional workout info to workout object: lat, lng, date & speed
+ * @param {object} obj Workout object
+ */
+const addWorkoutInfo = obj => {
+  // Calculate speed
+  const calcSpeed = (type, distance, time) => {
+    if (type === 1) return (time / distance).toFixed(1);
+    if (type === 2) return (distance / (time / 60)).toFixed(1);
+  };
+
+  // Format date: Short month followed by 2 digit date
+  const formatDate = date =>
+    `${date.toLocaleString('default', { month: 'short', day: '2-digit' })}`;
+
+  obj.lat = workoutPosition.lat;
+  obj.lng = workoutPosition.lng;
+  obj.date = new Date().toISOString();
+  obj.speed = calcSpeed(obj.type, obj.distance, obj.duration);
+  obj.title = `${config[obj.type].workout} on ${formatDate(
+    new Date(obj.date)
+  )}`;
 };
 
-// hide form error on click
-workoutFormErr.addEventListener('click', function () {
-  this.classList.add('hidden-err');
-});
-
+// EVENTS
 // On enter submit form
 workoutForm.addEventListener('keyup', function (e) {
   // Key must be enter
@@ -253,11 +356,13 @@ workoutForm.addEventListener('keyup', function (e) {
 
   // Get form data
   const formData = new FormData(this);
-  // console.log(formData);
+
+  // Sanitize form data
+  const workoutObj = getSanitizedObj(formData);
 
   // Validate
-  // if not valid show alert
-  if (!validateInputs(formData)) {
+  if (!validateInputs(workoutObj)) {
+    // if not valid show alert & return
     workoutFormErr.classList.remove('hidden-err');
     return;
   }
@@ -266,23 +371,28 @@ workoutForm.addEventListener('keyup', function (e) {
   if (!workoutFormErr.classList.contains('hidden-err'))
     workoutFormErr.classList.add('hidden-err');
 
-  // Clear form input
+  // Clear form inputs
   clearInputs(this);
 
   // Hide form
   hideForm();
 
-  // Save state
-  formData.append('lat', workoutPosition.lat);
-  formData.append('lng', workoutPosition.lng);
-  formData.append('date', new Date().toISOString());
-  saveState(formData);
+  // Add additional info to workout object
+  addWorkoutInfo(workoutObj);
 
-  // Render workouts
-  renderWorkouts(appState);
+  // Push workout object to app state
+  appState.push(workoutObj);
 
-  // Render marker
-  // renderMarker(workoutPosition.lat, workoutPosition.lng);
+  // Render workout
+  renderWorkout(workoutObj);
+
+  // Render marker & popup
+  renderMarkerAndPopup(workoutObj);
+});
+
+// hide form error on click
+workoutFormErr.addEventListener('click', function () {
+  this.classList.add('hidden-err');
 });
 
 //////////////////////////////// Pan Map //////////////////////////
