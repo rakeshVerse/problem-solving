@@ -37,6 +37,10 @@ const hideForm = () => {
   workoutForm.classList.add('hidden-form');
 };
 
+const hideIntro = () => {
+  if (!introEl.classList.contains('hidden')) introEl.classList.add('hidden');
+};
+
 /////////////////////////// Toggle Candence/Elevation /////////////////
 const toggleCadenceAndElevation = () => {
   const typeSelectEl = document.querySelector('#workout-type');
@@ -117,8 +121,7 @@ const onMapClick = e => {
   // store coords of clicked position
   workoutPosition = e.latlng;
 
-  // hide intro
-  if (!introEl.classList.contains('hidden')) introEl.classList.add('hidden');
+  hideIntro();
 };
 
 ////////////////////////// RENDER WORKOUTS AND MARKERS /////////////////////
@@ -154,7 +157,7 @@ const getWorkoutMeasureEl = workout => {
 const renderWorkout = workout => {
   let html = `
     <li class="workout workout-${workout.type}" 
-      data-lat="${workout.lat}" data-lng= "${workout.lng}">
+      data-lat="${workout.coords.lat}" data-lng= "${workout.coords.lng}">
   
       <h2 class="workout-title">${workout.title}</h2>
 
@@ -186,7 +189,7 @@ const renderWorkout = workout => {
 
 const renderMarkerAndPopup = workout => {
   // Marker
-  var marker = L.marker([workout.lat, workout.lng]).addTo(map);
+  var marker = L.marker(workout.coords).addTo(map);
 
   // Popup
   var options = {
@@ -200,98 +203,60 @@ const renderMarkerAndPopup = workout => {
   marker.bindPopup(content, options).openPopup();
 };
 
-// Render marker
-const renderMarker = (content, className, lat, lng) => {
-  var marker = L.marker([lat, lng]).addTo(map);
+////////////////////////// LOCAL STORAGE /////////////////////
 
-  // popup options
-  var options = {
-    maxWidth: '500',
-    closeOnClick: false,
-    autoClose: false,
-    className: className,
-  };
+/**
+ * Store workouts in localStorage
+ */
+const storeWorkoutsLocally = () =>
+  localStorage.setItem('workouts', JSON.stringify(appState));
 
-  marker.bindPopup(content, options).openPopup();
+/**
+ * Check if local storage has an item named 'workouts'. If yes, return true else false
+ * @returns true | false
+ */
+const isLocalStorage = () => (localStorage.getItem('workouts') ? true : false);
+
+/**
+ * Add localStorage data to appState
+ */
+const updateAppState = () => {
+  const localWorkouts = JSON.parse(localStorage.getItem('workouts'));
+
+  localWorkouts.forEach(workout => appState.push(workout));
 };
 
-// Render workouts
-const renderWorkouts = workouts => {
-  workoutContainer.textContent = '';
+/**
+ * Render all the workouts & their markers
+ * @param {array} workouts Array of workout objects
+ */
+const renderUI = workouts => {
+  hideIntro();
 
   workouts.forEach(workout => {
-    let title = '';
-    let popupTitle = '';
-    let typeLogo = '';
-    let speedUnit = '';
-    let measure = '';
-    let popupClass = '';
-
-    switch (workout.type) {
-      case 1:
-        // Running
-        typeLogo = `🏃🏾`;
-        title = `Running on ${formatDate(new Date(workout.date))}`;
-        popupTitle = `🏃🏾 ${title}`;
-        speedUnit = `MIN/KM`;
-        popupClass = `running-popup`;
-        measure = `
-        <span class="workout-icon">👣</span>
-        <span class="workout-value">${workout.cadence}</span>
-        <span class="workout-unit">SPM</span>`;
-        break;
-      case 2:
-        // Cycling
-        typeLogo = `🚴‍♀️`;
-        title = `Cycling on ${formatDate(new Date(workout.date))}`;
-        popupTitle = `🚴‍♀️ ${title}`;
-        speedUnit = `KM/H`;
-        popupClass = `cycling-popup`;
-        measure = `
-        <span class="workout-icon">⛰ </span>
-        <span class="workout-value">${workout.elevation} </span>
-        <span class="workout-unit">M</span>`;
-        break;
-    }
-
-    let html = `
-    <li class="workout workout-${workout.type}" data-lat="${
-      workout.lat
-    }" data-lng= "${workout.lng}">
-      <h2 class="workout-title">${title}</h2>
-      <div class="workout-details-box">
-        <div class="workout-details">
-          <span class="workout-icon">${typeLogo}</span>
-          <span class="workout-value">${workout.distance}</span>
-          <span class="workout-unit">KM</span>
-        </div>
-
-        <div class="workout-details">
-          <span class="workout-icon">⏱</span>
-          <span class="workout-value">${workout.duration}</span>
-          <span class="workout-unit">MIN</span>
-        </div>
-
-        <div class="workout-details">
-          <span class="workout-icon">⚡️</span>
-          <span class="workout-value">${calcSpeed(
-            workout.type,
-            workout.distance,
-            workout.duration
-          )}</span>
-          <span class="workout-unit">${speedUnit}</span>
-        </div>
-
-        <div class="workout-details">
-          ${measure}
-        </div>
-      </div>
-    </li>`;
-
-    workoutContainer.insertAdjacentHTML('afterbegin', html);
-
-    renderMarker(popupTitle, popupClass, workout.lat, workout.lng);
+    renderWorkout(workout);
+    renderMarkerAndPopup(workout);
   });
+
+  // Fit all markers on the view port
+  const markers = appState.map(workout => L.marker(workout.coords));
+  map.flyToBounds(L.featureGroup(markers).getBounds(), {
+    padding: L.point(50, 50),
+  });
+};
+
+/**
+ * Handles what to be done When data exists in localStorage
+ */
+const localStorageHandler = () => {
+  // Load default map
+  loadMap(0, 0, 2.5);
+
+  // Update appState with localStorage data
+  updateAppState();
+
+  // When map is ready, render UI
+  map.whenReady(() => renderUI(appState));
 };
 
 /////////////////////////////////// FORM SUBMIT ///////////////////////
@@ -339,8 +304,8 @@ const addWorkoutInfo = obj => {
   const formatDate = date =>
     `${date.toLocaleString('default', { month: 'short', day: '2-digit' })}`;
 
-  obj.lat = workoutPosition.lat;
-  obj.lng = workoutPosition.lng;
+  // Add properties to the workout object
+  obj.coords = workoutPosition;
   obj.date = new Date().toISOString();
   obj.speed = calcSpeed(obj.type, obj.distance, obj.duration);
   obj.title = `${config[obj.type].workout} on ${formatDate(
@@ -388,6 +353,9 @@ workoutForm.addEventListener('keyup', function (e) {
 
   // Render marker & popup
   renderMarkerAndPopup(workoutObj);
+
+  // Store workouts in localStorage
+  storeWorkoutsLocally();
 });
 
 // hide form error on click
@@ -409,8 +377,8 @@ workoutList.addEventListener('click', function (e) {
 
 //////////////////////////////// INIT //////////////////////////
 const init = () => {
+  isLocalStorage() ? localStorageHandler() : getUserPosition();
   toggleCadenceAndElevation();
-  getUserPosition();
   clearInputs(workoutForm);
 };
 
