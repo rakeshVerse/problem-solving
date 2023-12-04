@@ -82,6 +82,8 @@ const loadMap = (lat, lng, zoom) => {
     attribution:
       '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   }).addTo(map);
+
+  map.on('click', onMapClick);
 };
 
 // GEOLOACTION API: Get user's position
@@ -300,15 +302,6 @@ const addWorkoutInfo = obj => {
   )}`;
 };
 
-//////////////////////////////// INIT //////////////////////////
-const init = () => {
-  isLocalStorage() ? localStorageHandler() : getUserPosition();
-  toggleCadenceAndElevation();
-  clearInputs(workoutForm);
-};
-
-init();
-
 /////////////////////////////// EVENTS ///////////////////////////////
 // SUBMIT FORM - On enter
 workoutForm.addEventListener('keyup', function (e) {
@@ -370,11 +363,20 @@ workoutList.addEventListener('click', function (e) {
 });
 
 // Map click event
-map.on('click', e => {
+const onMapClick = e => {
   showForm();
 
   // store coords of clicked position
   workoutPosition = e.latlng;
 
   hideIntro();
-});
+};
+
+//////////////////////////////// INIT //////////////////////////
+const init = () => {
+  isLocalStorage() ? localStorageHandler() : getUserPosition();
+  toggleCadenceAndElevation();
+  clearInputs(workoutForm);
+};
+
+init();
