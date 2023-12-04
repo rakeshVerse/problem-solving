@@ -82,9 +82,6 @@ const loadMap = (lat, lng, zoom) => {
     attribution:
       '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   }).addTo(map);
-
-  // Map click event
-  map.on('click', onMapClick);
 };
 
 // GEOLOACTION API: Get user's position
@@ -112,16 +109,6 @@ const getUserPosition = () => {
   } else {
     error();
   }
-};
-
-// Map click event
-const onMapClick = e => {
-  showForm();
-
-  // store coords of clicked position
-  workoutPosition = e.latlng;
-
-  hideIntro();
 };
 
 ////////////////////////// RENDER WORKOUTS AND MARKERS /////////////////////
@@ -313,8 +300,17 @@ const addWorkoutInfo = obj => {
   )}`;
 };
 
-// EVENTS
-// On enter submit form
+//////////////////////////////// INIT //////////////////////////
+const init = () => {
+  isLocalStorage() ? localStorageHandler() : getUserPosition();
+  toggleCadenceAndElevation();
+  clearInputs(workoutForm);
+};
+
+init();
+
+/////////////////////////////// EVENTS ///////////////////////////////
+// SUBMIT FORM - On enter
 workoutForm.addEventListener('keyup', function (e) {
   // Key must be enter
   if (e.key !== 'Enter') return;
@@ -358,28 +354,27 @@ workoutForm.addEventListener('keyup', function (e) {
   storeWorkoutsLocally();
 });
 
-// hide form error on click
+// HIDE FORM ERROR - on click
 workoutFormErr.addEventListener('click', function () {
   this.classList.add('hidden-err');
 });
 
-//////////////////////////////// Pan Map //////////////////////////
-// Pan map to the center with click on workout
+// PAN MAP - on click on
 const workoutList = document.querySelector('.workout-list');
-
 workoutList.addEventListener('click', function (e) {
   const workout = e.target.closest('.workout');
-
   if (!workout) return;
 
+  // pan
   map.flyTo([workout.dataset.lat, workout.dataset.lng], 13);
 });
 
-//////////////////////////////// INIT //////////////////////////
-const init = () => {
-  isLocalStorage() ? localStorageHandler() : getUserPosition();
-  toggleCadenceAndElevation();
-  clearInputs(workoutForm);
-};
+// Map click event
+map.on('click', e => {
+  showForm();
 
-init();
+  // store coords of clicked position
+  workoutPosition = e.latlng;
+
+  hideIntro();
+});
